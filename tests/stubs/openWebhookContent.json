@@ -1,0 +1,35 @@
+{
+    "signature": {
+        "timestamp": "1572336568",
+        "token": "cd89b00c76136312503e8cb03c6da2c09de58478608baf2950",
+        "signature": "dummy-signature"
+    },
+    "event-data": {
+        "event": "opened",
+        "id": "-laxIqj9QWubsjY_3pTq_g",
+        "timestamp": 1377047343.042277,
+        "log-level": "info",
+        "recipient": "recipient@example.com",
+        "geolocation": {
+            "country": "US",
+            "region": "Texas",
+            "city": "Austin"
+        },
+        "tags": [],
+        "campaigns": [],
+        "user-variables": {},
+        "ip": "111.111.111.111",
+        "client-info": {
+            "client-type": "mobile browser",
+            "client-os": "iOS",
+            "device-type": "mobile",
+            "client-name": "Mobile Safari",
+            "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 6_1 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Mobile/10B143"
+        },
+        "message": {
+            "headers": {
+                "message-id": "20130503192659.13651.20287@mg.craftremote.com"
+            }
+        }
+    }
+}
