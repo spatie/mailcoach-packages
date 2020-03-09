@@ -22,7 +22,7 @@
 ],
     "require": {
         "php": "^7.4",
-        "illuminate/http": "^7.9",
+        "illuminate/http": "^7.0",
         "spatie/laravel-mailcoach": "^2.0",
         "spatie/laravel-webhook-client": "^2.2"
     },
