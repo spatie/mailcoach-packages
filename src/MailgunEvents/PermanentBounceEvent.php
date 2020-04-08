@@ -22,6 +22,6 @@ class PermanentBounceEvent extends MailgunEvent
 
     public function handle(Send $send)
     {
-        $send->registerBounce();
+        $send->registerBounce($this->getTimestamp());
     }
 }

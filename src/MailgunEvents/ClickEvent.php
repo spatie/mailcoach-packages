@@ -16,6 +16,6 @@ class ClickEvent extends MailgunEvent
     {
         $url = Arr::get($this->payload, 'event-data.url');
 
-        $send->registerClick($url);
+        $send->registerClick($url, $this->getTimestamp());
     }
 }
