@@ -2,7 +2,7 @@
 
 All notable changes to `laravel-mailcoach-mailgun-feedback` will be documented in this file
 
-## 2.7.0 - 2020-04-09
+## 2.1.1 - 2020-04-09
 
 - fix reporting time for feedback
 
