@@ -2,7 +2,9 @@
 
 namespace Spatie\MailcoachMailgunFeedback\Tests;
 
+use Carbon\Carbon;
 use Spatie\Mailcoach\Enums\SendFeedbackType;
+use Spatie\Mailcoach\Models\CampaignClick;
 use Spatie\Mailcoach\Models\CampaignLink;
 use Spatie\Mailcoach\Models\CampaignOpen;
 use Spatie\Mailcoach\Models\Send;
@@ -41,8 +43,12 @@ class ProcessMailgunWebhookJobTest extends TestCase
         (new ProcessMailgunWebhookJob($this->webhookCall))->handle();
 
         $this->assertEquals(1, SendFeedbackItem::count());
-        $this->assertEquals(SendFeedbackType::BOUNCE, SendFeedbackItem::first()->type);
-        $this->assertTrue($this->send->is(SendFeedbackItem::first()->send));
+
+        tap(SendFeedbackItem::first(), function (SendFeedbackItem $sendFeedbackItem) {
+            $this->assertEquals(SendFeedbackType::BOUNCE, $sendFeedbackItem->type);
+            $this->assertEquals(Carbon::createFromTimestamp(1521233195.375624), $sendFeedbackItem->created_at);
+            $this->assertTrue($this->send->is($sendFeedbackItem->send));
+        });
     }
 
     /** @test */
@@ -52,8 +58,11 @@ class ProcessMailgunWebhookJobTest extends TestCase
         (new ProcessMailgunWebhookJob($this->webhookCall))->handle();
 
         $this->assertEquals(1, SendFeedbackItem::count());
-        $this->assertEquals(SendFeedbackType::COMPLAINT, SendFeedbackItem::first()->type);
-        $this->assertTrue($this->send->is(SendFeedbackItem::first()->send));
+        tap(SendFeedbackItem::first(), function (SendFeedbackItem $sendFeedbackItem) {
+            $this->assertEquals(SendFeedbackType::COMPLAINT, $sendFeedbackItem->type);
+            $this->assertEquals(Carbon::createFromTimestamp(1521233123.501324), $sendFeedbackItem->created_at);
+            $this->assertTrue($this->send->is($sendFeedbackItem->send));
+        });
     }
 
     /** @test */
@@ -65,6 +74,9 @@ class ProcessMailgunWebhookJobTest extends TestCase
         $this->assertEquals(1, CampaignLink::count());
         $this->assertEquals('http://example.com/signup', CampaignLink::first()->url);
         $this->assertCount(1, CampaignLink::first()->clicks);
+        tap(CampaignLink::first()->clicks->first(), function (CampaignClick $campaignClick) {
+            $this->assertEquals(Carbon::createFromTimestamp(1377075564.094891), $campaignClick->created_at);
+        });
     }
 
     /** @test */
@@ -74,6 +86,9 @@ class ProcessMailgunWebhookJobTest extends TestCase
         (new ProcessMailgunWebhookJob($this->webhookCall))->handle();
 
         $this->assertCount(1, $this->send->campaign->opens);
+        tap($this->send->campaign->opens->first(), function (CampaignOpen $campaignOpen) {
+            $this->assertEquals(Carbon::createFromTimestamp(1377047343.042277), $campaignOpen->created_at);
+        });
     }
 
     /** @test */
