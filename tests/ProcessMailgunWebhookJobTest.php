@@ -3,7 +3,9 @@
 namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Event;
 use Spatie\Mailcoach\Enums\SendFeedbackType;
+use Spatie\Mailcoach\Events\WebhookCallProcessedEvent;
 use Spatie\Mailcoach\Models\CampaignClick;
 use Spatie\Mailcoach\Models\CampaignLink;
 use Spatie\Mailcoach\Models\CampaignOpen;
@@ -89,6 +91,17 @@ class ProcessMailgunWebhookJobTest extends TestCase
         tap($this->send->campaign->opens->first(), function (CampaignOpen $campaignOpen) {
             $this->assertEquals(Carbon::createFromTimestamp(1377047343.042277), $campaignOpen->created_at);
         });
+    }
+
+    /** @test */
+    public function it_fires_an_event_after_processing_the_webhook_call()
+    {
+        Event::fake();
+
+        $this->webhookCall->update(['payload' => $this->getStub('openWebhookContent')]);
+        (new ProcessMailgunWebhookJob($this->webhookCall))->handle();
+
+        Event::assertDispatched(WebhookCallProcessedEvent::class);
     }
 
     /** @test */

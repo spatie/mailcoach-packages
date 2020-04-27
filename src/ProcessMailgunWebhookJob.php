@@ -3,6 +3,7 @@
 namespace Spatie\MailcoachMailgunFeedback;
 
 use Illuminate\Support\Arr;
+use Spatie\Mailcoach\Events\WebhookCallProcessedEvent;
 use Spatie\Mailcoach\Models\Send;
 use Spatie\Mailcoach\Support\Config;
 use Spatie\WebhookClient\Models\WebhookCall;
@@ -30,6 +31,8 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
         $mailgunEvent = MailgunEventFactory::createForPayload($payload);
 
         $mailgunEvent->handle($send);
+
+        event(new WebhookCallProcessedEvent($this->webhookCall));
     }
 
     protected function getSend(): ?Send
