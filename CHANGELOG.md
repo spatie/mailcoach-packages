@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-mailcoach-mailgun-feedback` will be documented in this file
 
+## 2.2.1 - 2020-09-08
+
+- add support for Laravel 8
+
 ## 2.2.0 - 2020-04-27
 
 - fire `WebhookCallProcessedEvent` after processing webhook call
