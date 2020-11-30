@@ -4,7 +4,6 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use CreateMailCoachTables;
 use CreateWebhookCallsTable;
-use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Mailcoach\MailcoachServiceProvider;
