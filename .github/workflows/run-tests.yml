@@ -7,7 +7,7 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                php: [7.4]
+                php: [8.0, 7.4]
                 laravel: [8.*, 7.*]
                 dependency-version: [prefer-stable]
                 include:
@@ -21,12 +21,6 @@ jobs:
         steps:
             -   name: Checkout code
                 uses: actions/checkout@v2
-
-            -   name: Cache dependencies
-                uses: actions/cache@v2
-                with:
-                    path: ~/.composer/cache/files
-                    key: dependencies-laravel-${{ matrix.laravel }}-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
 
             -   name: Setup PHP
                 uses: shivammathur/setup-php@v2
