@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-mailcoach-mailgun-feedback` will be documented in this file
 
+## 2.3.1 - 2020-11-30
+
+- add support for PHP 8
+
 ## 2.3.0 - 2020-09-24
 
 - Tag a Mailcoach v3 compatible release
