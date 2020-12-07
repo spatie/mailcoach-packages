@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-mailcoach-mailgun-feedback` will be documented in this file
 
+## 2.3.2 - 2020-12-07
+
+- Mark webhook calls as processed when no send is found
+
 ## 2.3.1 - 2020-11-30
 
 - add support for PHP 8

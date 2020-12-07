@@ -24,13 +24,10 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
     {
         $payload = $this->webhookCall->payload;
 
-        if (!$send = $this->getSend()) {
-            return;
-        };
-
-        $mailgunEvent = MailgunEventFactory::createForPayload($payload);
-
-        $mailgunEvent->handle($send);
+        if ($send = $this->getSend()) {
+            $mailgunEvent = MailgunEventFactory::createForPayload($payload);
+            $mailgunEvent->handle($send);
+        }
 
         event(new WebhookCallProcessedEvent($this->webhookCall));
     }
