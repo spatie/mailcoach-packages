@@ -4,13 +4,12 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
-use Spatie\Mailcoach\Enums\SendFeedbackType;
-use Spatie\Mailcoach\Events\WebhookCallProcessedEvent;
-use Spatie\Mailcoach\Models\CampaignClick;
-use Spatie\Mailcoach\Models\CampaignLink;
-use Spatie\Mailcoach\Models\CampaignOpen;
-use Spatie\Mailcoach\Models\Send;
-use Spatie\Mailcoach\Models\SendFeedbackItem;
+use Spatie\Mailcoach\Domain\Campaign\Enums\SendFeedbackType;
+use Spatie\Mailcoach\Domain\Campaign\Events\WebhookCallProcessedEvent;
+use Spatie\Mailcoach\Domain\Campaign\Models\CampaignLink;
+use Spatie\Mailcoach\Domain\Campaign\Models\CampaignOpen;
+use Spatie\Mailcoach\Domain\Campaign\Models\Send;
+use Spatie\Mailcoach\Domain\Campaign\Models\SendFeedbackItem;
 use Spatie\MailcoachMailgunFeedback\ProcessMailgunWebhookJob;
 use Spatie\WebhookClient\Models\WebhookCall;
 

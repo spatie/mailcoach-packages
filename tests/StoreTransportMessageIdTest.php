@@ -3,7 +3,7 @@
 namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use Illuminate\Mail\Events\MessageSent;
-use Spatie\Mailcoach\Models\Send;
+use Spatie\Mailcoach\Domain\Campaign\Models\Send;
 use Swift_Message;
 
 class StoreTransportMessageIdTest extends TestCase

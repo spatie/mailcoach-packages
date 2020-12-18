@@ -3,7 +3,7 @@
 namespace Spatie\MailcoachMailgunFeedback\MailgunEvents;
 
 use Illuminate\Support\Arr;
-use Spatie\Mailcoach\Models\Send;
+use Spatie\Mailcoach\Domain\Campaign\Models\Send;
 
 class PermanentBounceEvent extends MailgunEvent
 {
