@@ -3,7 +3,7 @@
 namespace Spatie\MailcoachMailgunFeedback\MailgunEvents;
 
 use Illuminate\Support\Arr;
-use Spatie\Mailcoach\Domain\Campaign\Models\Send;
+use Spatie\Mailcoach\Domain\Shared\Models\Send;
 
 class ClickEvent extends MailgunEvent
 {

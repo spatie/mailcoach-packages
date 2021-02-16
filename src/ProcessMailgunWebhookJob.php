@@ -4,7 +4,7 @@ namespace Spatie\MailcoachMailgunFeedback;
 
 use Illuminate\Support\Arr;
 use Spatie\Mailcoach\Domain\Campaign\Events\WebhookCallProcessedEvent;
-use Spatie\Mailcoach\Domain\Campaign\Models\Send;
+use Spatie\Mailcoach\Domain\Shared\Models\Send;
 use Spatie\Mailcoach\Domain\Shared\Support\Config;
 use Spatie\WebhookClient\Models\WebhookCall;
 use Spatie\WebhookClient\ProcessWebhookJob;
