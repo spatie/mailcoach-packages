@@ -4,13 +4,13 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use CreateMailCoachTables;
 use CreateWebhookCallsTable;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Mailcoach\MailcoachServiceProvider;
 use Spatie\MailcoachMailgunFeedback\MailcoachMailgunFeedbackServiceProvider;
 use Spatie\MailcoachMailgunFeedback\MailgunWebhookConfig;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TestCase extends Orchestra
 {
