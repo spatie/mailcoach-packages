@@ -10,12 +10,17 @@ use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Mailcoach\MailcoachServiceProvider;
 use Spatie\MailcoachMailgunFeedback\MailcoachMailgunFeedbackServiceProvider;
 use Spatie\MailcoachMailgunFeedback\MailgunWebhookConfig;
+use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TestCase extends Orchestra
 {
     public function setUp(): void
     {
         parent::setUp();
+
+        Factory::guessFactoryNamesUsing(
+            fn (string $modelName) => 'Spatie\\Mailcoach\\Database\\Factories\\'.class_basename($modelName).'Factory'
+        );
 
         $this->withFactories(__DIR__ . '/../vendor/spatie/laravel-mailcoach/database/factories');
 
