@@ -2,7 +2,7 @@
 
 namespace Spatie\MailcoachMailgunFeedback\MailgunEvents;
 
-use Spatie\Mailcoach\Models\Send;
+use Spatie\Mailcoach\Domain\Shared\Models\Send;
 
 class OtherEvent extends MailgunEvent
 {

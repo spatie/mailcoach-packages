@@ -4,7 +4,9 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use CreateMailCoachTables;
 use CreateWebhookCallsTable;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
+use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Mailcoach\MailcoachServiceProvider;
 use Spatie\MailcoachMailgunFeedback\MailcoachMailgunFeedbackServiceProvider;
@@ -16,7 +18,9 @@ class TestCase extends Orchestra
     {
         parent::setUp();
 
-        $this->withFactories(__DIR__ . '/../vendor/spatie/laravel-mailcoach/database/factories');
+        Factory::guessFactoryNamesUsing(
+            fn (string $modelName) => 'Spatie\\Mailcoach\\Database\\Factories\\'.class_basename($modelName).'Factory'
+        );
 
         Route::mailcoach('mailcoach');
 
@@ -26,6 +30,7 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            LivewireServiceProvider::class,
             MailcoachServiceProvider::class,
             MailcoachMailgunFeedbackServiceProvider::class,
         ];
@@ -45,7 +50,7 @@ class TestCase extends Orchestra
 
     protected function setUpDatabase()
     {
-        include_once __DIR__ . '/../vendor/spatie/laravel-webhook-client/database/migrations/create_webhook_calls_table.php.stub';
+        include_once __DIR__ . '/../vendor/spatie/laravel-mailcoach/database/migrations/create_webhook_calls_table.php.stub';
         (new CreateWebhookCallsTable())->up();
 
         include_once __DIR__ . '/../vendor/spatie/laravel-mailcoach/database/migrations/create_mailcoach_tables.php.stub';
