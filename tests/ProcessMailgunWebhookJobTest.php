@@ -4,8 +4,10 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
+use Spatie\Mailcoach\Database\Factories\SendFactory;
 use Spatie\Mailcoach\Domain\Campaign\Enums\SendFeedbackType;
 use Spatie\Mailcoach\Domain\Campaign\Events\WebhookCallProcessedEvent;
+use Spatie\Mailcoach\Domain\Campaign\Models\CampaignClick;
 use Spatie\Mailcoach\Domain\Campaign\Models\CampaignLink;
 use Spatie\Mailcoach\Domain\Campaign\Models\CampaignOpen;
 use Spatie\Mailcoach\Domain\Shared\Models\Send;
@@ -28,7 +30,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
             'payload' => $this->getStub('bounceWebhookContent'),
         ]);
 
-        $this->send = factory(Send::class)->create([
+        $this->send = SendFactory::new()->create([
             'transport_message_id' => '20130503192659.13651.20287@mg.craftremote.com',
         ]);
 
@@ -47,7 +49,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
 
         tap(SendFeedbackItem::first(), function (SendFeedbackItem $sendFeedbackItem) {
             $this->assertEquals(SendFeedbackType::BOUNCE, $sendFeedbackItem->type);
-            $this->assertEquals(Carbon::createFromTimestamp(1521233195.375624), $sendFeedbackItem->created_at);
+            $this->assertEquals(Carbon::createFromTimestamp(1521233195), $sendFeedbackItem->created_at);
             $this->assertTrue($this->send->is($sendFeedbackItem->send));
         });
     }
@@ -61,7 +63,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
         $this->assertEquals(1, SendFeedbackItem::count());
         tap(SendFeedbackItem::first(), function (SendFeedbackItem $sendFeedbackItem) {
             $this->assertEquals(SendFeedbackType::COMPLAINT, $sendFeedbackItem->type);
-            $this->assertEquals(Carbon::createFromTimestamp(1521233123.501324), $sendFeedbackItem->created_at);
+            $this->assertEquals(Carbon::createFromTimestamp(1521233123), $sendFeedbackItem->created_at);
             $this->assertTrue($this->send->is($sendFeedbackItem->send));
         });
     }
@@ -76,7 +78,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
         $this->assertEquals('http://example.com/signup', CampaignLink::first()->url);
         $this->assertCount(1, CampaignLink::first()->clicks);
         tap(CampaignLink::first()->clicks->first(), function (CampaignClick $campaignClick) {
-            $this->assertEquals(Carbon::createFromTimestamp(1377075564.094891), $campaignClick->created_at);
+            $this->assertEquals(Carbon::createFromTimestamp(1377075564), $campaignClick->created_at);
         });
     }
 
@@ -88,7 +90,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
 
         $this->assertCount(1, $this->send->campaign->opens);
         tap($this->send->campaign->opens->first(), function (CampaignOpen $campaignOpen) {
-            $this->assertEquals(Carbon::createFromTimestamp(1377047343.042277), $campaignOpen->created_at);
+            $this->assertEquals(Carbon::createFromTimestamp(1377047343), $campaignOpen->created_at);
         });
     }
 

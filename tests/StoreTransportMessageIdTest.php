@@ -11,7 +11,7 @@ class StoreTransportMessageIdTest extends TestCase
     /** @test * */
     public function it_stores_the_message_id_from_the_transport()
     {
-        $pendingSend = factory(Send::class)->create();
+        $pendingSend = Send::factory()->create();
         $message = new Swift_Message('Test', 'body');
         $message->getHeaders()->addTextHeader('X-Mailgun-Message-ID', '1234');
 

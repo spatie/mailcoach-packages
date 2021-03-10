@@ -22,8 +22,6 @@ class TestCase extends Orchestra
             fn (string $modelName) => 'Spatie\\Mailcoach\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
 
-        $this->withFactories(__DIR__ . '/../vendor/spatie/laravel-mailcoach/database/factories');
-
         Route::mailcoach('mailcoach');
 
         $this->setUpDatabase();
@@ -32,9 +30,9 @@ class TestCase extends Orchestra
     protected function getPackageProviders($app)
     {
         return [
+            LivewireServiceProvider::class,
             MailcoachServiceProvider::class,
             MailcoachMailgunFeedbackServiceProvider::class,
-            LivewireServiceProvider::class,
         ];
     }
 
@@ -52,7 +50,7 @@ class TestCase extends Orchestra
 
     protected function setUpDatabase()
     {
-        include_once __DIR__ . '/../vendor/spatie/laravel-webhook-client/database/migrations/create_webhook_calls_table.php.stub';
+        include_once __DIR__ . '/../vendor/spatie/laravel-mailcoach/database/migrations/create_webhook_calls_table.php.stub';
         (new CreateWebhookCallsTable())->up();
 
         include_once __DIR__ . '/../vendor/spatie/laravel-mailcoach/database/migrations/create_mailcoach_tables.php.stub';
