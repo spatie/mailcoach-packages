@@ -2,6 +2,12 @@
 
 All notable changes to `laravel-mailcoach-mailgun-feedback` will be documented in this file
 
+## 3.1.0 - 2021-11-18
+
+- Support for PHP 8.1
+
+**Full Changelog**: https://github.com/spatie/laravel-mailcoach-mailgun-feedback/compare/3.0.0...3.1.0
+
 ## 3.0.0 - 2021-03-10
 
 - Support for Mailcoach v4
