@@ -1,0 +1,59 @@
+{
+    "name": "spatie/laravel-mailcoach-monaco",
+    "description": "A Monaco editor package for Mailcoach",
+    "keywords": [
+        "spatie",
+        "laravel-mailcoach-monaco"
+    ],
+    "homepage": "https://github.com/spatie/laravel-mailcoach-monaco",
+    "authors": [
+        {
+            "name": "Rias",
+            "email": "rias@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "spatie/laravel-mailcoach": "^4.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^8.5.21|^9.5",
+        "symfony/var-dumper": "^5.2"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.spatie.be"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Spatie\\MailcoachMonaco\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\MailcoachMonaco\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+              "Spatie\\MailcoachMonaco\\MailcoachMonacoServiceProvider"
+            ]
+        }
+    }
+}

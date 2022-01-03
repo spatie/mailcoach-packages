@@ -1,0 +1,94 @@
+{
+    "name": "spatie/mailcoach-packages",
+    "authors": [
+        {
+            "name": "Freek Van der Herten",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        },
+        {
+            "name": "Rias",
+            "email": "rias@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        },
+        {
+            "name": "Benjamin Eberlei",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "type": "metapackage",
+    "require-dev": {
+        "fakerphp/faker": "^1.12",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^8.5.21|^9.5",
+        "symfony/var-dumper": "^5.2",
+        "symplify/monorepo-builder": "^10.0"
+    },
+    "require": {
+        "aws/aws-php-sns-message-validator": "^1.6",
+        "ext-json": "*",
+        "illuminate/support": "^8.67",
+        "php": "^8.0",
+        "scrivo/highlight.php": "^v9.18",
+        "spatie/laravel-mailcoach": "^4.0",
+        "spatie/laravel-package-tools": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Spatie\\MailcoachEditor\\": "packages/editorjs-editor/src",
+            "Spatie\\MailcoachMailgunFeedback\\": "packages/mailgun-feedback/src",
+            "Spatie\\MailcoachMonaco\\": "packages/monaco-editor/src",
+            "Spatie\\MailcoachPostmarkFeedback\\": "packages/postmark-feedback/src",
+            "Spatie\\MailcoachSendgridFeedback\\": "packages/sendgrid-feedback/src",
+            "Spatie\\MailcoachSesFeedback\\": "packages/ses-feedback/src",
+            "Spatie\\MailcoachUnlayer\\": "packages/unlayer-editor/src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\MailcoachEditor\\Tests\\": "packages/editorjs-editor/tests",
+            "Spatie\\MailcoachMailgunFeedback\\Tests\\": "packages/mailgun-feedback/tests",
+            "Spatie\\MailcoachMonaco\\Tests\\": "packages/monaco-editor/tests",
+            "Spatie\\MailcoachPostmarkFeedback\\Tests\\": "packages/postmark-feedback/tests",
+            "Spatie\\MailcoachSendgridFeedback\\Tests\\": "packages/sendgrid-feedback/tests",
+            "Spatie\\MailcoachSesFeedback\\Tests\\": "packages/ses-feedback/tests",
+            "Spatie\\MailcoachUnlayer\\Tests\\": "packages/unlayer-editor/tests",
+            "Spatie\\Mailcoach\\Database\\Factories\\": "vendor/spatie/laravel-mailcoach/database/factories"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.spatie.be"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Spatie\\MailcoachMonaco\\MailcoachMonacoServiceProvider",
+                "Spatie\\MailcoachSesFeedback\\MailcoachSesFeedbackServiceProvider",
+                "Spatie\\MailcoachPostmarkFeedback\\MailcoachPostmarkFeedbackServiceProvider",
+                "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider",
+                "Spatie\\MailcoachEditor\\MailcoachEditorServiceProvider",
+                "Spatie\\MailcoachSendgridFeedback\\MailcoachSendgridFeedbackServiceProvider",
+                "Spatie\\MailcoachMailgunFeedback\\MailcoachMailgunFeedbackServiceProvider"
+            ]
+        }
+    },
+    "replace": {
+        "spatie/laravel-mailcoach-editor": "self.version",
+        "spatie/laravel-mailcoach-mailgun-feedback": "self.version",
+        "spatie/laravel-mailcoach-monaco": "self.version",
+        "spatie/laravel-mailcoach-postmark-feedback": "self.version",
+        "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
+        "spatie/laravel-mailcoach-ses-feedback": "self.version",
+        "spatie/laravel-mailcoach-unlayer": "self.version"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
