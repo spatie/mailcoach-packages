@@ -12,12 +12,6 @@
             "email": "rias@spatie.be",
             "homepage": "https://spatie.be",
             "role": "Developer"
-        },
-        {
-            "name": "Benjamin Eberlei",
-            "email": "freek@spatie.be",
-            "homepage": "https://spatie.be",
-            "role": "Developer"
         }
     ],
     "type": "metapackage",
@@ -41,64 +35,50 @@
     "autoload": {
         "psr-4": {
             "Spatie\\MailcoachEditor\\": [
-                "packages/editorjs-editor/src",
                 "packages/laravel-mailcoach-editor/src"
             ],
             "Spatie\\MailcoachMailgunFeedback\\": [
-                "packages/laravel-mailcoach-mailgun-feedback/src",
-                "packages/mailgun-feedback/src"
+                "packages/laravel-mailcoach-mailgun-feedback/src"
             ],
             "Spatie\\MailcoachMonaco\\": [
-                "packages/laravel-mailcoach-monaco/src",
-                "packages/monaco-editor/src"
+                "packages/laravel-mailcoach-monaco/src"
             ],
             "Spatie\\MailcoachPostmarkFeedback\\": [
-                "packages/laravel-mailcoach-postmark-feedback/src",
-                "packages/postmark-feedback/src"
+                "packages/laravel-mailcoach-postmark-feedback/src"
             ],
             "Spatie\\MailcoachSendgridFeedback\\": [
-                "packages/laravel-mailcoach-sendgrid-feedback/src",
-                "packages/sendgrid-feedback/src"
+                "packages/laravel-mailcoach-sendgrid-feedback/src"
             ],
             "Spatie\\MailcoachSesFeedback\\": [
-                "packages/laravel-mailcoach-ses-feedback/src",
-                "packages/ses-feedback/src"
+                "packages/laravel-mailcoach-ses-feedback/src"
             ],
             "Spatie\\MailcoachUnlayer\\": [
-                "packages/laravel-mailcoach-unlayer/src",
-                "packages/unlayer-editor/src"
+                "packages/laravel-mailcoach-unlayer/src"
             ]
         }
     },
     "autoload-dev": {
         "psr-4": {
             "Spatie\\MailcoachEditor\\Tests\\": [
-                "packages/editorjs-editor/tests",
                 "packages/laravel-mailcoach-editor/tests"
             ],
             "Spatie\\MailcoachMailgunFeedback\\Tests\\": [
-                "packages/laravel-mailcoach-mailgun-feedback/tests",
-                "packages/mailgun-feedback/tests"
+                "packages/laravel-mailcoach-mailgun-feedback/tests"
             ],
             "Spatie\\MailcoachMonaco\\Tests\\": [
-                "packages/laravel-mailcoach-monaco/tests",
-                "packages/monaco-editor/tests"
+                "packages/laravel-mailcoach-monaco/tests"
             ],
             "Spatie\\MailcoachPostmarkFeedback\\Tests\\": [
-                "packages/laravel-mailcoach-postmark-feedback/tests",
-                "packages/postmark-feedback/tests"
+                "packages/laravel-mailcoach-postmark-feedback/tests"
             ],
             "Spatie\\MailcoachSendgridFeedback\\Tests\\": [
-                "packages/laravel-mailcoach-sendgrid-feedback/tests",
-                "packages/sendgrid-feedback/tests"
+                "packages/laravel-mailcoach-sendgrid-feedback/tests"
             ],
             "Spatie\\MailcoachSesFeedback\\Tests\\": [
-                "packages/laravel-mailcoach-ses-feedback/tests",
-                "packages/ses-feedback/tests"
+                "packages/laravel-mailcoach-ses-feedback/tests"
             ],
             "Spatie\\MailcoachUnlayer\\Tests\\": [
-                "packages/laravel-mailcoach-unlayer/tests",
-                "packages/unlayer-editor/tests"
+                "packages/laravel-mailcoach-unlayer/tests"
             ],
             "Spatie\\Mailcoach\\Database\\Factories\\": "vendor/spatie/laravel-mailcoach/database/factories"
         }
