@@ -69,9 +69,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-          package-directory: '${{ matrix.package.path }}'
-          split-repository-organization: '${{ matrix.package.organization }}'
-          split-repository-name: '${{ matrix.package.name }}'
+          package_directory: 'packages/${{ matrix.package }}'
+          repository_organization: 'spatie'
+          repository_name: '${{ matrix.package }}'
+          user_name: "riasvdv"
+          user_email: "rias@spatie.be"
           tag: ${{ steps.previous_tag.outputs.tag }}
-          user-name: "riasvdv"
-          user-email: "rias@spatie.be"
