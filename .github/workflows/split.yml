@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Monorepo Split of ${{ matrix.package }}
-        uses: symplify/github-action-monorepo-split@master
+        uses: symplify/github-action-monorepo-split@2.1
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
