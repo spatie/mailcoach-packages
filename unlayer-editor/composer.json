@@ -1,0 +1,61 @@
+{
+    "name": "spatie/laravel-mailcoach-unlayer",
+    "description": "An Unlayer editor package for Mailcoach",
+    "keywords": [
+        "spatie",
+        "laravel-mailcoach-unlayer"
+    ],
+    "homepage": "https://github.com/spatie/laravel-mailcoach-unlayer",
+    "authors": [
+        {
+            "name": "Rias",
+            "email": "rias@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": "^8.0",
+        "ext-json": "*",
+        "illuminate/support": "^8.67",
+        "spatie/laravel-mailcoach": "^4.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.4",
+        "symfony/var-dumper": "^5.0"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://satis.spatie.be"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Spatie\\MailcoachUnlayer\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Spatie\\MailcoachUnlayer\\Tests\\": "tests",
+            "Spatie\\Mailcoach\\Database\\Factories\\": "vendor/spatie/laravel-mailcoach/database/factories"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+              "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider"
+            ]
+        }
+    }
+}
