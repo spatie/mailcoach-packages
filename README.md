@@ -1,4 +1,19 @@
-# Welcome to Mailcoach
+# The Mailcoach Packages monorepo
+
+This repository contains all the additional feedback & editor packages that you can add to Mailcoach.
+
+## Editors
+- [Editor.js](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-editor)
+- [Monaco](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-monaco)
+- [Unlayer](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-unlayer)
+
+## Feedback packages
+- [Mailgun](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-mailgun-feedback)
+- [Postmark](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-postmark-feedback)
+- [Sendgrid](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-sendgrid-feedback)
+- [SES](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-ses-feedback)
+
+## Welcome to Mailcoach
 
 [Mailcoach](https://mailcoach.app) is a self-hosted email list manager - in a modern jacket.
 
