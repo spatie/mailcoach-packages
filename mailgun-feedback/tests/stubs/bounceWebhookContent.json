@@ -1,0 +1,58 @@
+{
+    "signature": {
+        "timestamp": "1572336568",
+        "token": "cd89b00c76136312503e8cb03c6da2c09de58478608baf2950",
+        "signature": "56d690147f507c58d73d6df0dd8db5e8160b72583518179755130dbf04bffc9e"
+    },
+    "event-data": {
+        "severity": "permanent",
+        "tags": [
+            "my_tag_1",
+            "my_tag_2"
+        ],
+        "timestamp": 1521233195.375624,
+        "storage": {
+            "url": "https:\/\/se.api.mailgun.net\/v3\/domains\/mg.craftremote.com\/messages\/message_key",
+            "key": "message_key"
+        },
+        "log-level": "error",
+        "event": "failed",
+        "campaigns": [],
+        "reason": "suppress-bounce",
+        "user-variables": {
+            "my_var_1": "Mailgun Variable #1",
+            "my-var-2": "awesome"
+        },
+        "flags": {
+            "is-routed": false,
+            "is-authenticated": true,
+            "is-system-test": false,
+            "is-test-mode": false
+        },
+        "recipient-domain": "example.com",
+        "envelope": {
+            "sender": "bob@mg.craftremote.com",
+            "transport": "smtp",
+            "targets": "alice@example.com"
+        },
+        "message": {
+            "headers": {
+                "to": "Alice <alice@example.com>",
+                "message-id": "20130503192659.13651.20287@mg.craftremote.com",
+                "from": "Bob <bob@mg.craftremote.com>",
+                "subject": "Test permanent_fail webhook"
+            },
+            "attachments": [],
+            "size": 111
+        },
+        "recipient": "alice@example.com",
+        "id": "G9Bn5sl1TC6nu79C8C0bwg",
+        "delivery-status": {
+            "code": 605,
+            "message": null,
+            "attempt-no": 1,
+            "description": "Not delivering to previously bounced address",
+            "session-seconds": 0
+        }
+    }
+}
