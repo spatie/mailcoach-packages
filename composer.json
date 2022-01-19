@@ -111,5 +111,10 @@
         "spatie/laravel-mailcoach-unlayer": "self.version"
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true
+        }
+    }
 }
