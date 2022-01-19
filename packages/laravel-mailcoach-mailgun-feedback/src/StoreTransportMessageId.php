@@ -19,7 +19,7 @@ class StoreTransportMessageId
         /** @var \Spatie\Mailcoach\Domain\Shared\Models\Send $send */
         $send = $event->data['send'];
 
-        $transportMessageId = $event->message->getHeaders()->get('X-Mailgun-Message-ID')->getFieldBody();
+        $transportMessageId = $event->message->getHeaders()->get('X-Mailgun-Message-ID')->getBodyAsString();
 
         $transportMessageId = ltrim($transportMessageId, '<');
         $transportMessageId = rtrim($transportMessageId, '>');
