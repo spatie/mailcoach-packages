@@ -23,6 +23,7 @@
     "require": {
         "php": "^8.0",
         "illuminate/support": "^9.0",
+        "symfony/mailgun-mailer": "^6.0",
         "spatie/laravel-mailcoach": "^5.0"
     },
     "require-dev": {
