@@ -29,7 +29,8 @@
         "php": "^8.0",
         "scrivo/highlight.php": "^v9.18",
         "spatie/laravel-mailcoach": "^5.0",
-        "spatie/laravel-package-tools": "^1.11"
+        "spatie/laravel-package-tools": "^1.11",
+        "symfony/mailgun-mailer": "^6.0"
     },
     "autoload": {
         "psr-4": {
