@@ -4,13 +4,11 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Mail\SentMessage;
-use Illuminate\Support\Env;
 use Spatie\Mailcoach\Domain\Shared\Models\Send;
 use Symfony\Component\Mailer\Envelope;
 use Symfony\Component\Mime\Address;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Mime\Part\TextPart;
-use Symfony\Component\Mime\RawMessage;
 
 class StoreTransportMessageIdTest extends TestCase
 {
