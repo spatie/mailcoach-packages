@@ -40,6 +40,6 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
             return null;
         }
 
-        return Send::findByTransportMessageId($messageId);
+        return config('mailcoach.models.send', Send::class)::findByTransportMessageId($messageId);
     }
 }
