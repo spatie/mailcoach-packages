@@ -6,11 +6,14 @@ use Illuminate\Support\Arr;
 use Spatie\Mailcoach\Domain\Campaign\Events\WebhookCallProcessedEvent;
 use Spatie\Mailcoach\Domain\Shared\Models\Send;
 use Spatie\Mailcoach\Domain\Shared\Support\Config;
+use Spatie\Mailcoach\Domain\Shared\Traits\UsesMailcoachModels;
 use Spatie\WebhookClient\Jobs\ProcessWebhookJob;
 use Spatie\WebhookClient\Models\WebhookCall;
 
 class ProcessMailgunWebhookJob extends ProcessWebhookJob
 {
+    use UsesMailcoachModels;
+
     public function __construct(WebhookCall $webhookCall)
     {
         parent::__construct($webhookCall);
@@ -40,6 +43,8 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
             return null;
         }
 
-        return Send::findByTransportMessageId($messageId);
+        $sendClass = $this->getSendClass();
+
+        return $sendClass::findByTransportMessageId($messageId);
     }
 }
