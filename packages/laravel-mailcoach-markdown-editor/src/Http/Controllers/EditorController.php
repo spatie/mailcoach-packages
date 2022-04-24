@@ -3,7 +3,6 @@
 namespace Spatie\MailcoachMarkdownEditor\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\MailcoachMarkdownEditor\Editor;
 use Spatie\MailcoachMarkdownEditor\Models\Upload;
 
 class EditorController
