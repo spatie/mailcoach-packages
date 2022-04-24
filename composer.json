@@ -12,11 +12,18 @@
             "email": "rias@spatie.be",
             "homepage": "https://spatie.be",
             "role": "Developer"
+        },
+        {
+            "name": "Benjamin Eberlei",
+            "email": "freek@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
         }
     ],
     "type": "metapackage",
     "require-dev": {
         "fakerphp/faker": "^1.12",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "^9.5",
         "symfony/var-dumper": "^6.0",
@@ -29,8 +36,11 @@
         "php": "^8.0",
         "scrivo/highlight.php": "^v9.18",
         "spatie/laravel-mailcoach": "^5.2",
-        "spatie/laravel-package-tools": "^1.11",
-        "symfony/mailgun-mailer": "^6.0"
+        "spatie/laravel-package-tools": "^1.6",
+        "symfony/amazon-mailer": "^6.0",
+        "symfony/mailgun-mailer": "^6.0",
+        "symfony/postmark-mailer": "^6.0",
+        "symfony/sendgrid-mailer": "^6.0"
     },
     "autoload": {
         "psr-4": {
@@ -40,6 +50,7 @@
             "Spatie\\MailcoachMailgunFeedback\\": [
                 "packages/laravel-mailcoach-mailgun-feedback/src"
             ],
+            "Spatie\\MailcoachMarkdownEditor\\": "packages/laravel-mailcoach-markdown-editor/src",
             "Spatie\\MailcoachMonaco\\": [
                 "packages/laravel-mailcoach-monaco/src"
             ],
@@ -65,6 +76,7 @@
             "Spatie\\MailcoachMailgunFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-mailgun-feedback/tests"
             ],
+            "Spatie\\MailcoachMarkdownEditor\\Tests\\": "packages/laravel-mailcoach-markdown-editor/tests",
             "Spatie\\MailcoachMonaco\\Tests\\": [
                 "packages/laravel-mailcoach-monaco/tests"
             ],
@@ -97,6 +109,7 @@
                 "Spatie\\MailcoachMonaco\\MailcoachMonacoServiceProvider",
                 "Spatie\\MailcoachMailgunFeedback\\MailcoachMailgunFeedbackServiceProvider",
                 "Spatie\\MailcoachSesFeedback\\MailcoachSesFeedbackServiceProvider",
+                "Spatie\\MailcoachMarkdownEditor\\MailcoachMarkdownEditorServiceProvider",
                 "Spatie\\MailcoachSendgridFeedback\\MailcoachSendgridFeedbackServiceProvider",
                 "Spatie\\MailcoachEditor\\MailcoachEditorServiceProvider"
             ]
@@ -105,17 +118,18 @@
     "replace": {
         "spatie/laravel-mailcoach-editor": "self.version",
         "spatie/laravel-mailcoach-mailgun-feedback": "self.version",
+        "spatie/laravel-mailcoach-markdown-editor": "self.version",
         "spatie/laravel-mailcoach-monaco": "self.version",
         "spatie/laravel-mailcoach-postmark-feedback": "self.version",
         "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
         "spatie/laravel-mailcoach-ses-feedback": "self.version",
         "spatie/laravel-mailcoach-unlayer": "self.version"
     },
-    "minimum-stability": "dev",
-    "prefer-stable": true,
     "config": {
         "allow-plugins": {
             "phpstan/extension-installer": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
