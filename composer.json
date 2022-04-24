@@ -23,11 +23,11 @@
     "type": "metapackage",
     "require-dev": {
         "fakerphp/faker": "^1.12",
-        "friendsofphp/php-cs-fixer": "^2.16",
         "orchestra/testbench": "^7.0",
         "phpunit/phpunit": "^9.5",
         "symfony/var-dumper": "^6.0",
-        "symplify/monorepo-builder": "^10.0"
+        "symplify/monorepo-builder": "^10.0",
+        "friendsofphp/php-cs-fixer": "^3.8"
     },
     "require": {
         "aws/aws-php-sns-message-validator": "^1.6",
