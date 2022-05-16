@@ -9,7 +9,7 @@ use Spatie\Mailcoach\Domain\Shared\Support\TemplateRenderer;
 class Editor extends EditorComponent
 {
     public bool $supportsTemplates = false;
-    
+
     public function render(): View
     {
         if ($this->template?->containsPlaceHolders()) {

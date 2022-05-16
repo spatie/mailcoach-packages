@@ -88,15 +88,17 @@
         @endif
     </div>
 
-    <div class="form-buttons">
-        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('preview')" :label="__('mailcoach - Preview')"/>
-        <x-mailcoach::preview-modal name="preview" :html="$fullHtml" :title="__('mailcoach - Preview') . ' - ' . $sendable->subject" />
+    <x-mailcoach::campaign-replacer-help-texts/>
 
+    <div class="form-buttons">
         <x-mailcoach::button wire:click="save" :label="__('mailcoach - Save content')"/>
 
         <x-mailcoach::button x-on:click.prevent="$wire.save() && $store.modals.open('send-test')" class="ml-2" :label="__('mailcoach - Save and send test')"/>
         <x-mailcoach::modal name="send-test">
             <livewire:mailcoach::send-test :model="$sendable" />
         </x-mailcoach::modal>
+
+        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('preview')" :label="__('mailcoach - Preview')"/>
+        <x-mailcoach::preview-modal name="preview" :html="$fullHtml" :title="__('mailcoach - Preview') . ' - ' . $sendable->subject" />
     </div>
 </div>
