@@ -13,7 +13,9 @@ class Editor extends EditorComponent
         if ($this->template?->containsPlaceHolders()) {
             foreach ($this->template->placeHolderNames() as $placeHolderName) {
                 if (! is_array($this->templateFieldValues[$placeHolderName] ?? '')) {
-                    $this->templateFieldValues[$placeHolderName] = [];
+                    $this->templateFieldValues[$placeHolderName] = [
+                        'json' => $this->templateFieldValues[$placeHolderName] ?? '',
+                    ];
                 }
 
                 $this->templateFieldValues[$placeHolderName]['html'] ??= '';
@@ -21,7 +23,9 @@ class Editor extends EditorComponent
             }
         } else {
             if (! is_array($this->templateFieldValues['html'])) {
-                $this->templateFieldValues['html'] = [];
+                $this->templateFieldValues['html'] = [
+                    'json' => $this->templateFieldValues['html'] ?? '',
+                ];
             }
 
             $this->templateFieldValues['html']['html'] ??= '';

@@ -15,15 +15,19 @@ class Editor extends EditorComponent
         if ($this->template?->containsPlaceHolders()) {
             foreach ($this->template->placeHolderNames() as $placeHolderName) {
                 if (! is_array($this->templateFieldValues[$placeHolderName] ?? '')) {
-                    $this->templateFieldValues[$placeHolderName] = [];
+                    $this->templateFieldValues[$placeHolderName] = [
+                        'markdown' => $this->templateFieldValues[$placeHolderName] ?? '',
+                    ];
                 }
 
                 $this->templateFieldValues[$placeHolderName]['html'] ??= '';
                 $this->templateFieldValues[$placeHolderName]['markdown'] ??= '';
             }
         } else {
-            if (! is_array($this->templateFieldValues['html'])) {
-                $this->templateFieldValues['html'] = [];
+            if (! is_array($this->templateFieldValues['html'] ?? '')) {
+                $this->templateFieldValues['html'] = [
+                    'markdown' => $this->templateFieldValues['html'] ?? '',
+                ];
             }
 
             $this->templateFieldValues['html']['html'] ??= '';
