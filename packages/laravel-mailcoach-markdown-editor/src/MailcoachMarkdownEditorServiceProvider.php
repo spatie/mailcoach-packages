@@ -2,7 +2,6 @@
 
 namespace Spatie\MailcoachMarkdownEditor;
 
-use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
