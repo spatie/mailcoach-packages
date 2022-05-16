@@ -9,14 +9,14 @@
         }
 
         const init = function() {
-            let editor = new toastui.Editor({
+            let editor = new toastui.Editor(Object.assign({
                 el: this.$refs.editor,
                 plugins: [
                     toastui.Editor.plugin.codeSyntaxHighlight,
                     toastui.Editor.plugin.tableMergedCell,
                     toastui.Editor.plugin.colorSyntax,
                 ]
-            });
+            }, @json(config('mailcoach-markdown-editor.options', []))));
 
             editor.setMarkdown(this.markdown);
 
