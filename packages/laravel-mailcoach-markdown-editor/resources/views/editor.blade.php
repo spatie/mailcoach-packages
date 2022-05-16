@@ -8,7 +8,7 @@
             };
         }
 
-        const init = function() {
+        window.init = function() {
             let editor = new toastui.Editor(Object.assign({
                 el: this.$refs.editor,
                 plugins: [

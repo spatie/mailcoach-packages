@@ -55,7 +55,7 @@
             }).then(response => response.json());
         }
 
-        const init = function() {
+        window.init = function() {
             const editor = new EditorJS({
                 holder: this.$refs.editor,
                 data: this.json,
