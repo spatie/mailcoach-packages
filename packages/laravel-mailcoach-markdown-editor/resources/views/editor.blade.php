@@ -89,7 +89,7 @@
     </div>
 
     <div class="form-buttons">
-        <x-mailcoach::button-secondary x-on:click.prevent="$wire.renderFullHtml() && $store.modals.open('preview')" :label="__('mailcoach - Preview')"/>
+        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('preview')" :label="__('mailcoach - Preview')"/>
         <x-mailcoach::preview-modal name="preview" :html="$fullHtml" :title="__('mailcoach - Preview') . ' - ' . $sendable->subject" />
 
         <x-mailcoach::button wire:click="save" :label="__('mailcoach - Save content')"/>
