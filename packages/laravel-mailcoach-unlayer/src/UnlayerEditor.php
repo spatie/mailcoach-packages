@@ -13,7 +13,6 @@ use Spatie\Mailcoach\Domain\Campaign\Models\Campaign;
 use Spatie\Mailcoach\Domain\Campaign\Models\Concerns\HasHtmlContent;
 use Spatie\Mailcoach\Domain\Campaign\Support\Replacers\ReplacerWithHelpText as CampaignReplacerWithHelpText;
 use Spatie\Mailcoach\Domain\Shared\Models\Sendable;
-use Spatie\Mailcoach\Domain\Shared\Support\TemplateRenderer;
 
 class UnlayerEditor extends EditorComponent
 {

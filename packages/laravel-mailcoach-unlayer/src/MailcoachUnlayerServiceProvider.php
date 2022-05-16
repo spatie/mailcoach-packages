@@ -2,7 +2,6 @@
 
 namespace Spatie\MailcoachUnlayer;
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Livewire\Livewire;
 use Spatie\Mailcoach\Mailcoach;
