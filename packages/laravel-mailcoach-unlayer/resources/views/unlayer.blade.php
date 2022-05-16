@@ -117,13 +117,13 @@
         <x-mailcoach::button wire:click="save" :label="__('mailcoach - Save content')"/>
 
         <x-mailcoach::button x-on:click.prevent="$wire.save() && $store.modals.open('send-test')" class="ml-2" :label="__('mailcoach - Save and send test')"/>
+        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('preview')" :label="__('mailcoach - Preview')"/>
+        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('load-unlayer-template')" :label="__('mailcoach - Load Unlayer template')"/>
+
+        <x-mailcoach::preview-modal name="preview" :html="$fullHtml" :title="__('mailcoach - Preview') . ' - ' . $sendable->subject" />
         <x-mailcoach::modal name="send-test">
             <livewire:mailcoach::send-test :model="$sendable" />
         </x-mailcoach::modal>
-
-        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('preview')" :label="__('mailcoach - Preview')"/>
-        <x-mailcoach::preview-modal name="preview" :html="$fullHtml" :title="__('mailcoach - Preview') . ' - ' . $sendable->subject" />
-        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('load-unlayer-template')" :label="__('mailcoach - Load Unlayer template')"/>
     </div>
 </div>
 
@@ -136,7 +136,7 @@
 
         <div class="form-buttons">
             <x-mailcoach::button class="mt-auto ml-2" id="load-template" label="Load" type="button" />
-            <x-mailcoach::button-cancel :label=" __('mailcoach - Cancel')" />
+            <x-mailcoach::button-cancel x-on:click.prevent="$store.modals.close('load-unlayer-template')" :label=" __('mailcoach - Cancel')" />
         </div>
     </x-mailcoach::modal>
 @endpush
