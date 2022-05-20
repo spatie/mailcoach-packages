@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - mailcoach-v5
+      - v6
     tags:
       - '*'
 
