@@ -3,12 +3,12 @@
 namespace Spatie\MailcoachMarkdownEditor;
 
 use Illuminate\Contracts\View\View;
-use Spatie\Mailcoach\Domain\Campaign\Livewire\EditorComponent;
+use Spatie\Mailcoach\Http\App\Livewire\EditorComponent;
 use Spatie\Mailcoach\Domain\Shared\Support\TemplateRenderer;
 
 class Editor extends EditorComponent
 {
-    public bool $supportsTemplates = false;
+    public static bool $supportsTemplates = false;
 
     public function render(): View
     {
@@ -45,7 +45,7 @@ class Editor extends EditorComponent
                 return $values;
             }
 
-            return $values['html'];
+            return $values['html'] ?? '';
         })->toArray());
     }
 }

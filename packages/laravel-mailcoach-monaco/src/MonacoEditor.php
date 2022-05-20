@@ -3,7 +3,7 @@
 namespace Spatie\MailcoachMonaco;
 
 use Illuminate\Contracts\View\View;
-use Spatie\Mailcoach\Domain\Campaign\Livewire\EditorComponent;
+use Spatie\Mailcoach\Http\App\Livewire\EditorComponent;
 
 class MonacoEditor extends EditorComponent
 {

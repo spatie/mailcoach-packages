@@ -3,12 +3,14 @@
 namespace Spatie\MailcoachUnlayer;
 
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Arr;
 use Spatie\Mailcoach\Domain\Audience\Models\Tag;
 use Spatie\Mailcoach\Domain\Automation\Models\AutomationMail;
 use Spatie\Mailcoach\Domain\Automation\Support\Replacers\ReplacerWithHelpText as AutomationMailReplacerWithHelpText;
 use Spatie\Mailcoach\Domain\Campaign\Enums\TagType;
-use Spatie\Mailcoach\Domain\Campaign\Livewire\EditorComponent;
+use Spatie\Mailcoach\Domain\Campaign\Rules\HtmlRule;
+use Spatie\Mailcoach\Http\App\Livewire\EditorComponent;
 use Spatie\Mailcoach\Domain\Campaign\Models\Campaign;
 use Spatie\Mailcoach\Domain\Campaign\Models\Concerns\HasHtmlContent;
 use Spatie\Mailcoach\Domain\Campaign\Support\Replacers\ReplacerWithHelpText as CampaignReplacerWithHelpText;
@@ -16,11 +18,18 @@ use Spatie\Mailcoach\Domain\Shared\Models\Sendable;
 
 class UnlayerEditor extends EditorComponent
 {
-    public function mount(Sendable $sendable)
+    public function mount(HasHtmlContent $model)
     {
-        parent::mount($sendable);
+        parent::mount($model);
         $this->template = null;
         $this->templateId = null;
+    }
+
+    public function rules(): array
+    {
+        return [
+            'templateFieldValues.html' => ['required', new HtmlRule()],
+        ];
     }
 
     public function render(): View
@@ -28,7 +37,7 @@ class UnlayerEditor extends EditorComponent
         $this->templateFieldValues['html'] ??= '';
         $this->templateFieldValues['json'] ??= '';
 
-        $replacers = match ($this->sendable::class) {
+        $replacers = match ($this->model::class) {
             AutomationMail::class => config('mailcoach.automation.replacers'),
             default => config('mailcoach.campaigns.replacers'),
         };
@@ -43,7 +52,7 @@ class UnlayerEditor extends EditorComponent
             'displayMode' => 'email',
             'features' => ['textEditor' => ['spellChecker' => true]],
             'tools' => ['form' => ['enabled' => false]],
-            'specialLinks' => $this->getSpecialLinks($this->sendable),
+            'specialLinks' => $this->getSpecialLinks($this->model),
         ], config('mailcoach.unlayer.options', []));
 
         return view('mailcoach-unlayer::unlayer', [
