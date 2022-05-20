@@ -121,9 +121,11 @@
         }
     </script>
 
-    <div class="mb-6">
-        <x-mailcoach::template-chooser />
-    </div>
+    @if (! $model instanceof \Spatie\Mailcoach\Domain\Campaign\Models\Template)
+        <div class="mb-6">
+            <x-mailcoach::template-chooser />
+        </div>
+    @endif
     <div class="prose border rounded-md bg-gray-100 px-8 py-8" style="max-width: 50rem; padding-top: 2rem; padding-bottom: 2rem;">
 
         <div>
