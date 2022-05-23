@@ -113,7 +113,7 @@
 
     <x-mailcoach::campaign-replacer-help-texts/>
 
-    <x-mailcoach::editor-buttons :html="$fullHtml" :model="$model">
+    <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model">
         <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('load-unlayer-template')" :label="__('mailcoach - Load Unlayer template')"/>
     </x-mailcoach::editor-buttons>
 </div>

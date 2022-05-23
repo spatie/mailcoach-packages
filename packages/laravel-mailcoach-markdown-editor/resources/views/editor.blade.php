@@ -92,5 +92,5 @@
 
     <x-mailcoach::campaign-replacer-help-texts/>
 
-    <x-mailcoach::editor-buttons :html="$fullHtml" :model="$model" />
+    <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model" />
 </div>
