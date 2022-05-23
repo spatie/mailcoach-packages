@@ -39,6 +39,12 @@ class Editor extends EditorComponent
 
     public function renderFullHtml()
     {
+        if (! $this->template) {
+            $this->fullHtml = $this->templateFieldValues['html']['html'] ?? '';
+
+            return;
+        }
+
         $templateRenderer = (new TemplateRenderer($this->template?->html ?? ''));
         $this->fullHtml = $templateRenderer->render(collect($this->templateFieldValues)->map(function ($values) {
             if (is_string($values)) {
