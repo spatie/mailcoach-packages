@@ -6,23 +6,23 @@ use Spatie\MailcoachSendgridSetup\Tests\TestCase;
 
 uses(TestCase::class);
 
-beforeEach(function() {
+beforeEach(function () {
     $this->sendGrid = new Sendgrid($this->key);
 });
 
-it('can determine an api key is valid', function() {
+it('can determine an api key is valid', function () {
     $result = $this->sendGrid->isValidApiKey();
 
     expect($result)->toBeTrue();
 });
 
-it('can determine an api key is invalid', function() {
+it('can determine an api key is invalid', function () {
     $result = (new Sendgrid('invalid-key'))->isValidApiKey();
 
     expect($result)->toBeFalse();
 });
 
-it('can update the webhook settings', function() {
+it('can update the webhook settings', function () {
     $url = "https://test-url.com/first";
     $this->sendGrid->setupWebhook($url, [EventType::Open]);
 
@@ -40,10 +40,10 @@ it('can update the webhook settings', function() {
         ->and($webhookSettings['click'])->toBeTrue();
 });
 
-it('can get webhook settings', function() {
-   $webhookSettings = $this->sendGrid->getWebhook();
+it('can get webhook settings', function () {
+    $webhookSettings = $this->sendGrid->getWebhook();
 
-   expect($webhookSettings)->toHaveKeys([
+    expect($webhookSettings)->toHaveKeys([
        'url',
        'open',
        'click',
@@ -52,7 +52,3 @@ it('can get webhook settings', function() {
        'enabled',
    ]);
 });
-
-
-
-

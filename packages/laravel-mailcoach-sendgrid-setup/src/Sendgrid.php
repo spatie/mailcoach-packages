@@ -9,7 +9,6 @@ class Sendgrid
 {
     public function __construct(protected string $apiKey)
     {
-
     }
 
     public function isValidApiKey(): bool
@@ -21,9 +20,8 @@ class Sendgrid
 
     public function setupWebhook(string $url, array $events): array
     {
-
         $events = collect(EventType::cases())
-            ->mapWithKeys(function(EventType $eventType) use ($events) {
+            ->mapWithKeys(function (EventType $eventType) use ($events) {
                 return [$eventType->value => in_array($eventType, $events)];
             })
             ->toArray();
