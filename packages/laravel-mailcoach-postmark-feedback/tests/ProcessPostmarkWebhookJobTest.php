@@ -127,7 +127,7 @@ class ProcessPostmarkWebhookJobTest extends TestCase
     /** @test */
     public function it_fires_an_event_after_processing_the_webhook_call()
     {
-        Event::fake();
+        Event::fake(WebhookCallProcessedEvent::class);
 
         $this->webhookCall->update(['payload' => $this->getStub('openWebhookContent')]);
         (new ProcessPostmarkWebhookJob($this->webhookCall))->handle();

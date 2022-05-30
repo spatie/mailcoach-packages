@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        php: [8.1, 8.0]
+        php: [8.1]
         laravel: [9.*]
         dependency-version: [prefer-stable]
         include:
@@ -35,4 +35,8 @@ jobs:
             COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
 
       -   name: Execute tests
-          run: vendor/bin/phpunit
+          run: vendor/bin/pest
+          env:
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}

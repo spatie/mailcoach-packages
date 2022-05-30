@@ -2,6 +2,9 @@
 
 use Spatie\MailcoachSesSetup\MailcoachSes;
 use Spatie\MailcoachSesSetup\MailcoachSesConfig;
+use Spatie\MailcoachSesSetup\Tests\TestCase;
+
+uses(TestCase::class);
 
 beforeEach(function () {
     $config = new MailcoachSesConfig(

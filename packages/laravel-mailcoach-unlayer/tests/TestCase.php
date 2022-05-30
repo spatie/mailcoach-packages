@@ -23,7 +23,7 @@ abstract class TestCase extends Orchestra
             fn (string $modelName) => 'Spatie\\Mailcoach\\Database\\Factories\\'.class_basename($modelName).'Factory'
         );
 
-        Route::mailcoachUnlayer('mailcoachUnlayer');
+        Route::mailcoach('mailcoach');
 
         $this->withoutExceptionHandling();
     }
@@ -49,9 +49,6 @@ abstract class TestCase extends Orchestra
 
         include_once __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/create_mailcoach_tables.php.stub';
         (new CreateMailcoachTables())->up();
-
-        include_once __DIR__ . '/../database/migrations/create_mailcoach_unlayer_tables.php.stub';
-        (new CreateMailcoachUnlayerTables())->up();
 
         include_once __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/create_media_table.php.stub';
         (new CreateMediaTable())->up();

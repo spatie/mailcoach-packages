@@ -126,7 +126,7 @@ class ProcessSendgridWebhookJobTest extends TestCase
     /** @test */
     public function it_will_fire_an_event_when_processing_is_complete()
     {
-        Event::fake();
+        Event::fake(WebhookCallProcessedEvent::class);
 
         $this->webhookCall->update(['payload' => $this->getStub('openPayload')]);
         (new ProcessSendgridWebhookJob($this->webhookCall))->handle();

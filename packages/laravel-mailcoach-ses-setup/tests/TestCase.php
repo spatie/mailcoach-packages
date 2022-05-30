@@ -28,11 +28,12 @@ class TestCase extends Orchestra
 
     protected function loadEnvironmentVariables()
     {
-        if (! file_exists(__DIR__ . '/../.env')) {
+        if (! file_exists(__DIR__ . '/../../../.env')) {
             return;
         }
 
-        $dotEnv = Dotenv::createImmutable(__DIR__ . '/..');
+
+        $dotEnv = Dotenv::createImmutable(__DIR__ . '/../../..');
 
         $dotEnv->load();
     }

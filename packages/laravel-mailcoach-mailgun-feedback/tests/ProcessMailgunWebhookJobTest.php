@@ -4,6 +4,7 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Str;
 use Spatie\Mailcoach\Database\Factories\SendFactory;
 use Spatie\Mailcoach\Domain\Campaign\Enums\SendFeedbackType;
 use Spatie\Mailcoach\Domain\Campaign\Events\WebhookCallProcessedEvent;
@@ -97,7 +98,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
     /** @test */
     public function it_fires_an_event_after_processing_the_webhook_call()
     {
-        Event::fake();
+        Event::fake(WebhookCallProcessedEvent::class);
 
         $this->webhookCall->update(['payload' => $this->getStub('openWebhookContent')]);
         (new ProcessMailgunWebhookJob($this->webhookCall))->handle();
