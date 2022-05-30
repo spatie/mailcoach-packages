@@ -13,6 +13,8 @@ class TestCase extends Orchestra
         parent::setUp();
 
         $this->loadEnvironmentVariables();
+
+        $this->key = env('SENDGRID_API_KEY');
     }
 
     protected function getPackageProviders($app)
