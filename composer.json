@@ -4,7 +4,6 @@
         {
             "name": "Freek Van der Herten",
             "email": "freek@spatie.be",
-            "homepage": "https://spatie.be",
             "role": "Developer"
         },
         {
@@ -71,6 +70,7 @@
             "Spatie\\MailcoachSendgridFeedback\\": [
                 "packages/laravel-mailcoach-sendgrid-feedback/src"
             ],
+            "Spatie\\MailcoachSendgridSetup\\": "packages/laravel-mailcoach-sendgrid-setup/src",
             "Spatie\\MailcoachSesFeedback\\": [
                 "packages/laravel-mailcoach-ses-feedback/src"
             ],
@@ -98,6 +98,7 @@
             "Spatie\\MailcoachSendgridFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-sendgrid-feedback/tests"
             ],
+            "Spatie\\MailcoachSendgridSetup\\Tests\\": "packages/laravel-mailcoach-sendgrid-setup/tests",
             "Spatie\\MailcoachSesFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-ses-feedback/tests"
             ],
@@ -118,6 +119,7 @@
         "laravel": {
             "providers": [
                 "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider",
+                "Spatie\\MailcoachSendgridSetup\\MailcoachSendgridSetupServiceProvider",
                 "Spatie\\MailcoachPostmarkFeedback\\MailcoachPostmarkFeedbackServiceProvider",
                 "Spatie\\MailcoachMonaco\\MailcoachMonacoServiceProvider",
                 "Spatie\\MailcoachSesSetup\\MailcoachSesSetupServiceProvider",
@@ -136,6 +138,7 @@
         "spatie/laravel-mailcoach-monaco": "self.version",
         "spatie/laravel-mailcoach-postmark-feedback": "self.version",
         "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
+        "spatie/laravel-mailcoach-sendgrid-setup": "self.version",
         "spatie/laravel-mailcoach-ses-feedback": "self.version",
         "spatie/laravel-mailcoach-ses-setup": "self.version",
         "spatie/laravel-mailcoach-unlayer": "self.version"
