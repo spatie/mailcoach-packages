@@ -4,7 +4,6 @@ namespace Spatie\MailcoachMailgunFeedback\Tests;
 
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Str;
 use Spatie\Mailcoach\Database\Factories\SendFactory;
 use Spatie\Mailcoach\Domain\Campaign\Enums\SendFeedbackType;
 use Spatie\Mailcoach\Domain\Campaign\Events\WebhookCallProcessedEvent;

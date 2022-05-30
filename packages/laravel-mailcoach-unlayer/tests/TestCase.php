@@ -3,7 +3,6 @@
 namespace Spatie\MailcoachUnlayer\Tests;
 
 use CreateMailcoachTables;
-use CreateMailcoachUnlayerTables;
 use CreateMediaTable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;

@@ -4,7 +4,6 @@ namespace Spatie\MailcoachUnlayer\Tests;
 
 use Livewire\Livewire;
 use Spatie\Mailcoach\Domain\Campaign\Models\Template;
-use Spatie\MailcoachUnlayer\UnlayerEditor;
 
 class UnlayerEditorTest extends TestCase
 {
