@@ -4,6 +4,7 @@ namespace Spatie\MailcoachSendgridSetup;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
+use Spatie\MailcoachSendgridSetup\Exceptions\CouldNotAccessAccountSetting;
 
 class Sendgrid
 {
@@ -21,8 +22,7 @@ class Sendgrid
 
     public function setupWebhook(string $url, array $events): array
     {
-
-        $events = collect(EventType::cases())
+        $eventValues = collect(EventType::cases())
             ->mapWithKeys(function(EventType $eventType) use ($events) {
                 return [$eventType->value => in_array($eventType, $events)];
             })
@@ -31,7 +31,7 @@ class Sendgrid
         $payload = array_merge([
             'enabled' => true,
             'url' => $url,
-        ], $events);
+        ], $eventValues);
 
         $response = $this->callSendGrid(
             'v3/user/webhooks/event/settings',
@@ -39,8 +39,65 @@ class Sendgrid
             $payload
         );
 
+        $enableOpenTracking = in_array(EventType::Open, $events);
+        $this->enableOpenTracking(enabled: $enableOpenTracking);
+
+        $enableClickTracking = in_array(EventType::Click, $events);
+        $this->enableClickTracking($enableClickTracking);
+
         return $response->json();
     }
+
+    public function enableOpenTracking(bool $enabled): array
+    {
+        $response = $this->callSendGrid('v3/tracking_settings/open', 'patch', [
+            'enabled' => $enabled,
+        ]);
+
+        if (! $response->successful()) {
+            throw CouldNotAccessAccountSetting::make('tracking settings: open');
+        }
+
+        return $response->json();
+    }
+
+    public function openTrackingEnabled(): bool
+    {
+        $response = $this->callSendGrid('v3/tracking_settings/open');
+
+        if (! $response->successful()) {
+            throw CouldNotAccessAccountSetting::make('tracking settings: open');
+        }
+
+        return $response->json('enabled');
+    }
+
+    public function enableClickTracking(bool $enabled): array
+    {
+        $response = $this->callSendGrid('v3/tracking_settings/click', 'patch', [
+            'enabled' => $enabled,
+        ]);
+
+        if (! $response->successful()) {
+            throw CouldNotAccessAccountSetting::make('tracking settings: click');
+        }
+
+        return $response->json();
+    }
+
+    public function clickTrackingEnabled(): bool
+    {
+        $response = $this->callSendGrid('v3/tracking_settings/click');
+
+        if (! $response->successful()) {
+            throw CouldNotAccessAccountSetting::make('tracking settings: click');
+        }
+
+        return $response->json('enabled');
+    }
+
+
+
 
     public function getWebhook(): array
     {

@@ -31,6 +31,9 @@ it('can update the webhook settings', function() {
         ->and($webhookSettings['open'])->toBeTrue()
         ->and($webhookSettings['click'])->toBeFalse();
 
+    expect($this->sendGrid->openTrackingEnabled())->toBeTrue();
+    expect($this->sendGrid->clickTrackingEnabled())->toBeFalse();
+
     $url = "https://test-url.com/second";
     $this->sendGrid->setupWebhook($url, [EventType::Click]);
 
@@ -38,6 +41,9 @@ it('can update the webhook settings', function() {
     expect($webhookSettings['url'])->toBe($url)
         ->and($webhookSettings['open'])->toBeFalse()
         ->and($webhookSettings['click'])->toBeTrue();
+
+    expect($this->sendGrid->openTrackingEnabled())->toBeFalse();
+    expect($this->sendGrid->clickTrackingEnabled())->toBeTrue();
 });
 
 it('can get webhook settings', function() {
