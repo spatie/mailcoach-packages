@@ -46,15 +46,15 @@ it('can update the webhook settings', function () {
     expect($this->sendGrid->clickTrackingEnabled())->toBeTrue();
 });
 
-it('can enable and disable open tracking on the account', function() {
-   $this->sendGrid->enableOpenTracking();
-   expect($this->sendGrid->openTrackingEnabled())->toBeTrue();
+it('can enable and disable open tracking on the account', function () {
+    $this->sendGrid->enableOpenTracking();
+    expect($this->sendGrid->openTrackingEnabled())->toBeTrue();
 
     $this->sendGrid->enableOpenTracking(false);
     expect($this->sendGrid->openTrackingEnabled())->toBeFalse();
 });
 
-it('can enable and disable click tracking on the account', function() {
+it('can enable and disable click tracking on the account', function () {
     $this->sendGrid->enableClickTracking();
     expect($this->sendGrid->clickTrackingEnabled())->toBeTrue();
 
