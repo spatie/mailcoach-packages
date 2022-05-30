@@ -23,20 +23,31 @@
     "type": "metapackage",
     "require-dev": {
         "fakerphp/faker": "^1.12",
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "nunomaduro/collision": "^6.0",
+        "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^7.0",
+        "pestphp/pest": "^1.21",
+        "pestphp/pest-plugin-laravel": "^1.1",
+        "phpstan/extension-installer": "^1.1",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
+        "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
+        "spatie/laravel-ray": "^1.26",
         "symfony/var-dumper": "^6.0",
         "symplify/monorepo-builder": "^10.0",
-        "friendsofphp/php-cs-fixer": "^3.8"
+        "vlucas/phpdotenv": "^5.4"
     },
     "require": {
-        "aws/aws-php-sns-message-validator": "^1.6",
+        "aws/aws-php-sns-message-validator": "^1.7",
+        "aws/aws-sdk-php": "^3.222",
         "ext-json": "*",
+        "illuminate/contracts": "^9.0",
         "illuminate/support": "^9.0",
-        "php": "^8.0",
+        "php": "^8.1",
         "scrivo/highlight.php": "^v9.18",
         "spatie/laravel-mailcoach": "^5.2",
-        "spatie/laravel-package-tools": "^1.6",
+        "spatie/laravel-package-tools": "^1.9.2",
         "symfony/amazon-mailer": "^6.0",
         "symfony/mailgun-mailer": "^6.0",
         "symfony/postmark-mailer": "^6.0",
@@ -63,6 +74,7 @@
             "Spatie\\MailcoachSesFeedback\\": [
                 "packages/laravel-mailcoach-ses-feedback/src"
             ],
+            "Spatie\\MailcoachSesSetup\\": "packages/laravel-mailcoach-ses-setup/src",
             "Spatie\\MailcoachUnlayer\\": [
                 "packages/laravel-mailcoach-unlayer/src"
             ]
@@ -89,6 +101,7 @@
             "Spatie\\MailcoachSesFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-ses-feedback/tests"
             ],
+            "Spatie\\MailcoachSesSetup\\Tests\\": "packages/laravel-mailcoach-ses-setup/tests",
             "Spatie\\MailcoachUnlayer\\Tests\\": [
                 "packages/laravel-mailcoach-unlayer/tests"
             ],
@@ -107,6 +120,7 @@
                 "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider",
                 "Spatie\\MailcoachPostmarkFeedback\\MailcoachPostmarkFeedbackServiceProvider",
                 "Spatie\\MailcoachMonaco\\MailcoachMonacoServiceProvider",
+                "Spatie\\MailcoachSesSetup\\MailcoachSesSetupServiceProvider",
                 "Spatie\\MailcoachMailgunFeedback\\MailcoachMailgunFeedbackServiceProvider",
                 "Spatie\\MailcoachSesFeedback\\MailcoachSesFeedbackServiceProvider",
                 "Spatie\\MailcoachMarkdownEditor\\MailcoachMarkdownEditorServiceProvider",
@@ -123,6 +137,7 @@
         "spatie/laravel-mailcoach-postmark-feedback": "self.version",
         "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
         "spatie/laravel-mailcoach-ses-feedback": "self.version",
+        "spatie/laravel-mailcoach-ses-setup": "self.version",
         "spatie/laravel-mailcoach-unlayer": "self.version"
     },
     "config": {
