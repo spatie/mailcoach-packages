@@ -1,6 +1,6 @@
-# Process feedback for email campaigns sent using Amazon SES
+# Process feedback for email campaigns sent using Sendgrid
 
-This package is an add on for [spatie/laravel-mailcoach](https://github.com/spatie/laravel-mailcoach) that can set up an SES account so that it can be used with Mailcoach.
+This package is an add on for [spatie/laravel-mailcoach](https://github.com/spatie/laravel-mailcoach) that can set up a Sendgrid account so that it can be used with Mailcoach.
 
 ## Support us
 
