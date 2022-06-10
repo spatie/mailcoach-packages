@@ -9,7 +9,6 @@ class Postmark
 {
     public function __construct(protected string $serverToken)
     {
-
     }
 
     public function hasValidServerToken(): bool
@@ -21,7 +20,7 @@ class Postmark
         string $endpoint,
         string $httpVerb = 'get',
         array $payload = []
-    ): Response  {
+    ): Response {
         return Http::withHeaders(['X-Postmark-Server-Token' => $this->serverToken])
             ->$httpVerb("https://api.sendgrid.com/$endpoint", $payload);
     }

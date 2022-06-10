@@ -2,11 +2,11 @@
 
 use Spatie\MailcoachPostmarkSetup\Postmark;
 
-beforeEach(function() {
+beforeEach(function () {
     $this->postmark = new Postmark($this->token);
 });
 
-it('can validate the server token', function() {
+it('can validate the server token', function () {
     expect($this->postmark->hasValidServerToken())->toBeTrue();
 
     expect(new Postmark('invalid-token'))->toBeFalse();
