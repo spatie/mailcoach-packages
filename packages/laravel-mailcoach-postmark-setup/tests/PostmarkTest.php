@@ -1,5 +1,6 @@
 <?php
 
+use Spatie\MailcoachPostmarkSetup\Enums\PostMarkTrigger;
 use Spatie\MailcoachPostmarkSetup\Postmark;
 use Spatie\MailcoachPostmarkSetup\Tests\TestCase;
 
@@ -14,4 +15,10 @@ it('can validate the server token', function () {
 
     $hasValidToken = (new Postmark('invalid-token'))->hasValidServerToken();
     expect($hasValidToken)->toBeFalse();
+});
+
+it('can configure a webhook', function() {
+    $triggers = PostMarkTrigger::cases();
+
+   $this->postmark->configureWebhook('https://example.com', $triggers);
 });
