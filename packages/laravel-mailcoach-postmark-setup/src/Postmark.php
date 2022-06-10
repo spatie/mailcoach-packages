@@ -10,15 +10,12 @@ class Postmark
 {
     public function __construct(protected string $serverToken)
     {
-
     }
 
     public function hasValidServerToken(): bool
     {
         return $this->callPostmark('/server')->successful();
     }
-
-
 
     /**
      * @param string $url
@@ -67,8 +64,7 @@ class Postmark
         string $endpoint,
         string $httpVerb = 'get',
         array  $payload = []
-    ): Response
-    {
+    ): Response {
         return Http::withHeaders([
             'X-Postmark-Server-Token' => $this->serverToken,
             'Content-Type' => 'application/json',

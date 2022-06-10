@@ -17,8 +17,8 @@ it('can validate the server token', function () {
     expect($hasValidToken)->toBeFalse();
 });
 
-it('can configure a webhook', function() {
+it('can configure a webhook', function () {
     $triggers = PostMarkTrigger::cases();
 
-   $this->postmark->configureWebhook('https://example.com', $triggers);
+    $this->postmark->configureWebhook('https://example.com', $triggers);
 });
