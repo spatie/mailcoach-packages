@@ -67,6 +67,7 @@
             "Spatie\\MailcoachPostmarkFeedback\\": [
                 "packages/laravel-mailcoach-postmark-feedback/src"
             ],
+            "Spatie\\MailcoachPostmarkSetup\\": "packages/laravel-mailcoach-postmark-setup/src",
             "Spatie\\MailcoachSendgridFeedback\\": [
                 "packages/laravel-mailcoach-sendgrid-feedback/src"
             ],
@@ -95,6 +96,7 @@
             "Spatie\\MailcoachPostmarkFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-postmark-feedback/tests"
             ],
+            "Spatie\\MailcoachPostmarkSetup\\Tests\\": "packages/laravel-mailcoach-postmark-setup/tests",
             "Spatie\\MailcoachSendgridFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-sendgrid-feedback/tests"
             ],
@@ -121,6 +123,7 @@
                 "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider",
                 "Spatie\\MailcoachSendgridSetup\\MailcoachSendgridSetupServiceProvider",
                 "Spatie\\MailcoachPostmarkFeedback\\MailcoachPostmarkFeedbackServiceProvider",
+                "Spatie\\MailcoachPostmarkSetup\\MailcoachPostmarkSetupServiceProvider",
                 "Spatie\\MailcoachMonaco\\MailcoachMonacoServiceProvider",
                 "Spatie\\MailcoachSesSetup\\MailcoachSesSetupServiceProvider",
                 "Spatie\\MailcoachMailgunFeedback\\MailcoachMailgunFeedbackServiceProvider",

@@ -22,7 +22,10 @@ class Postmark
         string $httpVerb = 'get',
         array $payload = []
     ): Response  {
-        return Http::withHeaders(['X-Postmark-Server-Token' => $this->serverToken])
-            ->$httpVerb("https://api.sendgrid.com/$endpoint", $payload);
+        return Http::withHeaders([
+            'X-Postmark-Server-Token' => $this->serverToken,
+            'Content-Type' => 'application/json',
+        ])
+            ->$httpVerb("https://api.postmarkapp.com/$endpoint", $payload);
     }
 }
