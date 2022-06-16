@@ -42,3 +42,4 @@ jobs:
             AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
             MAILGUN_API_KEY: ${{ secrets.MAILGUN_API_KEY }}
             MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
+            SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
