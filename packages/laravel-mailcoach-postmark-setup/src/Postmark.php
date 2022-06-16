@@ -3,6 +3,7 @@
 namespace Spatie\MailcoachPostmarkSetup;
 
 use Illuminate\Http\Client\Response;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
 use Spatie\MailcoachPostmarkSetup\Enums\PostMarkTrigger;
 
@@ -17,17 +18,41 @@ class Postmark
         return $this->callPostmark('/server')->successful();
     }
 
+    /** @return Collection<MessageStream> */
+    public function getStreams(): Collection
+    {
+        return collect($this->callPostmark('/message-streams')->json('MessageStreams'))
+            ->map(fn (array $stream) => new MessageStream(
+                $stream['ID'],
+                $stream['ServerID'],
+                $stream['Name'],
+            ));
+    }
+
+    public function getWebhook(string $url, string $streamId): ?Webhook
+    {
+        $existingWebhook = collect($this->callPostmark("webhooks?MessageStream={$streamId}")->json('Webhooks'))
+            ->where('Url', $url)
+            ->first();
+
+        if ($existingWebhook) {
+            return Webhook::fromPayload($existingWebhook);
+        }
+
+        return null;
+    }
+
     /**
      * @param string $url
      * @param array<int, \Spatie\MailcoachPostmarkSetup\Enums\PostMarkTrigger> $triggers
      *
      * @return void
      */
-    public function configureWebhook(string $url, array $triggers = []): void
+    public function configureWebhook(string $url, string $streamId, array $triggers = []): void
     {
-        // TODO: prevent creating duplicate webhooks by listing webhooks and updating if it already exists.
+        $existingWebhook = $this->getWebhook($url, $streamId);
 
-        $triggers = collect(PostMarkTrigger::cases())
+        $mappedTriggers = collect(PostMarkTrigger::cases())
             ->mapWithKeys(function (PostMarkTrigger $trigger) use ($triggers) {
                 $triggerProperties = [
                     'enabled' => in_array($trigger, $triggers),
@@ -49,15 +74,57 @@ class Postmark
             })
             ->toArray();
 
+        $this->enableOpenTracking(in_array(PostMarkTrigger::Open, $triggers));
+        $this->enableClickTracking(in_array(PostMarkTrigger::Click, $triggers));
 
-        $response = $this->callPostmark('/webhooks', 'post', [
+        if ($existingWebhook) {
+            $this->callPostmark("/webhooks/{$existingWebhook->id}", 'put', [
+                'Url' => $url,
+                'Triggers' => $mappedTriggers,
+            ]);
+
+            return;
+        }
+
+        $this->callPostmark("/webhooks?MessageStream={$streamId}", 'post', [
             'Url' => $url,
             'Triggers' => $triggers,
         ]);
+    }
 
-        dd($response->body());
+    public function deleteWebhook(string $url, string $streamId)
+    {
+        $webhook = $this->getWebhook($url, $streamId);
 
-        // TODO: enable tracking on server level
+        if (is_null($webhook)) {
+            return;
+        }
+
+        $this->callPostmark("/webhooks/{$webhook->id}", 'delete');
+    }
+
+    public function enableOpenTracking(bool $enabled = true)
+    {
+        $this->callPostmark('/server', 'put', [
+            'TrackOpens' => $enabled,
+        ]);
+    }
+
+    public function openTrackingEnabled(): bool
+    {
+        return $this->callPostmark('/server')->json('TrackOpens');
+    }
+
+    public function enableClickTracking(bool $enabled = true)
+    {
+        $this->callPostmark('/server', 'put', [
+            'TrackLinks' => $enabled ? 'HtmlAndText' : 'None',
+        ]);
+    }
+
+    public function clickTrackingEnabled(): bool
+    {
+        return $this->callPostmark('/server')->json('TrackLinks') === 'HtmlAndText';
     }
 
     protected function callPostmark(
@@ -68,7 +135,6 @@ class Postmark
         return Http::withHeaders([
             'X-Postmark-Server-Token' => $this->serverToken,
             'Content-Type' => 'application/json',
-        ])
-            ->$httpVerb("https://api.postmarkapp.com/$endpoint", $payload);
+        ])->$httpVerb("https://api.postmarkapp.com/$endpoint", $payload);
     }
 }
