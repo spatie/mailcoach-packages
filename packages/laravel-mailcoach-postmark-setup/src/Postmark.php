@@ -48,7 +48,7 @@ class Postmark
      *
      * @return void
      */
-    public function configureWebhook(string $url, string $streamId, array $triggers = []): void
+    public function configureWebhook(string $url, string $streamId, array $triggers = [], string $secret = ''): void
     {
         $existingWebhook = $this->getWebhook($url, $streamId);
 
@@ -81,6 +81,12 @@ class Postmark
             $this->callPostmark("/webhooks/{$existingWebhook->id}", 'put', [
                 'Url' => $url,
                 'Triggers' => $mappedTriggers,
+                'HttpHeaders' => [
+                    [
+                        'Name' => 'mailcoach-signature',
+                        'Value' => $secret,
+                    ],
+                ],
             ]);
 
             return;
@@ -88,7 +94,13 @@ class Postmark
 
         $this->callPostmark("/webhooks?MessageStream={$streamId}", 'post', [
             'Url' => $url,
-            'Triggers' => $triggers,
+            'Triggers' => $mappedTriggers,
+            'HttpHeaders' => [
+                [
+                    'Name' => 'mailcoach-signature',
+                    'Value' => $secret,
+                ],
+            ],
         ]);
     }
 
