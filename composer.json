@@ -60,6 +60,7 @@
             "Spatie\\MailcoachMailgunFeedback\\": [
                 "packages/laravel-mailcoach-mailgun-feedback/src"
             ],
+            "Spatie\\MailcoachMailgunSetup\\": "packages/laravel-mailcoach-mailgun-setup/src",
             "Spatie\\MailcoachMarkdownEditor\\": "packages/laravel-mailcoach-markdown-editor/src",
             "Spatie\\MailcoachMonaco\\": [
                 "packages/laravel-mailcoach-monaco/src"
@@ -89,6 +90,7 @@
             "Spatie\\MailcoachMailgunFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-mailgun-feedback/tests"
             ],
+            "Spatie\\MailcoachMailgunSetup\\Tests\\": "packages/laravel-mailcoach-mailgun-setup/tests",
             "Spatie\\MailcoachMarkdownEditor\\Tests\\": "packages/laravel-mailcoach-markdown-editor/tests",
             "Spatie\\MailcoachMonaco\\Tests\\": [
                 "packages/laravel-mailcoach-monaco/tests"
@@ -122,13 +124,14 @@
             "providers": [
                 "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider",
                 "Spatie\\MailcoachSendgridSetup\\MailcoachSendgridSetupServiceProvider",
-                "Spatie\\MailcoachPostmarkFeedback\\MailcoachPostmarkFeedbackServiceProvider",
                 "Spatie\\MailcoachPostmarkSetup\\MailcoachPostmarkSetupServiceProvider",
+                "Spatie\\MailcoachPostmarkFeedback\\MailcoachPostmarkFeedbackServiceProvider",
                 "Spatie\\MailcoachMonaco\\MailcoachMonacoServiceProvider",
                 "Spatie\\MailcoachSesSetup\\MailcoachSesSetupServiceProvider",
                 "Spatie\\MailcoachMailgunFeedback\\MailcoachMailgunFeedbackServiceProvider",
                 "Spatie\\MailcoachSesFeedback\\MailcoachSesFeedbackServiceProvider",
                 "Spatie\\MailcoachMarkdownEditor\\MailcoachMarkdownEditorServiceProvider",
+                "Spatie\\MailcoachMailgunSetup\\MailcoachMailgunSetupServiceProvider",
                 "Spatie\\MailcoachSendgridFeedback\\MailcoachSendgridFeedbackServiceProvider",
                 "Spatie\\MailcoachEditor\\MailcoachEditorServiceProvider"
             ]
@@ -137,9 +140,11 @@
     "replace": {
         "spatie/laravel-mailcoach-editor": "self.version",
         "spatie/laravel-mailcoach-mailgun-feedback": "self.version",
+        "spatie/laravel-mailcoach-mailgun-setup": "self.version",
         "spatie/laravel-mailcoach-markdown-editor": "self.version",
         "spatie/laravel-mailcoach-monaco": "self.version",
         "spatie/laravel-mailcoach-postmark-feedback": "self.version",
+        "spatie/laravel-mailcoach-postmark-setup": "self.version",
         "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
         "spatie/laravel-mailcoach-sendgrid-setup": "self.version",
         "spatie/laravel-mailcoach-ses-feedback": "self.version",
