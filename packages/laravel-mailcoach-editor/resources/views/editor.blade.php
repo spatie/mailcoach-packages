@@ -59,6 +59,7 @@
             const editor = new EditorJS({
                 holder: this.$refs.editor,
                 data: this.json,
+                autofocus: true,
                 tools: {
                     header: Header,
                     list: {
@@ -128,13 +129,12 @@
     @endif
 
     <div class="prose border rounded-md bg-gray-100 px-8 py-8" style="max-width: 50rem; padding-top: 2rem; padding-bottom: 2rem;">
-
         <div>
             @if($template?->containsPlaceHolders())
                 <div>
                     @foreach($template->placeHolderNames() as $placeHolderName)
                         <div class="form-field max-w-full mb-6" wire:key="{{ $placeHolderName }}">
-                            <label class="label" for="field_{{ $placeHolderName }}">
+                            <label class="label mb-2" for="field_{{ $placeHolderName }}">
                                 {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
                             </label>
 
@@ -152,16 +152,18 @@
                 </div>
             @else
                 <div>
-                    <label class="label" for="field_html">
+                    <label class="label mb-2" for="field_html">
                         HTML
                     </label>
 
-                    <div wire:ignore x-data="{
-                        html: @entangle('templateFieldValues.html.html'),
-                        json: @entangle('templateFieldValues.html.json'),
-                        init: init,
-                    }">
-                        <div x-ref="editor"></div>
+                    <div class="bg-white shadow-md min-h-full py-6 rounded-md">
+                        <div wire:ignore x-data="{
+                            html: @entangle('templateFieldValues.html.html'),
+                            json: @entangle('templateFieldValues.html.json'),
+                            init: init,
+                        }">
+                            <div x-ref="editor"></div>
+                        </div>
                     </div>
                 </div>
             @endif
