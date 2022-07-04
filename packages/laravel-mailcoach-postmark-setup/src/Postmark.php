@@ -92,9 +92,10 @@ class Postmark
             return;
         }
 
-        $this->callPostmark("/webhooks?MessageStream={$streamId}", 'post', [
+        $this->callPostmark("/webhooks", 'post', [
             'Url' => $url,
             'Triggers' => $mappedTriggers,
+            'MessageStream' => $streamId,
             'HttpHeaders' => [
                 [
                     'Name' => 'mailcoach-signature',
