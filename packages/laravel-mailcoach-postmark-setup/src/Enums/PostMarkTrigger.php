@@ -6,6 +6,6 @@ enum PostMarkTrigger: string
 {
     case Open = 'Open';
     case Click = 'Click';
-    case Bounce = 'Delivery';
+    case Bounce = 'Bounce';
     case SpamComplaint = 'SpamComplaint';
 }
