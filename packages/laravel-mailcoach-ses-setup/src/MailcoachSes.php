@@ -51,6 +51,11 @@ class MailcoachSes
         return $this;
     }
 
+    public function isInSandboxMode(): bool
+    {
+        return $this->aws()->getAwsAccount()->get('ProductionAccessEnabled') === false;
+    }
+
     public function aws(): Aws
     {
         return $this->aws;
