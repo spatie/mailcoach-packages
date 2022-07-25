@@ -83,12 +83,7 @@
         @endif
     </div>
 
-    @if ($model instanceof \Spatie\Mailcoach\Domain\Campaign\Models\Campaign)
-        <x-mailcoach::campaign-replacer-help-texts/>
-    @elseif ($model instanceof \Spatie\Mailcoach\Domain\Automation\Models\AutomationMail)
-        <x-mailcoach::automation-mail-replacer-help-texts/>
-    @endif
-
+    <x-mailcoach::replacer-help-texts :model="$model" />
     <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model" />
 </div>
 
