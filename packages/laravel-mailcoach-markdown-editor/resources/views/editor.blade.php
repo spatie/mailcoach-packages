@@ -48,7 +48,7 @@
             });
         }
     </script>
-    @if (! $model instanceof \Spatie\Mailcoach\Domain\Campaign\Models\Template)
+    @if ($model->hasTemplates())
         <div class="mb-6">
             <x-mailcoach::template-chooser />
         </div>
