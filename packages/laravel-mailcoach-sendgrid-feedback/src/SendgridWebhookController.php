@@ -7,9 +7,9 @@ use Spatie\Mailcoach\Domain\Settings\Models\Mailer;
 
 class SendgridWebhookController
 {
-    public function __invoke(Request $request, ?string $mailer = null)
+    public function __invoke(Request $request)
     {
-        $this->registerMailerConfig($mailer);
+        $this->registerMailerConfig($request->route('mailer'));
 
         $webhookConfig = SendgridWebhookConfig::get();
 

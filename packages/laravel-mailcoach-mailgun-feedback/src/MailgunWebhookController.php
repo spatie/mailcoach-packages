@@ -8,9 +8,9 @@ use Spatie\WebhookClient\WebhookProcessor;
 
 class MailgunWebhookController
 {
-    public function __invoke(Request $request, ?string $mailer = null)
+    public function __invoke(Request $request)
     {
-        $this->registerMailerConfig($mailer);
+        $this->registerMailerConfig($request->route('mailer'));
 
         $webhookConfig = MailgunWebhookConfig::get();
 
