@@ -28,9 +28,7 @@ class MailgunWebhookController
         $mailer = cache()->remember(
             "mailcoach-mailer-{$mailer}",
             now()->addMinute(),
-            function () use ($mailer) {
-                return Mailer::findByConfigKeyName($mailer);
-            },
+            fn () => Mailer::findByConfigKeyName($mailer),
         );
 
         $mailer?->registerConfigValues();
