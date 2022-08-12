@@ -2,8 +2,6 @@
 
 namespace Spatie\MailcoachPostmarkFeedback\Tests;
 
-use CreateMailCoachTables;
-use CreateWebhookCallsTable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
