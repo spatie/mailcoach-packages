@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Schema;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Mailcoach\MailcoachServiceProvider;
+use Spatie\MailcoachEditor\MailcoachEditorServiceProvider;
+use Spatie\MailcoachMailgunFeedback\MailcoachMailgunFeedbackServiceProvider;
+use Spatie\MailcoachPostmarkFeedback\MailcoachPostmarkFeedbackServiceProvider;
+use Spatie\MailcoachSendgridFeedback\MailcoachSendgridFeedbackServiceProvider;
+use Spatie\MailcoachSendinblueFeedback\MailcoachSendinblueFeedbackServiceProvider;
 use Spatie\MailcoachSesFeedback\MailcoachSesFeedbackServiceProvider;
 
 class TestCase extends Orchestra
@@ -29,7 +34,12 @@ class TestCase extends Orchestra
     {
         return [
             LivewireServiceProvider::class,
+            MailcoachMailgunFeedbackServiceProvider::class,
             MailcoachSesFeedbackServiceProvider::class,
+            MailcoachSendgridFeedbackServiceProvider::class,
+            MailcoachPostmarkFeedbackServiceProvider::class,
+            MailcoachSendinblueFeedbackServiceProvider::class,
+            MailcoachEditorServiceProvider::class,
             MailcoachServiceProvider::class,
         ];
     }
