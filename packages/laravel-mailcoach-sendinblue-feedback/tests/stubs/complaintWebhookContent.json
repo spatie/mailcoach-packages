@@ -1,0 +1,9 @@
+{
+    "event" :  "spam",
+    "email" :  "example@example.com",
+    "id" :  1,
+    "date" :  "yyyy-mm-dd hh:i:s",
+    "message-id" :  "<xxx@msgid.domain>",
+    "tag" :  "<defined-tag>",
+    "sending_ip" :  "xxx.xx.xxx.xx"
+}

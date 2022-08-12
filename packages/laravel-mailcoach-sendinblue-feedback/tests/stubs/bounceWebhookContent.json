@@ -1,0 +1,12 @@
+{
+    "event" :  "hard_bounce",
+    "email" :  "example@example.com",
+    "id" :  1,
+    "date" :  "yyyy-mm-dd hh:i:s",
+    "message-id" :  "<xxx@msgid.domain>",
+    "reason" :  "<reason-for-deferred>",
+    "tag" :  "<defined-tag>",
+    "sending_ip" :  "xxx.xx.xxx.xx",
+    "ts_epoch" :  1534486682000,
+    "template_id" :  1
+}

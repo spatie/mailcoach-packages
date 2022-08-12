@@ -17,6 +17,12 @@
             "email": "freek@spatie.be",
             "homepage": "https://spatie.be",
             "role": "Developer"
+        },
+        {
+            "name": "Rias Van der Veken",
+            "email": "rias@spatie.be",
+            "homepage": "https://spatie.be",
+            "role": "Developer"
         }
     ],
     "type": "metapackage",
@@ -50,7 +56,8 @@
         "symfony/amazon-mailer": "^6.0",
         "symfony/mailgun-mailer": "^6.0",
         "symfony/postmark-mailer": "^6.0",
-        "symfony/sendgrid-mailer": "^6.0"
+        "symfony/sendgrid-mailer": "^6.0",
+        "symfony/sendinblue-mailer": "^6.0"
     },
     "autoload": {
         "psr-4": {
@@ -73,6 +80,7 @@
                 "packages/laravel-mailcoach-sendgrid-feedback/src"
             ],
             "Spatie\\MailcoachSendgridSetup\\": "packages/laravel-mailcoach-sendgrid-setup/src",
+            "Spatie\\MailcoachSendinblueFeedback\\": "packages/laravel-mailcoach-sendinblue-feedback/src",
             "Spatie\\MailcoachSesFeedback\\": [
                 "packages/laravel-mailcoach-ses-feedback/src"
             ],
@@ -103,6 +111,7 @@
                 "packages/laravel-mailcoach-sendgrid-feedback/tests"
             ],
             "Spatie\\MailcoachSendgridSetup\\Tests\\": "packages/laravel-mailcoach-sendgrid-setup/tests",
+            "Spatie\\MailcoachSendinblueFeedback\\Tests\\": "packages/laravel-mailcoach-sendinblue-feedback/tests",
             "Spatie\\MailcoachSesFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-ses-feedback/tests"
             ],
@@ -123,6 +132,7 @@
         "laravel": {
             "providers": [
                 "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider",
+                "Spatie\\MailcoachSendinblueFeedback\\MailcoachSendinblueFeedbackServiceProvider",
                 "Spatie\\MailcoachSendgridSetup\\MailcoachSendgridSetupServiceProvider",
                 "Spatie\\MailcoachPostmarkSetup\\MailcoachPostmarkSetupServiceProvider",
                 "Spatie\\MailcoachPostmarkFeedback\\MailcoachPostmarkFeedbackServiceProvider",
@@ -147,6 +157,7 @@
         "spatie/laravel-mailcoach-postmark-setup": "self.version",
         "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
         "spatie/laravel-mailcoach-sendgrid-setup": "self.version",
+        "spatie/laravel-mailcoach-sendinblue-feedback": "self.version",
         "spatie/laravel-mailcoach-ses-feedback": "self.version",
         "spatie/laravel-mailcoach-ses-setup": "self.version",
         "spatie/laravel-mailcoach-unlayer": "self.version"
