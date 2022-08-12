@@ -47,7 +47,7 @@ class ProcessSendgridWebhookJobTest extends TestCase
         (new ProcessSendgridWebhookJob($this->webhookCall))->handle();
 
         $this->assertEquals(2, SendFeedbackItem::count());
-        $this->assertEquals(SendFeedbackType::BOUNCE, SendFeedbackItem::first()->type);
+        $this->assertEquals(SendFeedbackType::Bounce, SendFeedbackItem::first()->type);
         $this->assertTrue($this->send->is(SendFeedbackItem::first()->send));
     }
 
@@ -59,7 +59,7 @@ class ProcessSendgridWebhookJobTest extends TestCase
 
         $this->assertEquals(1, SendFeedbackItem::count());
         tap(SendFeedbackItem::first(), function (SendFeedbackItem $sendFeedbackItem) {
-            $this->assertEquals(SendFeedbackType::COMPLAINT, $sendFeedbackItem->type);
+            $this->assertEquals(SendFeedbackType::Complaint, $sendFeedbackItem->type);
             $this->assertEquals(Carbon::createFromTimestamp(1574854444), $sendFeedbackItem->created_at);
             $this->assertTrue($this->send->is($sendFeedbackItem->send));
         });
@@ -107,7 +107,7 @@ class ProcessSendgridWebhookJobTest extends TestCase
         (new ProcessSendgridWebhookJob($this->webhookCall))->handle();
 
         $this->assertEquals(1, SendFeedbackItem::count());
-        $this->assertEquals(SendFeedbackType::BOUNCE, SendFeedbackItem::first()->type);
+        $this->assertEquals(SendFeedbackType::Bounce, SendFeedbackItem::first()->type);
         $this->assertTrue($this->send->is(SendFeedbackItem::first()->send));
     }
 

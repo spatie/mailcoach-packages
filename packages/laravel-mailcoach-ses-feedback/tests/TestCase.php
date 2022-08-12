@@ -2,10 +2,9 @@
 
 namespace Spatie\MailcoachSesFeedback\Tests;
 
-use CreateMailcoachTables;
-use CreateWebhookCallsTable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench\TestCase as Orchestra;
 use Spatie\Mailcoach\MailcoachServiceProvider;
@@ -30,8 +29,8 @@ class TestCase extends Orchestra
     {
         return [
             LivewireServiceProvider::class,
-            MailcoachServiceProvider::class,
             MailcoachSesFeedbackServiceProvider::class,
+            MailcoachServiceProvider::class,
         ];
     }
 
@@ -49,11 +48,15 @@ class TestCase extends Orchestra
 
     protected function setUpDatabase()
     {
-        include_once __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/create_webhook_calls_table.php.stub';
-        (new CreateWebhookCallsTable())->up();
+        if (! Schema::hasTable('webhook_calls')) {
+            $createWebhookCalls = require __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/2022_02_10_000003_create_webhook_calls_table.php';
+            $createWebhookCalls->up();
+        }
 
-        include_once __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/create_mailcoach_tables.php.stub';
-        (new CreateMailcoachTables())->up();
+        if (! Schema::hasTable('mailcoach_campaigns')) {
+            $createMailcoachTables = require __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/2022_02_10_000001_create_mailcoach_tables.php';
+            $createMailcoachTables->up();
+        }
     }
 
     public function getStub(string $name): array

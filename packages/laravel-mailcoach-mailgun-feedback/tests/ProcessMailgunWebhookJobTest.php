@@ -48,7 +48,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
         $this->assertEquals(1, SendFeedbackItem::count());
 
         tap(SendFeedbackItem::first(), function (SendFeedbackItem $sendFeedbackItem) {
-            $this->assertEquals(SendFeedbackType::BOUNCE, $sendFeedbackItem->type);
+            $this->assertEquals(SendFeedbackType::Bounce, $sendFeedbackItem->type);
             $this->assertEquals(Carbon::createFromTimestamp(1521233195), $sendFeedbackItem->created_at);
             $this->assertTrue($this->send->is($sendFeedbackItem->send));
         });
@@ -62,7 +62,7 @@ class ProcessMailgunWebhookJobTest extends TestCase
 
         $this->assertEquals(1, SendFeedbackItem::count());
         tap(SendFeedbackItem::first(), function (SendFeedbackItem $sendFeedbackItem) {
-            $this->assertEquals(SendFeedbackType::COMPLAINT, $sendFeedbackItem->type);
+            $this->assertEquals(SendFeedbackType::Complaint, $sendFeedbackItem->type);
             $this->assertEquals(Carbon::createFromTimestamp(1521233123), $sendFeedbackItem->created_at);
             $this->assertTrue($this->send->is($sendFeedbackItem->send));
         });
