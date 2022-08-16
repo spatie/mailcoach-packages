@@ -1,4 +1,4 @@
-<div>
+<div class="form-grid">
     <script>
         function debounce(func, timeout = 300){
             let timer;
@@ -45,43 +45,37 @@
             });
         }
     </script>
-    <div>
-        @if ($model->hasTemplates())
-            <div class="mb-6">
-                <x-mailcoach::template-chooser />
-            </div>
-        @endif
+    @if ($model->hasTemplates())
+        <x-mailcoach::template-chooser />
+    @endif
 
-        @if($template?->containsPlaceHolders())
-            <div>
-                @foreach($template->placeHolderNames() as $placeHolderName)
-                    <div class="form-field max-w-full mb-6" wire:key="{{ $placeHolderName }}">
-                        <label class="label" for="field_{{ $placeHolderName }}">
-                            {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
-                        </label>
-
-                        <div wire:ignore x-data="{
-                            value: @entangle('templateFieldValues.' . $placeHolderName),
-                            init: init,
-                        }">
-                            <div x-ref="editor" style="position: relative;width:100%;height:700px;border:1px solid #ebf1f7;padding-top: 10px;"></div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <div wire:ignore x-data="{
-                value: @entangle('templateFieldValues.html'),
-                init: init,
-            }">
-                <label class="label" for="field_html">
-                    HTML
+    @if($template?->containsPlaceHolders())
+        @foreach($template->placeHolderNames() as $placeHolderName)
+            <div class="form-field max-w-full" wire:key="{{ $placeHolderName }}">
+                <label class="label" for="field_{{ $placeHolderName }}">
+                    {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
                 </label>
 
-                <div x-ref="editor" style="position: relative;width:100%;height:700px;border:1px solid #ebf1f7"></div>
+                <div wire:ignore x-data="{
+                    value: @entangle('templateFieldValues.' . $placeHolderName),
+                    init: init,
+                }">
+                    <div x-ref="editor" class="input px-0 h-[700px]"></div>
+                </div>
             </div>
-        @endif
-    </div>
+        @endforeach
+    @else
+        <div class="form-field max-w-full" wire:ignore x-data="{
+            value: @entangle('templateFieldValues.html'),
+            init: init,
+        }">
+            <label class="label" for="field_html">
+                HTML
+            </label>
+
+            <div x-ref="editor" class="input px-0 h-[700px]"></div>
+        </div>
+    @endif
 
     <x-mailcoach::replacer-help-texts :model="$model" />
     <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model" />
