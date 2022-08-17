@@ -20,8 +20,10 @@ class MailcoachMarkdownEditorServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
+        Mailcoach::editorScript(Editor::class, 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/highlight.min.js');
         Mailcoach::editorScript(Editor::class, 'https://cdn.jsdelivr.net/npm/marked/marked.min.js');
         Mailcoach::editorScript(Editor::class, 'https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js');
+        Mailcoach::editorStyle(Editor::class, 'https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.6.0/build/styles/default.min.css');
         Mailcoach::editorStyle(Editor::class, 'https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css');
     }
 }

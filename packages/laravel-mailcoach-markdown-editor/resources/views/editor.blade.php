@@ -9,6 +9,16 @@
         }
 
         window.init = function() {
+            marked.setOptions({
+                highlight: function(code, lang) {
+                    if (lang) {
+                        return hljs.highlight(code, { language: lang, ignoreIllegals: true }).value;
+                    } else {
+                        return hljs.highlightAuto(code).value;
+                    }
+                },
+            });
+
             let editor = new EasyMDE({
                 autoDownloadFontAwesome: false,
                 element: this.$refs.editor,
