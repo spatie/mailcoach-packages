@@ -1,11 +1,4 @@
-<div>
-    <style>
-        .EasyMDEContainer button.table {
-            display: inline-block !important;
-            min-width: auto !important;
-            margin-top: 0 !important;
-        }
-    </style>
+<div class="form-grid">
     <script>
         function debounce(func, timeout = 300){
             let timer;
@@ -17,27 +10,35 @@
 
         window.init = function() {
             let editor = new EasyMDE({
+                autoDownloadFontAwesome: false,
                 element: this.$refs.editor,
                 uploadImage: true,
-                sideBySideFullscreen: false,
                 placeholder: '{{ __('mailcoach - Start writing…') }}',
+                sideBySideFullscreen: false,
+                spellChecker: false,
+                autoSave: false,
                 toolbar: [
-                    "undo", "redo",
+                    
+                    "heading", "bold", "italic", "link",
                     "|",
-                    "bold", "italic", "heading",
+                    "quote", "unordered-list", "ordered-list", "table",
                     "|",
-                    "quote", "unordered-list", "ordered-list", "horizontal-rule", "table",
-                    "|",
-                    "link", "image", {
+                     "image", {
                         name: "upload-image",
                         action: EasyMDE.drawUploadedImage,
-                        className: "fa fa-upload", // Default icon is same as image
+                        className: "fa fa-cloud-upload-alt", // Default icon is same as image
                         title: "Upload image",
                     },
+                    
+                    "undo", 
+                    { // When FontAwesome is not auto downloaded, this loads the correct icon
+                        name: "redo",
+                        action: EasyMDE.redo,
+                        className: "fa fa-redo",
+                        title: "Redo",
+                    },
                     "|",
-                    "preview", "side-by-side", "fullscreen",
-                    "|",
-                    "guide",
+                    "preview",
                 ],
                 imageAccept: 'image/png, image/jpeg, image/gif, image/avif',
                 imageUploadFunction: function(file, onSuccess, onError) {
@@ -78,47 +79,46 @@
         }
     </script>
     @if ($model->hasTemplates())
-        <div class="mb-6">
-            <x-mailcoach::template-chooser />
-        </div>
+        <x-mailcoach::template-chooser />
     @endif
 
-    <div>
-        @if($template?->containsPlaceHolders())
-            <div>
-                @foreach($template->placeHolderNames() as $placeHolderName)
-                    <div class="form-field max-w-full mb-6" wire:key="{{ $placeHolderName }}">
-                        <label class="label" for="field_{{ $placeHolderName }}">
-                            {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
-                        </label>
-
-                        <div wire:ignore x-data="{
-                            html: @entangle('templateFieldValues.' . $placeHolderName . '.html'),
-                            markdown: @entangle('templateFieldValues.' . $placeHolderName . '.markdown'),
-                            init: init,
-                        }">
-                            <textarea x-ref="editor"></textarea>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <div>
-                <label class="label" for="field_html">
-                    HTML
+    @if($template?->containsPlaceHolders())
+        @foreach($template->placeHolderNames() as $placeHolderName)
+            <div class="form-field max-w-full" wire:key="{{ $placeHolderName }}">
+                <label class="label" for="field_{{ $placeHolderName }}">
+                    {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
                 </label>
 
-                <div wire:ignore x-data="{
-                    html: @entangle('templateFieldValues.html.html'),
-                    markdown: @entangle('templateFieldValues.html.markdown'),
+                <div class="markup markup-lists markup-links markup-code" 
+                    wire:ignore x-data="{
+                    html: @entangle('templateFieldValues.' . $placeHolderName . '.html'),
+                    markdown: @entangle('templateFieldValues.' . $placeHolderName . '.markdown'),
                     init: init,
                 }">
                     <textarea x-ref="editor"></textarea>
                 </div>
             </div>
-        @endif
-    </div>
+        @endforeach
+    @else
+        <div class="form-field max-w-full">
+            <label class="label" for="field_html">
+                Markdown
+            </label>
+            
+            <div class="markup markup-lists markup-links markup-code" 
+                wire:ignore x-data="{
+                html: @entangle('templateFieldValues.html.html'),
+                markdown: @entangle('templateFieldValues.html.markdown'),
+                init: init,
+            }">
+                <textarea x-ref="editor"></textarea>
+            </div>
+        </div>
+    @endif
 
-    <x-mailcoach::replacer-help-texts :model="$model" />
+    <div class="-mt-4 flex gap-4">
+        <x-mailcoach::replacer-help-texts :model="$model" />
+        <a class="link-dimmed" href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markup syntax</a>
+    </div>
     <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model" />
 </div>

@@ -97,8 +97,8 @@
                             {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
                         </label>
 
-                        <div class="markup pr-16 max-w-[750px]">
-                            <div class="px-6 py-4 input" wire:ignore x-data="{
+                        <div class="markup markup-lists markup-links markup-code pr-16 max-w-[750px]">
+                            <div class="px-6 py-4 input bg-white" wire:ignore x-data="{
                                 html: @entangle('templateFieldValues.' . $placeHolderName . '.html'),
                                 json: @entangle('templateFieldValues.' . $placeHolderName . '.json'),
                                 init: init,
@@ -114,8 +114,8 @@
                         Content
                     </label>
 
-                    <div class="markup pr-16 max-w-[750px]">
-                        <div class="px-6 py-4 input" wire:ignore x-data="{
+                    <div class="markup markup-lists markup-links markup-code pr-16 max-w-[750px]">
+                        <div class="px-6 py-4 input bg-white" wire:ignore x-data="{
                             html: @entangle('templateFieldValues.html.html'),
                             json: @entangle('templateFieldValues.html.json'),
                             init: init,
