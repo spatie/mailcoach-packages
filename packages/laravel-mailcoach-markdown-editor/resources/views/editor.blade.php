@@ -9,43 +9,38 @@
         }
 
         window.init = function() {
-            let editor = new toastui.Editor(Object.assign({
-                el: this.$refs.editor,
-                plugins: [
-                    toastui.Editor.plugin.codeSyntaxHighlight,
-                    toastui.Editor.plugin.tableMergedCell,
-                    toastui.Editor.plugin.colorSyntax,
-                ]
-            }, @json(config('mailcoach-markdown-editor.options', []))));
+            console.log(this.$refs.editor);
+            let editor = new EasyMDE(Object.assign(@json(config('mailcoach-markdown-editor.options', [])), {
+                element: this.$refs.editor,
+                uploadImage: true,
+                sideBySideFullscreen: false,
+                imageUploadFunction: function(file, onSuccess, onError) {
+                    const data = new FormData();
+                    data.append('file', file);
 
-            editor.setMarkdown(this.markdown);
+                    fetch('{{ action(\Spatie\Mailcoach\Http\Api\Controllers\UploadsController::class) }}', {
+                        method: 'POST',
+                        body: data,
+                        credentials: 'same-origin',
+                        headers: {
+                            'X-CSRF-Token': '{{ csrf_token() }}',
+                        },
+                    })
+                        .then(response => response.json())
+                        .then(({ success, file }) => {
+                            if (! success) {
+                                return onError();
+                            }
 
-            editor.addHook('change', debounce(() => {
-                this.html = editor.getHTML().replaceAll('<p><br></p>', '');
-                this.markdown = editor.getMarkdown();
+                            onSuccess(file.url);
+                        });
+                },
             }));
 
-            editor.addHook('addImageBlobHook', (blob, callback) => {
-                const data = new FormData();
-                data.append('file', blob);
-
-                fetch('{{ action(\Spatie\Mailcoach\Http\Api\Controllers\UploadsController::class) }}', {
-                    method: 'POST',
-                    body: data,
-                    credentials: 'same-origin',
-                    headers: {
-                        'X-CSRF-Token': '{{ csrf_token() }}',
-                    },
-                })
-                .then(response => response.json())
-                .then(({ success, file }) => {
-                    if (! success) {
-                        return;
-                    }
-
-                    callback(file.url, 'alt text');
-                });
-            });
+            editor.codemirror.on("change", debounce(() => {
+                this.markdown = editor.value();
+                this.html = marked.parse(this.markdown);
+            }));
         }
     </script>
     @if ($model->hasTemplates())
@@ -68,7 +63,7 @@
                             markdown: @entangle('templateFieldValues.' . $placeHolderName . '.markdown'),
                             init: init,
                         }">
-                            <div x-ref="editor"></div>
+                            <textarea x-ref="editor"></textarea>
                         </div>
                     </div>
                 @endforeach
@@ -84,7 +79,7 @@
                     markdown: @entangle('templateFieldValues.html.markdown'),
                     init: init,
                 }">
-                    <div x-ref="editor"></div>
+                    <textarea x-ref="editor"></textarea>
                 </div>
             </div>
         @endif
