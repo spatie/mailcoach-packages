@@ -1,4 +1,11 @@
 <div>
+    <style>
+        .EasyMDEContainer button.table {
+            display: inline-block !important;
+            min-width: auto !important;
+            margin-top: 0 !important;
+        }
+    </style>
     <script>
         function debounce(func, timeout = 300){
             let timer;
@@ -9,12 +16,39 @@
         }
 
         window.init = function() {
-            console.log(this.$refs.editor);
-            let editor = new EasyMDE(Object.assign(@json(config('mailcoach-markdown-editor.options', [])), {
+            let editor = new EasyMDE({
                 element: this.$refs.editor,
                 uploadImage: true,
                 sideBySideFullscreen: false,
+                placeholder: '{{ __('mailcoach - Start writing…') }}',
+                toolbar: [
+                    "undo", "redo",
+                    "|",
+                    "bold", "italic", "heading",
+                    "|",
+                    "quote", "unordered-list", "ordered-list", "horizontal-rule", "table",
+                    "|",
+                    "link", "image", {
+                        name: "upload-image",
+                        action: EasyMDE.drawUploadedImage,
+                        className: "fa fa-upload", // Default icon is same as image
+                        title: "Upload image",
+                    },
+                    "|",
+                    "preview", "side-by-side", "fullscreen",
+                    "|",
+                    "guide",
+                ],
+                imageAccept: 'image/png, image/jpeg, image/gif, image/avif',
                 imageUploadFunction: function(file, onSuccess, onError) {
+                    if (file.size > 1024 * 1024 * 2) {
+                        return onError('File cannot be larger than 2MB.');
+                    }
+
+                    if (file.type.split('/')[0] !== 'image') {
+                        return onError('File must be an image.');
+                    }
+
                     const data = new FormData();
                     data.append('file', file);
 
@@ -35,7 +69,7 @@
                             onSuccess(file.url);
                         });
                 },
-            }));
+            });
 
             editor.codemirror.on("change", debounce(() => {
                 this.markdown = editor.value();

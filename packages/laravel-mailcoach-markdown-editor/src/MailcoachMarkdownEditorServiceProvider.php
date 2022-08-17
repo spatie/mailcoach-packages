@@ -13,8 +13,7 @@ class MailcoachMarkdownEditorServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('mailcoach-markdown-editor')
-            ->hasViews()
-            ->hasConfigFile();
+            ->hasViews();
 
         Livewire::component('mailcoach-markdown-editor::editor', Editor::class);
     }
