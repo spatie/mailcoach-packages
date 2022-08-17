@@ -14,11 +14,11 @@
                 element: this.$refs.editor,
                 uploadImage: true,
                 placeholder: '{{ __('mailcoach - Start writing…') }}',
-                sideBySideFullscreen: false,
+                initialValue: this.markdown,
                 spellChecker: false,
                 autoSave: false,
+                status: [],
                 toolbar: [
-                    
                     "heading", "bold", "italic", "link",
                     "|",
                     "quote", "unordered-list", "ordered-list", "table",
@@ -29,8 +29,7 @@
                         className: "fa fa-cloud-upload-alt", // Default icon is same as image
                         title: "Upload image",
                     },
-                    
-                    "undo", 
+                    "undo",
                     { // When FontAwesome is not auto downloaded, this loads the correct icon
                         name: "redo",
                         action: EasyMDE.redo,
@@ -89,7 +88,7 @@
                     {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
                 </label>
 
-                <div class="markup markup-lists markup-links markup-code" 
+                <div class="markup markup-lists markup-links markup-code"
                     wire:ignore x-data="{
                     html: @entangle('templateFieldValues.' . $placeHolderName . '.html'),
                     markdown: @entangle('templateFieldValues.' . $placeHolderName . '.markdown'),
@@ -104,8 +103,8 @@
             <label class="label" for="field_html">
                 Markdown
             </label>
-            
-            <div class="markup markup-lists markup-links markup-code" 
+
+            <div class="markup markup-lists markup-links markup-code"
                 wire:ignore x-data="{
                 html: @entangle('templateFieldValues.html.html'),
                 markdown: @entangle('templateFieldValues.html.markdown'),
