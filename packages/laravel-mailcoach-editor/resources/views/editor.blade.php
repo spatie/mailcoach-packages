@@ -89,42 +89,21 @@
         <x-mailcoach::template-chooser />
     @endif
 
-
-            @if($template?->containsPlaceHolders())
-                @foreach($template->placeHolderNames() as $placeHolderName)
-                    <div class="form-field max-w-full" wire:key="{{ $placeHolderName }}">
-                        <label class="label" for="field_{{ $placeHolderName }}">
-                            {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
-                        </label>
-
-                        <div class="markup markup-lists markup-links markup-code pr-16 max-w-[750px]">
-                            <div class="px-6 py-4 input bg-white" wire:ignore x-data="{
-                                html: @entangle('templateFieldValues.' . $placeHolderName . '.html'),
-                                json: @entangle('templateFieldValues.' . $placeHolderName . '.json'),
-                                init: init,
-                            }">
-                                <div x-ref="editor"></div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @else
-                <div class="form-field max-w-full">
-                    <label class="label" for="field_html">
-                        Content
-                    </label>
-
-                    <div class="markup markup-lists markup-links markup-code pr-16 max-w-[750px]">
-                        <div class="px-6 py-4 input bg-white" wire:ignore x-data="{
-                            html: @entangle('templateFieldValues.html.html'),
-                            json: @entangle('templateFieldValues.html.json'),
-                            init: init,
-                        }">
-                            <div x-ref="editor"></div>
-                        </div>
+    @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
+        <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']">
+            <x-slot name="editor">
+                <div class="markup markup-lists markup-links markup-code pr-16 max-w-[750px]">
+                    <div class="px-6 py-4 input bg-white" wire:ignore x-data="{
+                        html: @entangle('templateFieldValues.' . $field['name'] . '.html'),
+                        json: @entangle('templateFieldValues.' . $field['name'] . '.json'),
+                        init: init,
+                    }">
+                        <div x-ref="editor"></div>
                     </div>
                 </div>
-            @endif
+            </x-slot>
+        </x-mailcoach::editor-fields>
+    @endforeach
 
     <x-mailcoach::replacer-help-texts :model="$model" />
 

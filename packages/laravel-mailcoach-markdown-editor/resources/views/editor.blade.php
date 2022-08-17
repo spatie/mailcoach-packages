@@ -82,39 +82,20 @@
         <x-mailcoach::template-chooser />
     @endif
 
-    @if($template?->containsPlaceHolders())
-        @foreach($template->placeHolderNames() as $placeHolderName)
-            <div class="form-field max-w-full" wire:key="{{ $placeHolderName }}">
-                <label class="label" for="field_{{ $placeHolderName }}">
-                    {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
-                </label>
-
+    @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
+        <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']" :label="$field['name'] === 'html' ? 'Markdown' : null">
+            <x-slot name="editor">
                 <div class="markup markup-lists markup-links markup-code"
                     wire:ignore x-data="{
-                    html: @entangle('templateFieldValues.' . $placeHolderName . '.html'),
-                    markdown: @entangle('templateFieldValues.' . $placeHolderName . '.markdown'),
+                    html: @entangle('templateFieldValues.' . $field['name'] . '.html'),
+                    markdown: @entangle('templateFieldValues.' . $field['name'] . '.markdown'),
                     init: init,
                 }">
                     <textarea x-ref="editor"></textarea>
                 </div>
-            </div>
-        @endforeach
-    @else
-        <div class="form-field max-w-full">
-            <label class="label" for="field_html">
-                Markdown
-            </label>
-
-            <div class="markup markup-lists markup-links markup-code"
-                wire:ignore x-data="{
-                html: @entangle('templateFieldValues.html.html'),
-                markdown: @entangle('templateFieldValues.html.markdown'),
-                init: init,
-            }">
-                <textarea x-ref="editor"></textarea>
-            </div>
-        </div>
-    @endif
+            </x-slot>
+        </x-mailcoach::editor-fields>
+    @endforeach
 
     <div class="-mt-4 flex gap-4">
         <x-mailcoach::replacer-help-texts :model="$model" />
