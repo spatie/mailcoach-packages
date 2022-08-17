@@ -17,7 +17,10 @@
                 initialValue: this.markdown,
                 spellChecker: false,
                 autoSave: false,
-                status: [],
+                status: [{
+                            className: "upload-image",
+                            defaultValue: ''
+                        }],
                 toolbar: [
                     "heading", "bold", "italic", "link",
                     "|",
@@ -36,8 +39,6 @@
                         className: "fa fa-redo",
                         title: "Redo",
                     },
-                    "|",
-                    "preview",
                 ],
                 imageAccept: 'image/png, image/jpeg, image/gif, image/avif',
                 imageUploadFunction: function(file, onSuccess, onError) {
