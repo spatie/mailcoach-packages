@@ -24,6 +24,7 @@ class PostmarkWebhookController
     {
         if (! $mailer) {
             info('[Postmark feedback] No mailer given');
+
             return;
         }
 
