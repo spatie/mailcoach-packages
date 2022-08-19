@@ -14,10 +14,12 @@ class PostmarkSignatureValidator implements SignatureValidator
 
         if (empty($config->signingSecret)) {
             info("[Postmark feedback] Not valid: not set");
+
             return false;
         }
 
         info("[Postmark feedback] Not valid: header " . $request->header('mailcoach-signature') . " is not equal to " . $config->signingSecret);
+
         return $request->header('mailcoach-signature') === $config->signingSecret;
     }
 }
