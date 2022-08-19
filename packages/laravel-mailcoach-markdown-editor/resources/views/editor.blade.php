@@ -36,11 +36,10 @@
                     "|",
                     "quote", "unordered-list", "ordered-list", "table",
                     "|",
-                     "image", {
+                    {
                         name: "upload-image",
                         action: EasyMDE.drawUploadedImage,
-                        className: "fa fa-cloud-upload-alt", // Default icon is same as image
-                        title: "Upload image",
+                        className: "fa fa-image", 
                     },
                     "undo",
                     { // When FontAwesome is not auto downloaded, this loads the correct icon
