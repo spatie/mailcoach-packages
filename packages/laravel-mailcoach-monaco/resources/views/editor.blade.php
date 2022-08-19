@@ -47,6 +47,9 @@
                         fontWeight: '{!! config('mailcoach-monaco.fontWeight', '400') !!}',
                         fontLigatures: {!! config('mailcoach-monaco.fontLigatures', false) ? 'true' : 'false' !!},
                         lineHeight: '{!! config('mailcoach-monaco.lineHeight', '18') !!}',
+                        scrollbar: {
+                            alwaysConsumeMouseWheel: false,
+                        }
                     });
 
                     editor.getModel().onDidChangeContent(debounce(() => {
