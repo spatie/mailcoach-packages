@@ -35,7 +35,7 @@
 
                 component.$nextTick(() => {
                     let editor = monaco.editor.create(component.$refs.editor, {
-                        value: component.value,
+                        value: component.value.html || component.value,
                         language: 'html',
                         minimap: {
                             enabled: false
