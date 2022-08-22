@@ -3,6 +3,7 @@
 namespace Spatie\MailcoachSendgridFeedback;
 
 use Illuminate\Mail\Events\MessageSending;
+use Illuminate\Mail\Events\MessageSent;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,7 @@ class MailcoachSendgridFeedbackServiceProvider extends ServiceProvider
         Route::macro('sendgridFeedback', fn (string $url) => Route::post("{$url}/{mailer?}", '\\' . SendgridWebhookController::class));
 
         Event::listen(MessageSending::class, AddUniqueArgumentsMailHeader::class);
+        Event::listen(MessageSent::class, StoreTransportMessageId::class);
     }
 
     public function boot()
