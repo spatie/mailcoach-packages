@@ -13,7 +13,6 @@ class PostmarkWebhookController
         $this->registerMailerConfig($request->route('mailer'));
 
         $webhookConfig = PostmarkWebhookConfig::get();
-        info("[Postmark feedback] Loaded config:" . json_encode($webhookConfig));
 
         (new WebhookProcessor($request, $webhookConfig))->process();
 
@@ -23,21 +22,14 @@ class PostmarkWebhookController
     public function registerMailerConfig(?string $mailer): void
     {
         if (! $mailer) {
-            info('[Postmark feedback] No mailer given');
-
             return;
         }
 
-        info("[Postmark feedback] Registering values for mailer: {$mailer} for team: " . app('currentTenant')->id);
         $mailer = cache()->remember(
             "mailcoach-mailer-{$mailer}",
             now()->addMinute(),
             fn () => Mailer::findByConfigKeyName($mailer),
         );
-
-        if (! $mailer) {
-            info("[Postmark feedback] Mailer not found.");
-        }
 
         $mailer?->registerConfigValues();
     }
