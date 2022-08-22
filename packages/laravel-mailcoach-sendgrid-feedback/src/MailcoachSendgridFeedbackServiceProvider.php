@@ -17,7 +17,10 @@ class MailcoachSendgridFeedbackServiceProvider extends ServiceProvider
         Route::macro('sendgridFeedback', fn (string $url) => Route::post("{$url}/{mailer?}", '\\' . SendgridWebhookController::class));
 
         Event::listen(MessageSending::class, AddUniqueArgumentsMailHeader::class);
+    }
 
+    public function boot()
+    {
         Mail::extend('sendgrid', function (array $config) {
             $key = $config['key'] ?? config('services.sendgrid.key');
 
