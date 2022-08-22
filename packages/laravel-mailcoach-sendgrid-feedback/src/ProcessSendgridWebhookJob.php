@@ -55,7 +55,7 @@ class ProcessSendgridWebhookJob extends ProcessWebhookJob
 
     protected function getSend(array $rawEvent): ?Send
     {
-        $id = Arr::get($rawEvent, 'send_uuid') ?? Arr::get($rawEvent, 'sg_message_id');
+        $id = Arr::get($rawEvent, 'send_uuid') ?? explode('.', Arr::get($rawEvent, 'sg_message_id'))[0] ?? null;
 
         if (! $id) {
             return null;

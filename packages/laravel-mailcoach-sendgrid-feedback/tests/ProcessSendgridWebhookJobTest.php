@@ -87,6 +87,28 @@ class ProcessSendgridWebhookJobTest extends TestCase
     }
 
     /** @test */
+    public function it_processes_a_sendgrid_click_webhook_call_with_message_id()
+    {
+        $this->send->update(['transport_message_id' => '14c5d75ce93']);
+
+        $payload = $this->getStub('clickPayload');
+        unset($payload['send_uuid']);
+
+        $this->webhookCall->update(['payload' => $payload]);
+        (new ProcessSendgridWebhookJob($this->webhookCall))->handle();
+
+        $this->assertEquals(1, CampaignLink::count());
+        $this->assertEquals('https://example.com', CampaignLink::first()->url);
+        $this->assertCount(1, CampaignLink::first()->clicks);
+        $this->assertEquals(Carbon::createFromTimestamp(1574854444), CampaignLink::first()->clicks->first()->created_at);
+
+        $this->send->subscriber->update(['email' => 'not-example@test.com']);
+        (new ProcessSendgridWebhookJob($this->webhookCall))->handle();
+        $this->assertEquals(1, CampaignLink::count());
+        $this->assertCount(1, CampaignLink::first()->clicks);
+    }
+
+    /** @test */
     public function it_can_process_a_sendgrid_open_webhook_call()
     {
         $this->webhookCall->update(['payload' => $this->getStub('openPayload')]);
