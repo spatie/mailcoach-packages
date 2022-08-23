@@ -19,6 +19,9 @@ class StoreTransportMessageId
         /** @var \Spatie\Mailcoach\Domain\Shared\Models\Send $send */
         $send = $event->data['send'];
 
+        $messageId = ltrim($messageId, '<');
+        $messageId = rtrim($messageId, '>');
+
         $send->storeTransportMessageId($messageId);
     }
 }

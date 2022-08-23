@@ -43,9 +43,6 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
             return null;
         }
 
-        $messageId = ltrim($messageId, '<');
-        $messageId = rtrim($messageId, '>');
-
         /** @var class-string<Send> $sendClass */
         $sendClass = $this->getSendClass();
 
