@@ -1,4 +1,29 @@
 <div class="form-grid">
+    <style>
+        .cm-s-easymde .cm-header-1 {
+            font-size: 1.875rem
+        }
+
+        .cm-s-easymde .cm-header-2 {
+            font-size: 1.5rem
+        }
+
+        .cm-s-easymde .cm-header-3 {
+            font-size: 1.25rem
+        }
+
+        .cm-s-easymde .cm-header-4 {
+            font-size: 1.125rem
+        }
+
+        .cm-s-easymde .cm-header-5 {
+            font-size:1.125rem
+        }
+
+        .cm-s-easymde .cm-header-6 {
+            font-size:1rem
+        }
+    </style>
     <script>
         function debounce(func, timeout = 300){
             let timer;
@@ -39,7 +64,7 @@
                     {
                         name: "upload-image",
                         action: EasyMDE.drawUploadedImage,
-                        className: "fa fa-image", 
+                        className: "fa fa-image",
                     },
                     "undo",
                     { // When FontAwesome is not auto downloaded, this loads the correct icon
@@ -94,7 +119,7 @@
     @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
         <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']" :label="$field['name'] === 'html' ? 'Markdown' : null">
             <x-slot name="editor">
-                <div class="markup markup-lists markup-links markup-code"
+                <div class="markup markup-editor markup-lists markup-links markup-code"
                     wire:ignore x-data="{
                     html: @entangle('templateFieldValues.' . $field['name'] . '.html'),
                     markdown: @entangle('templateFieldValues.' . $field['name'] . '.markdown'),
