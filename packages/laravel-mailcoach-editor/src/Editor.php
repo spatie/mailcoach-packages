@@ -24,7 +24,7 @@ class Editor extends EditorComponent
                 $this->templateFieldValues[$placeHolderName]['json'] ??= '';
             }
         } else {
-            if (! is_array($this->templateFieldValues['html'])) {
+            if (! is_array($this->templateFieldValues['html'] ?? '')) {
                 $this->templateFieldValues['html'] = [
                     'json' => $this->templateFieldValues['html'] ?? '',
                 ];
