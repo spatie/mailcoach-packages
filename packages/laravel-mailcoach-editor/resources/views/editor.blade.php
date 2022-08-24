@@ -90,7 +90,7 @@
     @endif
 
     @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
-        <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']">
+        <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']" :label="$field['name'] === 'html' ? 'Content' : null">
             <x-slot name="editor">
                 <div class="markup markup-lists markup-links markup-code pr-16 max-w-[750px]">
                     <div class="px-6 py-4 input bg-white" wire:ignore x-data="{
