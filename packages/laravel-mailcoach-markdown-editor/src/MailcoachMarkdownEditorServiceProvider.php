@@ -22,11 +22,7 @@ class MailcoachMarkdownEditorServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        try {
-            Mailcoach::editorScript(Editor::class, asset('vendor/mailcoach-markdown-editor/editor.js'));
-        } catch (\Throwable) {
-            // Assets not published yet
-        }
+        Mailcoach::editorScript(Editor::class, asset('vendor/mailcoach-markdown-editor/editor.js'));
         Mailcoach::editorStyle(Editor::class, 'https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css');
     }
 }
