@@ -23,6 +23,33 @@
         .cm-s-easymde .cm-header-6 {
             font-size:1rem
         }
+
+        .cm-s-easymde .cm-comment {
+            background: none;
+        }
+
+        .cm-keyword {color: #708;}
+        .cm-atom {color: #219;}
+        .cm-number {color: #164;}
+        .cm-def {color: #00f;}
+        .cm-variable,
+        .cm-punctuation,
+        .cm-property,
+        .cm-operator {}
+        .cm-variable-2 {color: #05a;}
+        .cm-formatting-list, .cm-formatting-list + .cm-variable-2 {color: #000;}
+        .cm-variable-3, .cm-s-default .cm-type {color: #085;}
+        .cm-comment {color: #a50;}
+        .cm-string {color: #a11;}
+        .cm-string-2 {color: #f50;}
+        .cm-meta {color: #555;}
+        .cm-qualifier {color: #555;}
+        .cm-builtin {color: #30a;}
+        .cm-bracket {color: #997;}
+        .cm-tag {color: #170;}
+        .cm-attribute {color: #00c;}
+        .cm-hr {color: #999;}
+        .cm-link {color: #00c;}
     </style>
     <script>
         function debounce(func, timeout = 300){
@@ -34,16 +61,6 @@
         }
 
         window.init = function() {
-            marked.setOptions({
-                highlight: function(code, lang) {
-                    if (lang) {
-                        return hljs.highlight(code, { language: lang, ignoreIllegals: true }).value;
-                    } else {
-                        return hljs.highlightAuto(code).value;
-                    }
-                },
-            });
-
             let editor = new EasyMDE({
                 autoDownloadFontAwesome: false,
                 element: this.$refs.editor,
@@ -108,8 +125,29 @@
 
             editor.codemirror.on("change", debounce(() => {
                 this.markdown = editor.value();
-                this.html = marked.parse(this.markdown);
+                renderToHtml(this);
             }));
+
+            this.$watch('theme', () => {
+                this.markdown = editor.value();
+                renderToHtml(this);
+            });
+
+            function renderToHtml(instance) {
+                fetch('{{ route('mailcoach-markdown-editor.render-markdown') }}', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        markdown: instance.markdown,
+                        theme: instance.theme,
+                    })
+                })
+                    .then(response => response.text())
+                    .then(html => instance.html = html);
+            }
         }
     </script>
     @if ($model->hasTemplates())
@@ -123,9 +161,51 @@
                     wire:ignore x-data="{
                     html: @entangle('templateFieldValues.' . $field['name'] . '.html'),
                     markdown: @entangle('templateFieldValues.' . $field['name'] . '.markdown'),
+                    theme: @entangle('templateFieldValues.' . $field['name'] . '.theme'),
                     init: init,
                 }">
                     <textarea x-ref="editor"></textarea>
+
+                    <div class="form-field -mt-4 mb-4" x-show="markdown.includes('```')" x-cloak>
+                        <label class="label" for="theme">
+                            Syntax highlighting theme
+                        </label>
+                        <div class="select">
+                            <select class="" name="theme" id="theme" x-model="theme">
+                                <option>dark-plus</option>
+                                <option>dracula-soft</option>
+                                <option>dracula</option>
+                                <option>github-dark-dimmed</option>
+                                <option>github-dark</option>
+                                <option>github-light</option>
+                                <option>hc_light</option>
+                                <option>light-plus</option>
+                                <option>material-darker</option>
+                                <option>material-default</option>
+                                <option>material-lighter</option>
+                                <option>material-ocean</option>
+                                <option>material-palenight</option>
+                                <option>min-dark</option>
+                                <option>min-light</option>
+                                <option>monokai</option>
+                                <option>nord</option>
+                                <option>one-dark-pro</option>
+                                <option>poimandres</option>
+                                <option>rose-pine-dawn</option>
+                                <option>rose-pine-moon</option>
+                                <option>rose-pine</option>
+                                <option>slack-dark</option>
+                                <option>slack-ochin</option>
+                                <option>solarized-dark</option>
+                                <option>solarized-light</option>
+                                <option>vitesse-dark</option>
+                                <option>vitesse-light</option>
+                            </select>
+                            <div class="select-arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </x-slot>
         </x-mailcoach::editor-fields>

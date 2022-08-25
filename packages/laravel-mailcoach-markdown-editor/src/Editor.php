@@ -22,6 +22,7 @@ class Editor extends EditorComponent
 
                 $this->templateFieldValues[$placeHolderName]['html'] ??= '';
                 $this->templateFieldValues[$placeHolderName]['markdown'] ??= '';
+                $this->templateFieldValues[$placeHolderName]['theme'] ??= 'nord';
             }
         } else {
             if (! is_array($this->templateFieldValues['html'] ?? '')) {
@@ -32,6 +33,7 @@ class Editor extends EditorComponent
 
             $this->templateFieldValues['html']['html'] ??= '';
             $this->templateFieldValues['html']['markdown'] ??= '';
+            $this->templateFieldValues['html']['theme'] ??= 'nord';
         }
 
         return view('mailcoach-markdown-editor::editor');
