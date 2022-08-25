@@ -2,6 +2,7 @@
  * Source: https://github.com/Ionaru/easy-markdown-editor/blob/master/src/js/easymde.js
  * Only changes:
  * - removal of line 1 to 15
+ * Probably won't be needed when https://github.com/Ionaru/easy-markdown-editor/pull/263 is ever merged
  */
 
 // Some variables
