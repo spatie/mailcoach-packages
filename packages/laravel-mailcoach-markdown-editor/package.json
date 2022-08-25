@@ -1,14 +1,14 @@
 {
   "name": "laravel-mailcoach-markdown-editor",
   "scripts": {
-      "dev": "vite",
-      "build": "vite build"
+    "dev": "npx mix",
+    "build": "npx mix --production"
   },
   "dependencies": {
     "codemirror": "^5.65.8"
   },
   "devDependencies": {
-    "laravel-vite-plugin": "^0.5.4",
-    "vite": "^3.0.9"
+    "laravel-mix": "^6.0.49",
+    "laravel-vite-plugin": "^0.5.4"
   }
 }

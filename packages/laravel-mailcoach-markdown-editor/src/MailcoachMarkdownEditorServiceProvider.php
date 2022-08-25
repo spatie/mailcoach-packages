@@ -2,7 +2,6 @@
 
 namespace Spatie\MailcoachMarkdownEditor;
 
-use Illuminate\Support\Facades\Vite;
 use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -24,7 +23,7 @@ class MailcoachMarkdownEditorServiceProvider extends PackageServiceProvider
     public function bootingPackage()
     {
         try {
-            Mailcoach::editorScript(Editor::class, Vite::asset('resources/js/editor.js', 'vendor/mailcoach-markdown-editor'));
+            Mailcoach::editorScript(Editor::class, asset('vendor/mailcoach-markdown-editor/editor.js'));
         } catch (\Throwable) {
             // Assets not published yet
         }
