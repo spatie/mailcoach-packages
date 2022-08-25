@@ -7,7 +7,6 @@ use Livewire\Livewire;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Spatie\Mailcoach\Mailcoach;
-use Spatie\ShikiPhp\Shiki;
 
 class MailcoachMarkdownEditorServiceProvider extends PackageServiceProvider
 {
