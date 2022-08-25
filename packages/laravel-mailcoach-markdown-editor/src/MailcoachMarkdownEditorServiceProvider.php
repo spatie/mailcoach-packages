@@ -23,7 +23,11 @@ class MailcoachMarkdownEditorServiceProvider extends PackageServiceProvider
 
     public function bootingPackage()
     {
-        Mailcoach::editorScript(Editor::class, Vite::asset('resources/js/editor.js', 'vendor/mailcoach-markdown-editor'));
+        try {
+            Mailcoach::editorScript(Editor::class, Vite::asset('resources/js/editor.js', 'vendor/mailcoach-markdown-editor'));
+        } catch (\Throwable) {
+            // Assets not published yet
+        }
         Mailcoach::editorStyle(Editor::class, 'https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css');
     }
 }
