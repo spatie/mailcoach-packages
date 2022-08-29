@@ -151,7 +151,7 @@
         }
     </script>
     @if ($model->hasTemplates())
-        <x-mailcoach::template-chooser />
+        <x-mailcoach::template-chooser :clearable="false" />
     @endif
 
     @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)

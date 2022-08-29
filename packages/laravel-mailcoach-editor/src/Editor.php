@@ -3,6 +3,7 @@
 namespace Spatie\MailcoachEditor;
 
 use Illuminate\Contracts\View\View;
+use Spatie\Mailcoach\Domain\Campaign\Models\Concerns\HasHtmlContent;
 use Spatie\Mailcoach\Domain\Shared\Support\TemplateRenderer;
 use Spatie\Mailcoach\Http\App\Livewire\EditorComponent;
 
@@ -12,6 +13,13 @@ class Editor extends EditorComponent
 
     public function render(): View
     {
+        if (! $this->templateId) {
+            $template = self::getTemplateClass()::first();
+
+            $this->templateId = $template?->id;
+            $this->template = $template;
+        }
+
         if ($this->template?->containsPlaceHolders()) {
             foreach ($this->template->placeHolderNames() as $placeHolderName) {
                 if (! is_array($this->templateFieldValues[$placeHolderName] ?? '')) {

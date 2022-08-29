@@ -12,6 +12,13 @@ class Editor extends EditorComponent
 
     public function render(): View
     {
+        if (! $this->templateId) {
+            $template = self::getTemplateClass()::first();
+
+            $this->templateId = $template?->id;
+            $this->template = $template;
+        }
+
         if ($this->template?->containsPlaceHolders()) {
             foreach ($this->template->placeHolderNames() as $placeHolderName) {
                 if (! is_array($this->templateFieldValues[$placeHolderName] ?? '')) {
