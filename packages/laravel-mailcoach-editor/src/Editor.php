@@ -3,7 +3,6 @@
 namespace Spatie\MailcoachEditor;
 
 use Illuminate\Contracts\View\View;
-use Spatie\Mailcoach\Domain\Campaign\Models\Concerns\HasHtmlContent;
 use Spatie\Mailcoach\Domain\Shared\Support\TemplateRenderer;
 use Spatie\Mailcoach\Http\App\Livewire\EditorComponent;
 
