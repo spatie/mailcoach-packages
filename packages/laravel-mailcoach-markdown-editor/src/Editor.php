@@ -12,6 +12,13 @@ class Editor extends EditorComponent
 
     public function render(): View
     {
+        if (! $this->templateId) {
+            $template = self::getTemplateClass()::first();
+
+            $this->templateId = $template?->id;
+            $this->template = $template;
+        }
+
         if ($this->template?->containsPlaceHolders()) {
             foreach ($this->template->placeHolderNames() as $placeHolderName) {
                 if (! is_array($this->templateFieldValues[$placeHolderName] ?? '')) {
@@ -22,6 +29,7 @@ class Editor extends EditorComponent
 
                 $this->templateFieldValues[$placeHolderName]['html'] ??= '';
                 $this->templateFieldValues[$placeHolderName]['markdown'] ??= '';
+                $this->templateFieldValues[$placeHolderName]['theme'] ??= 'nord';
             }
         } else {
             if (! is_array($this->templateFieldValues['html'] ?? '')) {
@@ -32,6 +40,7 @@ class Editor extends EditorComponent
 
             $this->templateFieldValues['html']['html'] ??= '';
             $this->templateFieldValues['html']['markdown'] ??= '';
+            $this->templateFieldValues['html']['theme'] ??= 'nord';
         }
 
         return view('mailcoach-markdown-editor::editor');

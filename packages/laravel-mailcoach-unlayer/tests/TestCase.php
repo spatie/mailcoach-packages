@@ -2,8 +2,6 @@
 
 namespace Spatie\MailcoachUnlayer\Tests;
 
-use CreateMailcoachTables;
-use CreateMediaTable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;

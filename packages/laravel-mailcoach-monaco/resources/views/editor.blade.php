@@ -1,4 +1,4 @@
-<div>
+<div class="form-grid">
     <script>
         function debounce(func, timeout = 300){
             let timer;
@@ -23,65 +23,59 @@
             }
 
             const component = this;
-            require(['vs/editor/editor.main'], function () {
-                let editor = monaco.editor.create(component.$refs.editor, {
-                    value: component.value,
-                    language: 'html',
-                    minimap: {
-                        enabled: false
-                    },
-                    fixedOverflowWidgets: {},
-                    theme: '{!! config('mailcoach-monaco.theme', 'vs-light') !!}',
-                    fontFamily: '{!! config('mailcoach-monaco.fontFamily', 'Menlo, Monaco, "Courier New", monospace') !!}',
-                    fontSize: '{!! config('mailcoach-monaco.fontSize', '12') !!}',
-                    fontWeight: '{!! config('mailcoach-monaco.fontWeight', '400') !!}',
-                    fontLigatures: {!! config('mailcoach-monaco.fontLigatures', false) ? 'true' : 'false' !!},
-                    lineHeight: '{!! config('mailcoach-monaco.lineHeight', '18') !!}',
+
+            if (window.monaco) {
+                window.location.reload();
+            }
+
+            require(['vs/editor/editor.main'], () => initializeMonaco());
+
+            function initializeMonaco() {
+                monaco.editor.getModels().forEach(model => model.dispose());
+
+                component.$nextTick(() => {
+                    let editor = monaco.editor.create(component.$refs.editor, {
+                        value: component.value.html || component.value,
+                        language: 'html',
+                        minimap: {
+                            enabled: false
+                        },
+                        fixedOverflowWidgets: {},
+                        theme: '{!! config('mailcoach-monaco.theme', 'vs-light') !!}',
+                        fontSize: '{!! config('mailcoach-monaco.fontSize', '12') !!}',
+                        fontWeight: '{!! config('mailcoach-monaco.fontWeight', '400') !!}',
+                        fontLigatures: {!! config('mailcoach-monaco.fontLigatures', false) ? 'true' : 'false' !!},
+                        lineHeight: '{!! config('mailcoach-monaco.lineHeight', '18') !!}',
+                        scrollbar: {
+                            alwaysConsumeMouseWheel: false,
+                        }
+                    });
+
+                    editor.getModel().onDidChangeContent(debounce(() => {
+                        component.value = editor.getValue();
+                    }));
                 });
 
-                editor.getModel().onDidChangeContent(debounce(() => {
-                    component.value = editor.getValue();
-                }));
-            });
+            }
         }
     </script>
-    <div>
-        @if ($model->hasTemplates())
-            <div class="mb-6">
-                <x-mailcoach::template-chooser />
-            </div>
-        @endif
+    @if ($model->hasTemplates())
+        <x-mailcoach::template-chooser />
+    @endif
 
-        @if($template?->containsPlaceHolders())
-            <div>
-                @foreach($template->placeHolderNames() as $placeHolderName)
-                    <div class="form-field max-w-full mb-6" wire:key="{{ $placeHolderName }}">
-                        <label class="label" for="field_{{ $placeHolderName }}">
-                            {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
-                        </label>
-
-                        <div wire:ignore x-data="{
-                            value: @entangle('templateFieldValues.' . $placeHolderName),
-                            init: init,
-                        }">
-                            <div x-ref="editor" style="position: relative;width:100%;height:700px;border:1px solid #ebf1f7;padding-top: 10px;"></div>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        @else
-            <div wire:ignore x-data="{
-                value: @entangle('templateFieldValues.html'),
-                init: init,
-            }">
-                <label class="label" for="field_html">
-                    HTML
-                </label>
-
-                <div x-ref="editor" style="position: relative;width:100%;height:700px;border:1px solid #ebf1f7"></div>
-            </div>
-        @endif
-    </div>
+    @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
+        <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']">
+            <x-slot name="editor">
+                <div wire:ignore x-data="{
+                    name: '{{ $field['name'] }}',
+                    value: @entangle('templateFieldValues.' . $field['name']),
+                    init: init,
+                }">
+                    <div x-ref="editor" class="input px-0 h-[700px]"></div>
+                </div>
+            </x-slot>
+        </x-mailcoach::editor-fields>
+    @endforeach
 
     <x-mailcoach::replacer-help-texts :model="$model" />
     <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model" />

@@ -1,48 +1,4 @@
-@push('endhead')
-    <style>
-        #editor-js h1 {
-            font-weight: 800;
-            font-size: 36px;
-            margin-bottom: 32px;
-            line-height: 40px;
-        }
-
-        #editor-js h2 {
-            font-size: 24px;
-            font-weight: 700;
-            margin-top: 48px;
-            margin-bottom: 24px;
-            line-height: 32px;
-        }
-
-        #editor-js h3 {
-            font-size: 20px;
-            font-weight: 600;
-            margin-top: 32px;
-            margin-bottom: 12px;
-            line-height: 32px;
-        }
-
-        #editor-js h4 {
-            font-weight: 600;
-            margin-top: 24px;
-            margin-bottom: 8px;
-            line-height: 24px;
-        }
-
-        .cdx-input {
-            padding: 5px 10px;
-            font-size: 15px;
-        }
-
-        .ce-block__content .table-row {
-            display: flex !important;
-            flex-direction: row !important;
-        }
-    </style>
-@endpush
-
-<div>
+<div class="form-grid">
     <script>
         function upload(data) {
             return fetch('{{ action(\Spatie\Mailcoach\Http\Api\Controllers\UploadsController::class) }}', {
@@ -63,7 +19,12 @@
                 placeholder: '{{ __('Write something awesome!') }}',
                 logLevel: 'ERROR',
                 tools: {
-                    header: Header,
+                    header: {
+                        class: Header,
+                        config: {
+                            levels: [1, 2, 3],
+                        }
+                    },
                     list: {
                         class: List,
                         inlineToolbar: true,
@@ -125,53 +86,26 @@
     </script>
 
     @if ($model->hasTemplates())
-        <div class="mb-6">
-            <x-mailcoach::template-chooser />
-        </div>
+        <x-mailcoach::template-chooser :clearable="false" />
     @endif
 
-    <div class="prose border rounded-md bg-gray-100 px-8 py-8" style="max-width: 50rem; padding-top: 2rem; padding-bottom: 2rem;">
-        <div>
-            @if($template?->containsPlaceHolders())
-                <div>
-                    @foreach($template->placeHolderNames() as $placeHolderName)
-                        <div class="form-field max-w-full mb-6" wire:key="{{ $placeHolderName }}">
-                            <label class="label mb-2" for="field_{{ $placeHolderName }}">
-                                {{ \Illuminate\Support\Str::of($placeHolderName)->snake(' ')->ucfirst() }}
-                            </label>
-
-                            <div class="bg-white shadow-md min-h-full py-6 rounded-md">
-                                <div wire:ignore x-data="{
-                                    html: @entangle('templateFieldValues.' . $placeHolderName . '.html'),
-                                    json: @entangle('templateFieldValues.' . $placeHolderName . '.json'),
-                                    init: init,
-                                }">
-                                    <div x-ref="editor"></div>
-                                </div>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            @else
-                <div>
-                    <label class="label mb-2" for="field_html">
-                        HTML
-                    </label>
-
-                    <div class="bg-white shadow-md min-h-full py-6 rounded-md">
-                        <div wire:ignore x-data="{
-                            html: @entangle('templateFieldValues.html.html'),
-                            json: @entangle('templateFieldValues.html.json'),
-                            init: init,
-                        }">
-                            <div x-ref="editor"></div>
-                        </div>
+    @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
+        <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']" :label="$field['name'] === 'html' ? 'Content' : null">
+            <x-slot name="editor">
+                <div class="markup markup-lists markup-links markup-code pr-16 max-w-[750px]">
+                    <div class="px-6 py-4 input bg-white" wire:ignore x-data="{
+                        html: @entangle('templateFieldValues.' . $field['name'] . '.html'),
+                        json: @entangle('templateFieldValues.' . $field['name'] . '.json'),
+                        init: init,
+                    }">
+                        <div x-ref="editor"></div>
                     </div>
                 </div>
-            @endif
-        </div>
-    </div>
+            </x-slot>
+        </x-mailcoach::editor-fields>
+    @endforeach
 
     <x-mailcoach::replacer-help-texts :model="$model" />
+
     <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model" />
 </div>

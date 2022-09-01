@@ -23,6 +23,7 @@
         "ext-json": "*",
         "scrivo/highlight.php": "^v9.18",
         "spatie/laravel-mailcoach": "v6.x-dev",
+        "spatie/laravel-markdown": "^2.2.4",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
