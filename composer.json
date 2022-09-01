@@ -82,6 +82,7 @@
             ],
             "Spatie\\MailcoachSendgridSetup\\": "packages/laravel-mailcoach-sendgrid-setup/src",
             "Spatie\\MailcoachSendinblueFeedback\\": "packages/laravel-mailcoach-sendinblue-feedback/src",
+            "Spatie\\MailcoachSendinblueSetup\\": "packages/laravel-mailcoach-sendinblue-setup/src",
             "Spatie\\MailcoachSesFeedback\\": [
                 "packages/laravel-mailcoach-ses-feedback/src"
             ],
@@ -113,6 +114,7 @@
             ],
             "Spatie\\MailcoachSendgridSetup\\Tests\\": "packages/laravel-mailcoach-sendgrid-setup/tests",
             "Spatie\\MailcoachSendinblueFeedback\\Tests\\": "packages/laravel-mailcoach-sendinblue-feedback/tests",
+            "Spatie\\MailcoachSendinblueSetup\\Tests\\": "packages/laravel-mailcoach-sendinblue-setup/tests",
             "Spatie\\MailcoachSesFeedback\\Tests\\": [
                 "packages/laravel-mailcoach-ses-feedback/tests"
             ],
@@ -132,6 +134,7 @@
     "extra": {
         "laravel": {
             "providers": [
+                "Spatie\\MailcoachSendinblueSetup\\MailcoachSendinblueSetupServiceProvider",
                 "Spatie\\MailcoachUnlayer\\MailcoachUnlayerServiceProvider",
                 "Spatie\\MailcoachSendinblueFeedback\\MailcoachSendinblueFeedbackServiceProvider",
                 "Spatie\\MailcoachSendgridSetup\\MailcoachSendgridSetupServiceProvider",
@@ -159,6 +162,7 @@
         "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
         "spatie/laravel-mailcoach-sendgrid-setup": "self.version",
         "spatie/laravel-mailcoach-sendinblue-feedback": "self.version",
+        "spatie/laravel-mailcoach-sendinblue-setup": "self.version",
         "spatie/laravel-mailcoach-ses-feedback": "self.version",
         "spatie/laravel-mailcoach-ses-setup": "self.version",
         "spatie/laravel-mailcoach-unlayer": "self.version"
