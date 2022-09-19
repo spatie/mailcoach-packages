@@ -4,7 +4,6 @@ namespace Spatie\MailcoachSendinblueSetup;
 
 use Illuminate\Http\Client\Response;
 use Illuminate\Support\Facades\Http;
-use Spatie\MailcoachSendinblueSetup\Exceptions\CouldNotAccessAccountSetting;
 
 class Sendinblue
 {

@@ -2,7 +2,6 @@
 
 namespace Spatie\MailcoachSendinblueFeedback\SendinblueEvents;
 
-use Illuminate\Support\Arr;
 use Spatie\Mailcoach\Domain\Shared\Models\Send;
 
 class PermanentBounceEvent extends SendinblueEvent

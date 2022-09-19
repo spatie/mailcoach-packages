@@ -4,10 +4,10 @@ namespace Spatie\MailcoachSendinblueFeedback;
 
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\ClickEvent;
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\ComplaintEvent;
-use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\SendinblueEvent;
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\OpenEvent;
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\OtherEvent;
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\PermanentBounceEvent;
+use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\SendinblueEvent;
 
 class SendinblueEventFactory
 {
