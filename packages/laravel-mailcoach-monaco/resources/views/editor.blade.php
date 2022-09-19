@@ -52,6 +52,7 @@
                     });
 
                     editor.getModel().onDidChangeContent(debounce(() => {
+                        component.$refs.editor.dirty = true;
                         component.value = editor.getValue();
                     }));
                 });
@@ -71,7 +72,7 @@
                     value: @entangle('templateFieldValues.' . $field['name']),
                     init: init,
                 }">
-                    <div x-ref="editor" class="input px-0 h-[700px]"></div>
+                    <div x-ref="editor" class="input px-0 h-[700px]" data-dirty-check></div>
                 </div>
             </x-slot>
         </x-mailcoach::editor-fields>

@@ -83,6 +83,7 @@
                 unlayer.exportHtml(function(data) {
                     component.html = data.html;
                     component.json = data.design;
+                    document.getElementById('editor').dirty = true;
                 });
             });
 
@@ -95,7 +96,7 @@
         }
     </script>
 
-    <div class="form-row max-w-full">
+    <div class="max-w-full">
         <label class="label" for="html">{{ __('Body') }}</label>
         @isset($errors)
             @error('html')
@@ -107,7 +108,7 @@
             json: @entangle('templateFieldValues.json'),
             init: init,
         }" class="overflow-hidden -mx-10 h-full">
-            <div id="editor" class="h-full -ml-2 pr-3 py-1" style="min-height: 75vh; height: 75vh"></div>
+            <div id="editor" class="h-full -ml-2 pr-3 py-1" style="min-height: 75vh; height: 75vh" data-dirty-check></div>
         </div>
     </div>
 

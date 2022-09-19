@@ -65,6 +65,7 @@
 
                 onChange: () => {
                     const self = this;
+                    this.$refs.editor.dirty = true;
                     editor.save().then((outputData) => {
                         self.json = outputData;
 
@@ -98,7 +99,7 @@
                         json: @entangle('templateFieldValues.' . $field['name'] . '.json'),
                         init: init,
                     }">
-                        <div x-ref="editor"></div>
+                        <div x-ref="editor" data-dirty-check></div>
                     </div>
                 </div>
             </x-slot>
