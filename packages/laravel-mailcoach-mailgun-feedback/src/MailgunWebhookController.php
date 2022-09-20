@@ -4,6 +4,7 @@ namespace Spatie\MailcoachMailgunFeedback;
 
 use Illuminate\Http\Request;
 use Spatie\Mailcoach\Domain\Settings\Models\Mailer;
+use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
 use Spatie\WebhookClient\WebhookProcessor;
 
 class MailgunWebhookController
@@ -14,7 +15,13 @@ class MailgunWebhookController
 
         $webhookConfig = MailgunWebhookConfig::get();
 
-        (new WebhookProcessor($request, $webhookConfig))->process();
+        try {
+            (new WebhookProcessor($request, $webhookConfig))->process();
+        } catch (InvalidWebhookSignature $exception) {
+            report($exception);
+
+            return response()->json(['message' => $exception->getMessage()], 406);
+        }
 
         return response()->json(['message' => 'ok']);
     }
