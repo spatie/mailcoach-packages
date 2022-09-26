@@ -4,11 +4,14 @@ namespace Spatie\MailcoachMailgunFeedback;
 
 use Illuminate\Http\Request;
 use Spatie\Mailcoach\Domain\Settings\Models\Mailer;
+use Spatie\Mailcoach\Domain\Shared\Traits\UsesMailcoachModels;
 use Spatie\WebhookClient\Exceptions\InvalidWebhookSignature;
 use Spatie\WebhookClient\WebhookProcessor;
 
 class MailgunWebhookController
 {
+    use UsesMailcoachModels;
+
     public function __invoke(Request $request)
     {
         $this->registerMailerConfig($request->route('mailer'));
@@ -35,7 +38,7 @@ class MailgunWebhookController
         $mailer = cache()->remember(
             "mailcoach-mailer-{$mailer}",
             now()->addMinute(),
-            fn () => Mailer::findByConfigKeyName($mailer),
+            fn () => self::getMailerClass()::findByConfigKeyName($mailer),
         );
 
         $mailer?->registerConfigValues();

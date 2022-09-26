@@ -31,11 +31,6 @@ class ProcessPostmarkWebhookJobTest extends TestCase
         $this->send = Send::factory()->create();
 
         $this->send->update(['uuid' => 'my-uuid']);
-
-        $this->send->campaign->update([
-            'track_opens' => true,
-            'track_clicks' => true,
-        ]);
     }
 
     /** @test */

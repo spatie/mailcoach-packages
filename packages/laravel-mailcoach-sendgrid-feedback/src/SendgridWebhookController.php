@@ -4,9 +4,12 @@ namespace Spatie\MailcoachSendgridFeedback;
 
 use Illuminate\Http\Request;
 use Spatie\Mailcoach\Domain\Settings\Models\Mailer;
+use Spatie\Mailcoach\Domain\Shared\Traits\UsesMailcoachModels;
 
 class SendgridWebhookController
 {
+    use UsesMailcoachModels;
+
     public function __invoke(Request $request)
     {
         $this->registerMailerConfig($request->route('mailer'));
@@ -27,7 +30,7 @@ class SendgridWebhookController
         $mailer = cache()->remember(
             "mailcoach-mailer-{$mailer}",
             now()->addMinute(),
-            fn () => Mailer::findByConfigKeyName($mailer),
+            fn () => self::getMailerClass()::findByConfigKeyName($mailer),
         );
 
         $mailer?->registerConfigValues();
