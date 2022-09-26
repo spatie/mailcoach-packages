@@ -3,7 +3,6 @@
 namespace Spatie\MailcoachSendgridFeedback;
 
 use Illuminate\Http\Request;
-use Spatie\Mailcoach\Domain\Settings\Models\Mailer;
 use Spatie\Mailcoach\Domain\Shared\Traits\UsesMailcoachModels;
 
 class SendgridWebhookController

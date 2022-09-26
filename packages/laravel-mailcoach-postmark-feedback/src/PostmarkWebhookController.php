@@ -3,7 +3,6 @@
 namespace Spatie\MailcoachPostmarkFeedback;
 
 use Illuminate\Http\Request;
-use Spatie\Mailcoach\Domain\Settings\Models\Mailer;
 use Spatie\Mailcoach\Domain\Shared\Traits\UsesMailcoachModels;
 use Spatie\WebhookClient\WebhookProcessor;
 
