@@ -27,8 +27,14 @@
                 .then((res) => res.json())
                 .then((result) => {
                     if (! result.data.StockTemplate) {
+                        @if (config('mailcoach.unlayer.options.projectId'))
+                        unlayer.loadTemplate(slug);
+                        Alpine.store('modals').close('load-unlayer-template');
+                        @else
                         document.getElementById('unlayer_template_error').innerHTML = '{{ __mc('Template not found.') }}';
                         document.getElementById('unlayer_template_error').classList.remove('hidden');
+                        @endif
+
                         return;
                     }
 
@@ -121,7 +127,7 @@
 
 @push('modals')
     <x-mailcoach::modal :title="__mc('Load Unlayer template')" name="load-unlayer-template">
-        <p class="mb-4">{!! __mc('You can load an <a class="text-blue-500" href="https://unlayer.com/templates" target="_blank">Unlayer template</a> by entering the slug.') !!}</p>
+        <p class="mb-4">{!! __mc('You can load an <a class="text-blue-500" href="https://unlayer.com/templates" target="_blank">Unlayer template</a> by entering the slug or the id when you have a projectId set.') !!}</p>
 
         <x-mailcoach::text-field label="Unlayer template" name="unlayer_template" />
         <p id="unlayer_template_error" class="form-error hidden mt-1" role="alert"></p>
