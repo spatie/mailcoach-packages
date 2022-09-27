@@ -8,7 +8,7 @@ class OpenEvent extends SendinblueEvent
 {
     public function canHandlePayload(): bool
     {
-        return $this->event === 'opened';
+        return $this->event === 'opened' || $this->event === 'proxy_open';
     }
 
     public function handle(Send $send)
