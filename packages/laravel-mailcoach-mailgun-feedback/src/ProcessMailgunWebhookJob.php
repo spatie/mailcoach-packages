@@ -43,6 +43,7 @@ class ProcessMailgunWebhookJob extends ProcessWebhookJob
             return null;
         }
 
+        /** @var class-string<Send> $sendClass */
         $sendClass = $this->getSendClass();
 
         return $sendClass::findByTransportMessageId($messageId);

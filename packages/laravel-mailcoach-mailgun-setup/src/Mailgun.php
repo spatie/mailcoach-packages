@@ -22,8 +22,7 @@ class Mailgun
         /** @var EventType $event */
         foreach ($events as $event) {
             if ($this->hasWebhook($event)) {
-                $this->callMailgun("v3/domains/{$this->domain}/webhooks", 'put', [
-                    'id' => $event->value,
+                $this->callMailgun("v3/domains/{$this->domain}/webhooks/{$event->value}", 'put', [
                     'url' => $url,
                 ]);
 

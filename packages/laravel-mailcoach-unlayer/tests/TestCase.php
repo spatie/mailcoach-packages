@@ -2,8 +2,6 @@
 
 namespace Spatie\MailcoachUnlayer\Tests;
 
-use CreateMailcoachTables;
-use CreateMediaTable;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Route;
 use Livewire\LivewireServiceProvider;
@@ -46,10 +44,10 @@ abstract class TestCase extends Orchestra
             'prefix' => '',
         ]);
 
-        include_once __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/create_mailcoach_tables.php.stub';
-        (new CreateMailcoachTables())->up();
+        $createMailcoachTables = require __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/2022_02_10_000001_create_mailcoach_tables.php';
+        $createMailcoachTables->up();
 
-        include_once __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/create_media_table.php.stub';
-        (new CreateMediaTable())->up();
+        $createMediaTable = require __DIR__.'/../../../vendor/spatie/laravel-mailcoach/database/migrations/2022_02_10_000002_create_media_table.php';
+        $createMediaTable->up();
     }
 }
