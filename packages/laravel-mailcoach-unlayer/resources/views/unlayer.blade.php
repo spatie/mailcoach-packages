@@ -27,7 +27,7 @@
                 .then((res) => res.json())
                 .then((result) => {
                     if (! result.data.StockTemplate) {
-                        document.getElementById('unlayer_template_error').innerHTML = '{{ __('mailcoach - Template not found.') }}';
+                        document.getElementById('unlayer_template_error').innerHTML = '{{ __mc('Template not found.') }}';
                         document.getElementById('unlayer_template_error').classList.remove('hidden');
                         return;
                     }
@@ -115,20 +115,20 @@
     <x-mailcoach::replacer-help-texts :model="$model" />
 
     <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model">
-        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('load-unlayer-template')" :label="__('mailcoach - Load Unlayer template')"/>
+        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('load-unlayer-template')" :label="__mc('Load Unlayer template')"/>
     </x-mailcoach::editor-buttons>
 </div>
 
 @push('modals')
-    <x-mailcoach::modal :title="__('mailcoach - Load Unlayer template')" name="load-unlayer-template">
-        <p class="mb-4">{!! __('mailcoach - You can load an <a class="text-blue-500" href="https://unlayer.com/templates" target="_blank">Unlayer template</a> by entering the slug.') !!}</p>
+    <x-mailcoach::modal :title="__mc('Load Unlayer template')" name="load-unlayer-template">
+        <p class="mb-4">{!! __mc('You can load an <a class="text-blue-500" href="https://unlayer.com/templates" target="_blank">Unlayer template</a> by entering the slug.') !!}</p>
 
         <x-mailcoach::text-field label="Unlayer template" name="unlayer_template" />
         <p id="unlayer_template_error" class="form-error hidden mt-1" role="alert"></p>
 
         <div class="form-buttons">
             <x-mailcoach::button class="mt-auto ml-2" id="load-template" label="Load" type="button" />
-            <x-mailcoach::button-cancel x-on:click.prevent="$store.modals.close('load-unlayer-template')" :label=" __('mailcoach - Cancel')" />
+            <x-mailcoach::button-cancel x-on:click.prevent="$store.modals.close('load-unlayer-template')" :label=" __mc('Cancel')" />
         </div>
     </x-mailcoach::modal>
 @endpush

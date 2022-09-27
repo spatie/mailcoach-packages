@@ -65,7 +65,7 @@
                 autoDownloadFontAwesome: false,
                 element: this.$refs.editor,
                 uploadImage: true,
-                placeholder: '{{ __('mailcoach - Start writing…') }}',
+                placeholder: '{{ __mc('Start writing…') }}',
                 initialValue: this.markdown,
                 spellChecker: false,
                 autoSave: false,
