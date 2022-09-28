@@ -1,6 +1,8 @@
 # Process feedback for email campaigns sent using Amazon SES
 
-This package is an add on for [spatie/laravel-mailcoach](https://github.com/spatie/laravel-mailcoach) that can set up an SES account so that it can be used with Mailcoach.
+This package is being used by [Mailcoach](https://mailcoach.app) to prepare Amazon SES accounts for use with Mailcoach.
+
+You can use the code in this package, but we don't provide documentation or support. All documentation for Mailcoach itself is available [here](https://mailcoach.app/docs).
 
 ## Support us
 
@@ -10,6 +12,3 @@ We invest a lot of resources into creating [best in class open source packages](
 
 We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
 
-## Documentation
-
-You can view all documentation on [the mailcoach site](https://mailcoach.app).
