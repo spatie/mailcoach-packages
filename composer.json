@@ -151,22 +151,6 @@
             ]
         }
     },
-    "replace": {
-        "spatie/laravel-mailcoach-editor": "self.version",
-        "spatie/laravel-mailcoach-mailgun-feedback": "self.version",
-        "spatie/laravel-mailcoach-mailgun-setup": "self.version",
-        "spatie/laravel-mailcoach-markdown-editor": "self.version",
-        "spatie/laravel-mailcoach-monaco": "self.version",
-        "spatie/laravel-mailcoach-postmark-feedback": "self.version",
-        "spatie/laravel-mailcoach-postmark-setup": "self.version",
-        "spatie/laravel-mailcoach-sendgrid-feedback": "self.version",
-        "spatie/laravel-mailcoach-sendgrid-setup": "self.version",
-        "spatie/laravel-mailcoach-sendinblue-feedback": "self.version",
-        "spatie/laravel-mailcoach-sendinblue-setup": "self.version",
-        "spatie/laravel-mailcoach-ses-feedback": "self.version",
-        "spatie/laravel-mailcoach-ses-setup": "self.version",
-        "spatie/laravel-mailcoach-unlayer": "self.version"
-    },
     "config": {
         "allow-plugins": {
             "phpstan/extension-installer": true,
