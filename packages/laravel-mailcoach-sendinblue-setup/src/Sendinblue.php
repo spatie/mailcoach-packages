@@ -13,7 +13,7 @@ class Sendinblue
 
     public function isValidApiKey(): bool
     {
-        return $this->callSendinblue("webhooks")->successful();
+        return $this->callSendinblue("account")->successful();
     }
 
     public function setupWebhook(string $url): void
