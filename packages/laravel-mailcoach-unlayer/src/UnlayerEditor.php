@@ -16,8 +16,6 @@ use Spatie\Mailcoach\Http\App\Livewire\EditorComponent;
 
 class UnlayerEditor extends EditorComponent
 {
-    public static bool $supportsContent = false;
-
     public function mount(HasHtmlContent $model)
     {
         parent::mount($model);
@@ -73,7 +71,7 @@ class UnlayerEditor extends EditorComponent
         ];
 
         if ($model instanceof Campaign && $model->emailList) {
-            $tags = $model->emailList->tags()->where('type', TagType::DEFAULT)->get();
+            $tags = $model->emailList->tags()->where('type', TagType::Default)->get();
 
             $unsubscribeLinks = [];
             $tags->each(function (Tag $tag) use (&$unsubscribeLinks) {

@@ -1,4 +1,19 @@
-<div class="min-h-screen">
+@push('endHead')
+    <style>
+        #unlayer-wrapper {
+            margin-top: -1.5rem;
+            margin-right: -0.75rem;
+        }
+
+        @media (min-width: 768px) {
+            #unlayer-wrapper {
+                margin-top: -2.55rem;
+                margin-right: -0.5rem;
+            }
+        }
+    </style>
+@endpush
+<div id="unlayer-wrapper" class="min-h-screen">
     <script>
         function loadTemplate() {
             document.getElementById('unlayer_template_error').classList.add('hidden');
@@ -102,27 +117,27 @@
         }
     </script>
 
-    <div class="max-w-full">
-        <label class="label" for="html">{{ __('Body') }}</label>
-        @isset($errors)
-            @error('html')
-                <p class="form-error" role="alert">{{ $message }}</p>
-            @enderror
-        @endisset
+    <div class="max-w-full min-h-screen flex flex-col">
         <div wire:ignore x-data="{
             html: @entangle('templateFieldValues.html'),
             json: @entangle('templateFieldValues.json'),
             init: init,
-        }" class="overflow-hidden -mx-10 h-full">
-            <div id="editor" class="h-full -ml-2 pr-3 py-1" style="min-height: 75vh; height: 75vh" data-dirty-check></div>
+        }" class="overflow-hidden -mx-10 flex-1 h-full">
+            <div id="editor" class="h-full -ml-2 pr-3 py-1" style="min-height: 90vh; height: 90vh" data-dirty-check></div>
         </div>
+
+        <x-mailcoach::replacer-help-texts :model="$model" />
+
+        <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model">
+            @isset($errors)
+                @error('html')
+                <p class="form-error" role="alert">{{ $message }}</p>
+                @enderror
+            @endisset
+
+            <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('load-unlayer-template')" :label="__mc('Load Unlayer template')"/>
+        </x-mailcoach::editor-buttons>
     </div>
-
-    <x-mailcoach::replacer-help-texts :model="$model" />
-
-    <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model">
-        <x-mailcoach::button-secondary x-on:click.prevent="$store.modals.open('load-unlayer-template')" :label="__mc('Load Unlayer template')"/>
-    </x-mailcoach::editor-buttons>
 </div>
 
 @push('modals')
