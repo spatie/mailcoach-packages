@@ -65,6 +65,12 @@
 
             unlayer.loadDesign(JSON.parse(JSON.stringify(this.json)));
 
+            if (! this.json) {
+                unlayer.loadBlank({
+                    backgroundColor: '#ffffff'
+                });
+            }
+
             unlayer.registerCallback('image', (file, done) => {
                 let data = new FormData();
                 data.append('file', file.attachments[0]);
