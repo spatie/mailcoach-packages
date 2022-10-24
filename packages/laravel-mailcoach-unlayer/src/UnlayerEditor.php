@@ -67,6 +67,7 @@ class UnlayerEditor extends EditorComponent
     private function getSpecialLinks(HasHtmlContent $model): array
     {
         $links = [
+            ['name' => 'Webview URL', 'href' => '::webviewUrl::', 'target' => '_blank'],
             ['name' => 'Manage preferences', 'href' => '::preferencesUrl::', 'target' => '_blank'],
             ['name' => 'Unsubscribe URL', 'href' => '::unsubscribeUrl::', 'target' => '_blank'],
         ];
