@@ -17,7 +17,8 @@
     <script>
         function loadTemplate() {
             document.getElementById('unlayer_template_error').classList.add('hidden');
-            const slug = document.getElementById('unlayer_template').value;
+            let slug = document.getElementById('unlayer_template').value;
+            slug = slug.split('/').slice(-1)[0];
 
             fetch('https://api.graphql.unlayer.com/graphql', {
                 method: 'POST',
@@ -148,13 +149,18 @@
 
 @push('modals')
     <x-mailcoach::modal :title="__mc('Load Unlayer template')" name="load-unlayer-template">
-        <p class="mb-4">{!! __mc('You can load an <a class="text-blue-500" href="https://unlayer.com/templates" target="_blank">Unlayer template</a> by entering the slug or the id when you have a projectId set.') !!}</p>
+        <p>{!! __mc('You can load an <a class="text-blue-500" href="https://unlayer.com/templates" target="_blank">Unlayer template</a> by entering the URL') !!}</p>
+        @if(config('mailcoach.unlayer.options.projectId'))
+            <p>{{ __mc('A template id from your Unlayer project also works') }}</p>
+        @endif
 
-        <x-mailcoach::text-field label="Unlayer template" name="unlayer_template" />
-        <p id="unlayer_template_error" class="form-error hidden mt-1" role="alert"></p>
+        <div>
+            <x-mailcoach::text-field label="Unlayer template" name="unlayer_template" :placeholder="config('mailcoach.unlayer.options.projectId') ? __mc('URL or template id') : __mc('https://unlayer.com/templates/<template>')" />
+            <p id="unlayer_template_error" class="form-error hidden mt-1" role="alert"></p>
+        </div>
 
         <div class="form-buttons">
-            <x-mailcoach::button class="mt-auto ml-2" id="load-template" label="Load" type="button" />
+            <x-mailcoach::button class="mt-auto" id="load-template" label="Load" type="button" />
             <x-mailcoach::button-cancel x-on:click.prevent="$store.modals.close('load-unlayer-template')" :label=" __mc('Cancel')" />
         </div>
     </x-mailcoach::modal>
