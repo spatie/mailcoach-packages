@@ -59,7 +59,6 @@
     @if ($model->hasTemplates())
         <x-mailcoach::template-chooser />
     @endif
-
     @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
         <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']">
             <x-slot name="editor">
