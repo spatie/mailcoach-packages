@@ -24,10 +24,6 @@
 
             const component = this;
 
-            if (window.monaco) {
-                window.location.reload();
-            }
-
             require(['vs/editor/editor.main'], () => initializeMonaco());
 
             function initializeMonaco() {
