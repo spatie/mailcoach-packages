@@ -45,15 +45,16 @@ jobs:
 
       -
         if: "!startsWith(github.ref, 'refs/tags/')"
-        uses: "symplify/monorepo-split-github-action@2.1"
+        uses: "msmakouz/monorepo-split-github-action@a6c7ab1aad987415ec9f8e93723048ee14749e65"
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-            package_directory: 'packages/${{ matrix.package }}'
-            repository_organization: 'spatie'
-            repository_name: '${{ matrix.package }}'
-            user_name: "riasvdv"
-            user_email: "rias@spatie.be"
+          package_directory: 'packages/${{ matrix.package }}'
+          repository_organization: 'spatie'
+          repository_name: '${{ matrix.package }}'
+          branch: '${{ github.ref_name }}'
+          user_name: "riasvdv"
+          user_email: "rias@spatie.be"
 
       # with tag
       -
@@ -62,9 +63,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         with:
-            tag: ${GITHUB_REF#refs/tags/}
-            package_directory: 'packages/${{ matrix.package }}'
-            repository_organization: 'spatie'
-            repository_name: '${{ matrix.package }}'
-            user_name: "riasvdv"
-            user_email: "rias@spatie.be"
+          tag: ${GITHUB_REF#refs/tags/}
+          package_directory: 'packages/${{ matrix.package }}'
+          repository_organization: 'spatie'
+          repository_name: '${{ matrix.package }}'
+          user_name: "riasvdv"
+          user_email: "rias@spatie.be"
