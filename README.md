@@ -6,15 +6,24 @@
 This repository contains all the additional feedback & editor packages that you can add to Mailcoach.
 
 ## Editors
-- [Editor.js](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-editor)
-- [Monaco](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-monaco)
-- [Unlayer](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-unlayer)
+- [Editor.js](https://github.com/spatie/laravel-mailcoach-editor)
+- [Monaco](https://github.com/spatie/laravel-mailcoach-monaco)
+- [Unlayer](https://github.com/spatie/laravel-mailcoach-unlayer)
+- [Markdown](https://github.com/spatie/laravel-mailcoach-markdown-editor)
 
 ## Feedback packages
-- [Mailgun](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-mailgun-feedback)
-- [Postmark](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-postmark-feedback)
-- [Sendgrid](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-sendgrid-feedback)
-- [SES](https://github.com/spatie/mailcoach-packages/tree/main/packages/laravel-mailcoach-ses-feedback)
+- [Mailgun](https://github.com/spatie/laravel-mailcoach-mailgun-feedback)
+- [Postmark](https://github.com/spatie/laravel-mailcoach-postmark-feedback)
+- [Sendgrid](https://github.com/spatie/laravel-mailcoach-sendgrid-feedback)
+- [SES](https://github.com/spatie/laravel-mailcoach-ses-feedback)
+- [Sendinblue](https://github.com/spatie/laravel-mailcoach-sendinblue-feedback)
+
+## Setup packages
+- [Mailgun](https://github.com/spatie/laravel-mailcoach-mailgun-setup)
+- [Postmark](https://github.com/spatie/laravel-mailcoach-postmark-setup)
+- [Sendgrid](https://github.com/spatie/laravel-mailcoach-sendgrid-setup)
+- [SES](https://github.com/spatie/laravel-mailcoach-ses-setup)
+- [Sendinblue](https://github.com/spatie/laravel-mailcoach-sendinblue-setup)
 
 ## Welcome to Mailcoach
 
