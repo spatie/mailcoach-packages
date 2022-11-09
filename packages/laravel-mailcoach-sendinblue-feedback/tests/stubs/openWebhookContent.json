@@ -1,0 +1,12 @@
+{
+    "event" :  "opened",
+    "email" :  "frichris@hotmail.fr",
+    "id" :  1,
+    "date" :  "yyyy-m-d h:i:s",
+    "message-id" :  "<xxx@msgid.domain>",
+    "subject" :  "Test subject",
+    "tag" :  "<defined-tag>",
+    "sending_ip" :  "xxx.xx.xxx.xx",
+    "ts_epoch" :  1534486682000,
+    "template_id" :  1
+}
