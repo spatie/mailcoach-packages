@@ -18,7 +18,7 @@ This repository contains all the additional feedback & editor packages that you 
 
 ## Welcome to Mailcoach
 
-[Mailcoach](https://mailcoach.app) is a self-hosted email list manager - in a modern jacket.
+[Mailcoach](https://mailcoach.app) is an email list manager - in a modern jacket.
 
 It features:
 - Subscribers and lists management
