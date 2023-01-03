@@ -33,6 +33,7 @@ class Postmark
     {
         $existingWebhook = collect($this->callPostmark("webhooks?MessageStream={$streamId}")->json('Webhooks'))
             ->where('Url', $url)
+            ->where('MessageStream', $streamId)
             ->first();
 
         if ($existingWebhook) {
