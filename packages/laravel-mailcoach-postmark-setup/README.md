@@ -1,4 +1,4 @@
-# Process feedback for email campaigns sent using Sendgrid
+# Process feedback for email campaigns sent using Postmark
 
 This package is being used by [Mailcoach](https://mailcoach.app) to prepare Postmark accounts for use with Mailcoach.
 
