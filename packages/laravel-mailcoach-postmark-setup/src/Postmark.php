@@ -46,9 +46,9 @@ class Postmark
      * @param string $url
      * @param array<int, \Spatie\MailcoachPostmarkSetup\Enums\PostMarkTrigger> $triggers
      *
-     * @return void
+     * @return Response
      */
-    public function configureWebhook(string $url, string $streamId, array $triggers = [], string $secret = ''): void
+    public function configureWebhook(string $url, string $streamId, array $triggers = [], string $secret = ''): Response
     {
         $existingWebhook = $this->getWebhook($url, $streamId);
 
@@ -78,7 +78,7 @@ class Postmark
         $this->enableClickTracking(in_array(PostMarkTrigger::Click, $triggers));
 
         if ($existingWebhook) {
-            $this->callPostmark("/webhooks/{$existingWebhook->id}", 'put', [
+            return $this->callPostmark("/webhooks/{$existingWebhook->id}", 'put', [
                 'Url' => $url,
                 'Triggers' => $mappedTriggers,
                 'HttpHeaders' => [
@@ -88,11 +88,9 @@ class Postmark
                     ],
                 ],
             ]);
-
-            return;
         }
 
-        $this->callPostmark("/webhooks", 'post', [
+        return $this->callPostmark("/webhooks", 'post', [
             'Url' => $url,
             'Triggers' => $mappedTriggers,
             'MessageStream' => $streamId,
