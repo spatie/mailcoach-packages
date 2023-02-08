@@ -5,8 +5,9 @@ on: [push, pull_request]
 jobs:
   test:
     runs-on: ubuntu-latest
-    fast-fail: false
+
     strategy:
+      fast-fail: false
       matrix:
         php: [8.2, 8.1]
         laravel: [10.*, 9.*]
