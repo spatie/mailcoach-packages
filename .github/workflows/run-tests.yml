@@ -48,3 +48,4 @@ jobs:
             MAILGUN_DOMAIN: ${{ secrets.MAILGUN_DOMAIN }}
             SENDGRID_API_KEY: ${{ secrets.SENDGRID_API_KEY }}
             POSTMARK_SERVER_TOKEN: ${{ secrets.POSTMARK_SERVER_TOKEN }}
+            SENDINBLUE_API_KEY: ${{ secrets.SENDINBLUE_API_KEY }}
