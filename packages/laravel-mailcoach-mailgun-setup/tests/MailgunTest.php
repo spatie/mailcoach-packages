@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
 use Spatie\MailcoachMailgunSetup\EventType;
 use Spatie\MailcoachMailgunSetup\Mailgun;
 use Spatie\MailcoachMailgunSetup\Tests\TestCase;
