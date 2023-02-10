@@ -11,17 +11,17 @@ class RouteTest extends TestCase
         parent::setUp();
 
         Route::sendinblueFeedback('sendinblue-feedback');
+
+        config()->set('mailcoach.sendinblue_feedback.signing_secret', 'secret');
     }
 
     /** @test */
     public function it_provides_a_route_macro_to_handle_webhooks()
     {
-        $invalidPayload = $this->getStub('complaintWebhookContent');
-
-        $validPayload = $this->addValidSignature($invalidPayload);
+        $payload = $this->getStub('complaintWebhookContent');
 
         $this
-            ->post('sendinblue-feedback', $validPayload)
+            ->post('sendinblue-feedback?secret=secret', $payload)
             ->assertSuccessful();
     }
 

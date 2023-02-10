@@ -8,7 +8,7 @@ class ComplaintEvent extends SendinblueEvent
 {
     public function canHandlePayload(): bool
     {
-        return $this->event === 'complaint';
+        return $this->event === 'complaint' || $this->event === 'spam';
     }
 
     public function handle(Send $send)

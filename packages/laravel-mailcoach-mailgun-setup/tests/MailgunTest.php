@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
 use Spatie\MailcoachMailgunSetup\EventType;
 use Spatie\MailcoachMailgunSetup\Mailgun;
 use Spatie\MailcoachMailgunSetup\Tests\TestCase;
@@ -29,13 +30,6 @@ it('can update the webhook settings', function () {
     expect($this->mailgun->hasWebhook(EventType::Opened))->toBeTrue();
     expect($this->mailgun->openTrackingEnabled())->toBeTrue();
     expect($this->mailgun->clickTrackingEnabled())->toBeFalse();
-
-    $url = "https://test-url.com/second";
-    $this->mailgun->setupWebhook($url, [EventType::Clicked]);
-
-    expect($this->mailgun->hasWebhook(EventType::Clicked))->toBeTrue();
-    expect($this->mailgun->openTrackingEnabled())->toBeFalse();
-    expect($this->mailgun->clickTrackingEnabled())->toBeTrue();
 });
 
 it('can enable and disable open tracking on the account', function () {

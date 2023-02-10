@@ -33,11 +33,6 @@ class ProcessMailgunWebhookJobTest extends TestCase
         $this->send = SendFactory::new()->create([
             'transport_message_id' => '20130503192659.13651.20287@mg.craftremote.com',
         ]);
-
-        $this->send->campaign->update([
-            'track_opens' => true,
-            'track_clicks' => true,
-        ]);
     }
 
     /** @test */

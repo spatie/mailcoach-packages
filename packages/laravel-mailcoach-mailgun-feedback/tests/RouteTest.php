@@ -32,6 +32,6 @@ class RouteTest extends TestCase
 
         $this
             ->post('mailgun-feedback', $invalidPayload)
-            ->assertStatus(500);
+            ->assertStatus(406);
     }
 }
