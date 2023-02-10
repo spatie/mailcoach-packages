@@ -4,43 +4,28 @@ on:
   push:
     branches:
       - main
-      - v5
-    tags:
-      - '*'
 
 jobs:
-  provide_packages_json:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v3
-
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: 8.1
-          coverage: none
-        env:
-          COMPOSER_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - uses: "ramsey/composer-install@v2"
-        env:
-          COMPOSER_AUTH: ${{ secrets.COMPOSER_AUTH }}
-
-      # get package json list
-      - id: output_data
-        run: echo "::set-output name=matrix::$(vendor/bin/monorepo-builder packages-json)"
-
-    outputs:
-      matrix: ${{ steps.output_data.outputs.matrix }}
-
   split_monorepo:
-    needs: provide_packages_json
-
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        package: ${{fromJson(needs.provide_packages_json.outputs.matrix)}}
+        package:
+          - laravel-mailcoach-editor
+          - laravel-mailcoach-mailgun-feedback
+          - laravel-mailcoach-mailgun-setup
+          - laravel-mailcoach-markdown-editor
+          - laravel-mailcoach-monaco
+          - laravel-mailcoach-postmark-feedback
+          - laravel-mailcoach-postmark-setup
+          - laravel-mailcoach-sendgrid-feedback
+          - laravel-mailcoach-sendgrid-setup
+          - laravel-mailcoach-sendinblue-feedback
+          - laravel-mailcoach-sendinblue-setup
+          - laravel-mailcoach-ses-feedback
+          - laravel-mailcoach-ses-setup
+          - laravel-mailcoach-unlayer
 
     steps:
       - uses: actions/checkout@v2
