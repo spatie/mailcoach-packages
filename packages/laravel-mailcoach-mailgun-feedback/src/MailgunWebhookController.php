@@ -13,7 +13,7 @@ class MailgunWebhookController
 
     public function __invoke(Request $request)
     {
-        $this->registerMailerConfig($request->route('mailer'));
+        $this->registerMailerConfig($request->route('mailerConfigKey'));
 
         $webhookConfig = MailgunWebhookConfig::get();
 

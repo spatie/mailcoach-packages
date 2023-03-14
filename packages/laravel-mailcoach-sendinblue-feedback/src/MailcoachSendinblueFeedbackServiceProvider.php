@@ -14,7 +14,7 @@ class MailcoachSendinblueFeedbackServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        Route::macro('sendinblueFeedback', fn (string $url) => Route::post("{$url}/{mailer?}", '\\' . SendinblueWebhookController::class));
+        Route::macro('sendinblueFeedback', fn (string $url) => Route::post("{$url}/{mailerConfigKey?}", '\\' . SendinblueWebhookController::class));
 
         Event::listen(MessageSent::class, StoreTransportMessageId::class);
     }
