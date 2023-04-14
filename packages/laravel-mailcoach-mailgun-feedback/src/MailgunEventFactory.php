@@ -8,6 +8,7 @@ use Spatie\MailcoachMailgunFeedback\MailgunEvents\MailgunEvent;
 use Spatie\MailcoachMailgunFeedback\MailgunEvents\OpenEvent;
 use Spatie\MailcoachMailgunFeedback\MailgunEvents\OtherEvent;
 use Spatie\MailcoachMailgunFeedback\MailgunEvents\PermanentBounceEvent;
+use Spatie\MailcoachMailgunFeedback\MailgunEvents\SoftBounceEvent;
 
 class MailgunEventFactory
 {
@@ -16,6 +17,7 @@ class MailgunEventFactory
         ComplaintEvent::class,
         OpenEvent::class,
         PermanentBounceEvent::class,
+        SoftBounceEvent::class,
     ];
 
     public static function createForPayload(array $payload): MailgunEvent
