@@ -12,8 +12,8 @@ enum BounceType: string
     public static function softBounces(): array
     {
         return [
-            self::Undetermined,
-            self::Transient,
+            self::Undetermined->value,
+            self::Transient->value,
         ];
     }
 }
