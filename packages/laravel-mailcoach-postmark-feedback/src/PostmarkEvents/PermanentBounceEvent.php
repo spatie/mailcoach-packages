@@ -10,11 +10,11 @@ class PermanentBounceEvent extends PostmarkEvent
 {
     public function canHandlePayload(): bool
     {
-        if ($this->event === 'Bounce' && $this->payload['Type'] === BounceType::HardBounce) {
+        if ($this->event === 'Bounce' && $this->payload['Type'] === BounceType::HardBounce->value) {
             return true;
         }
 
-        if ($this->event === 'SubscriptionChange' && ($this->payload['SuppressionReason'] ?? null) === BounceType::HardBounce) {
+        if ($this->event === 'SubscriptionChange' && ($this->payload['SuppressionReason'] ?? null) === BounceType::HardBounce->value) {
             return true;
         }
 
