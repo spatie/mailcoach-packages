@@ -13,7 +13,7 @@ class PermanentBounce extends SesEvent
             return false;
         }
 
-        if ($this->payload['bounce']['bounceType'] !== BounceType::Permanent) {
+        if ($this->payload['bounce']['bounceType'] !== BounceType::Permanent->value) {
             return false;
         }
 
