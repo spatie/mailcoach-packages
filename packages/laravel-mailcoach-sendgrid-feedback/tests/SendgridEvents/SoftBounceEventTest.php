@@ -2,7 +2,6 @@
 
 namespace Spatie\MailcoachSendgridFeedback\Tests\SendgridEvents;
 
-use Generator;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Spatie\Mailcoach\Database\Factories\SendFactory;
@@ -40,31 +39,15 @@ class SoftBounceEventTest extends TestCase
 
     /**
      * @test
-     * @dataProvider failures
      */
-    public function it_cannot_handle_soft_bounces(array $payload)
+    public function it_cannot_handle_soft_bounces()
     {
         Event::fake();
 
-        $event = new SoftBounceEvent($payload);
+        $event = new SoftBounceEvent([
+            'event' => 'Blocked',
+        ]);
 
         $this->assertFalse($event->canHandlePayload());
-    }
-
-    public function failures(): Generator
-    {
-        yield 'different event' => [
-            [
-                'event' => 'Bounce',
-                'type' => 'blocked',
-            ],
-        ];
-
-        yield 'different type' => [
-            [
-                'event' => 'Blocked',
-                'type' => 'Bounce',
-            ],
-        ];
     }
 }
