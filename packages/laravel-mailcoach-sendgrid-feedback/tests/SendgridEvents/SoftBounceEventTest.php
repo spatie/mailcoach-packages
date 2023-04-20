@@ -3,6 +3,7 @@
 namespace Spatie\MailcoachSendgridFeedback\Tests\SendgridEvents;
 
 use Generator;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Event;
 use Spatie\Mailcoach\Database\Factories\SendFactory;
 use Spatie\Mailcoach\Domain\Audience\Models\Subscriber;
@@ -12,14 +13,16 @@ use Spatie\MailcoachSendgridFeedback\Tests\TestCase;
 
 class SoftBounceEventTest extends TestCase
 {
+    use RefreshDatabase;
+
     /** @test */
     public function it_can_handle_a_soft_bounce_event()
     {
         Event::fake();
 
         $event = new SoftBounceEvent([
-            'event' => 'bounce',
-            'type' => 'bounce',
+            'event' => 'Blocked',
+            'type' => 'blocked',
             'email' => 'example@spatie.be',
             'timestamp' => 1610000000,
         ]);
@@ -52,15 +55,15 @@ class SoftBounceEventTest extends TestCase
     {
         yield 'different event' => [
             [
-                'event' => 'delivered',
-                'type' => 'bounce',
+                'event' => 'Bounce',
+                'type' => 'blocked',
             ],
         ];
 
         yield 'different type' => [
             [
-                'event' => 'bounce',
-                'type' => 'something else',
+                'event' => 'Blocked',
+                'type' => 'Bounce',
             ],
         ];
     }

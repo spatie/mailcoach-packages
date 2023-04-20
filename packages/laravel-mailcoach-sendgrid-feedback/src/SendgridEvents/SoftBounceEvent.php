@@ -4,12 +4,13 @@ namespace Spatie\MailcoachSendgridFeedback\SendgridEvents;
 
 use Illuminate\Support\Arr;
 use Spatie\Mailcoach\Domain\Shared\Models\Send;
+use Spatie\MailcoachSendgridFeedback\Enums\DeliveryEventType;
 
 class SoftBounceEvent extends SendgridEvent
 {
     public function canHandlePayload(): bool
     {
-        return $this->event === 'bounce' && $this->type === 'bounce';
+        return in_array($this->event, DeliveryEventType::softBounces(), true);
     }
 
     public function handle(Send $send)
