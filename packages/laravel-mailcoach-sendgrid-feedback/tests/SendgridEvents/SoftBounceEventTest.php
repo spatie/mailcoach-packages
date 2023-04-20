@@ -45,7 +45,7 @@ class SoftBounceEventTest extends TestCase
         Event::fake();
 
         $event = new SoftBounceEvent([
-            'event' => 'Blocked',
+            'event' => 'Bounce',
         ]);
 
         $this->assertFalse($event->canHandlePayload());
