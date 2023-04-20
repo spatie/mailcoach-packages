@@ -3,11 +3,8 @@
 namespace Spatie\MailcoachSendgridFeedback\Enums;
 
 /** reference: https://docs.sendgrid.com/for-developers/tracking-events/event */
-enum DeliveryEventType: string
+enum BounceType: string
 {
-    case Processed = 'Processed';
-    case Dropped = 'Dropped';
-    case Delivered = 'Delivered';
     case Deferred = 'Deferred';
     case Bounce = 'Bounce';
     case Blocked = 'Blocked';
