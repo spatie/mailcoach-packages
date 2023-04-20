@@ -8,6 +8,7 @@ use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\OpenEvent;
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\OtherEvent;
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\PermanentBounceEvent;
 use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\SendinblueEvent;
+use Spatie\MailcoachSendinblueFeedback\SendinblueEvents\SoftBounceEvent;
 
 class SendinblueEventFactory
 {
@@ -16,6 +17,7 @@ class SendinblueEventFactory
         ComplaintEvent::class,
         OpenEvent::class,
         PermanentBounceEvent::class,
+        SoftBounceEvent::class,
     ];
 
     public static function createForPayload(array $payload): SendinblueEvent
