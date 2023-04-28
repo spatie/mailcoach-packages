@@ -11,7 +11,7 @@ class PermanentBounceEvent extends MailgunEvent
     {
         if ($this->event !== 'failed') {
             return false;
-        };
+        }
 
         if (Arr::get($this->payload, 'event-data.severity') !== 'permanent') {
             return false;
