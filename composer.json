@@ -51,7 +51,7 @@
         "illuminate/support": "^9.0|^10.0",
         "php": "^8.1",
         "scrivo/highlight.php": "^v9.18",
-        "spatie/laravel-mailcoach": "^6.0",
+        "spatie/laravel-mailcoach": "^6.18",
         "spatie/laravel-markdown": "^2.2.4",
         "spatie/laravel-package-tools": "^1.9.2",
         "symfony/amazon-mailer": "^6.0",
