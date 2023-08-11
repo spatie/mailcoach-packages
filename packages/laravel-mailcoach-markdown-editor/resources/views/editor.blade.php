@@ -1,5 +1,13 @@
 <div class="form-grid">
     <style>
+        /* Override the styles set by Filament for EasyMDE */
+        .EasyMDEContainer .editor-toolbar button:before {
+            -webkit-mask-image: none !important;
+            mask-image: none !important;
+            display: none;
+            content: '';
+        }
+
         .cm-s-easymde .cm-header-1 {
             font-size: 1.875rem
         }
@@ -189,9 +197,11 @@
             }
         }
     </script>
-    @if ($model->hasTemplates())
-        <x-mailcoach::template-chooser :clearable="false" />
-    @endif
+    <div>
+        @if ($model->hasTemplates())
+            <x-mailcoach::template-chooser :clearable="false" wire:key="template-chooser" />
+        @endif
+    </div>
 
     @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
         <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']" :label="$field['name'] === 'html' ? 'Markdown' : null">
