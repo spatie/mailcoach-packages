@@ -12,6 +12,7 @@ jobs:
       fail-fast: false
       matrix:
         package:
+          - laravel-mailcoach-codemirror
           - laravel-mailcoach-editor
           - laravel-mailcoach-mailgun-feedback
           - laravel-mailcoach-mailgun-setup
