@@ -3,6 +3,7 @@
 This repository contains all the additional feedback & editor packages that you can add to Mailcoach.
 
 ## Editors
+- [CodeMirror](https://github.com/spatie/laravel-mailcoach-codemirror)
 - [Editor.js](https://github.com/spatie/laravel-mailcoach-editor)
 - [Monaco](https://github.com/spatie/laravel-mailcoach-monaco)
 - [Unlayer](https://github.com/spatie/laravel-mailcoach-unlayer)
