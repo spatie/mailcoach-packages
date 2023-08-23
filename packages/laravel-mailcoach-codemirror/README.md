@@ -4,7 +4,7 @@ This package is an optional add on for [Mailcoach](https://mailcoach.app).
  
 When installed, it adds [CodeMirror](https://codemirror.net/), a powerful HTML editor, to Mailcoach. 
 
-This editor also adds autocompletion for [MJML](https://mjml.io/), which Mailcoach can compile for you.
+This editor also adds autocompletion for [MJML](https://mjml.io/), which Mailcoach can compile for you if you're using v7 or later.
 
 ## Support us
 
