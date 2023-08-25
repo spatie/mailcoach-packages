@@ -208,8 +208,8 @@
             <x-slot name="editor">
                 <div class="markup markup-editor markup-lists markup-links markup-code"
                     wire:ignore x-data="{
-                    html: @entangle('templateFieldValues.' . $field['name'] . '.html'),
-                    markdown: @entangle('templateFieldValues.' . $field['name'] . '.markdown'),
+                    html: @entangle('templateFieldValues.' . $field['name'] . '.html').live,
+                    markdown: @entangle('templateFieldValues.' . $field['name'] . '.markdown').live,
                     theme: @entangle('templateFieldValues.' . $field['name'] . '.theme'),
                     init: init,
                 }">
@@ -264,5 +264,5 @@
         <x-mailcoach::replacer-help-texts :model="$model" />
         <a class="link-dimmed" href="https://www.markdownguide.org/basic-syntax/" target="_blank">Markup syntax</a>
     </div>
-    <x-mailcoach::editor-buttons :preview-html="$fullHtml" :model="$model" />
+    <x-mailcoach::editor-buttons :preview-html="$this->previewHtml" :model="$model" />
 </div>

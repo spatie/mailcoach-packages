@@ -52,14 +52,7 @@ class Editor extends EditorComponent
             return;
         }
 
-        $templateRenderer = (new TemplateRenderer($this->template?->html ?? ''));
-        $this->fullHtml = $templateRenderer->render(collect($this->templateFieldValues)->map(function ($values) {
-            if (is_string($values)) {
-                return $values;
-            }
-
-            return $values['html'] ?? '';
-        })->toArray());
+        parent::renderFullHtml();
     }
 
     public static function renderBlocks(array $blocks): string
