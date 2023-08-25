@@ -3,7 +3,6 @@
 namespace Spatie\MailcoachEditor;
 
 use Illuminate\Contracts\View\View;
-use Spatie\Mailcoach\Domain\Shared\Support\TemplateRenderer;
 use Spatie\Mailcoach\Livewire\Editor\EditorComponent;
 
 class Editor extends EditorComponent
