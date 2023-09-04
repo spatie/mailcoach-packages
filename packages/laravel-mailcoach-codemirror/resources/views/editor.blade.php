@@ -1,4 +1,9 @@
 <div class="form-grid" wire:ignore>
+    <style>
+        .cm-editor {
+            height: 100%;
+        }
+    </style>
     <script>
         window.debounce = function(func, timeout = 300) {
             let timer;
