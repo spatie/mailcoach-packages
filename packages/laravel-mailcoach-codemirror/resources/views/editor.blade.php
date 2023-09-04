@@ -19,7 +19,7 @@
             <x-slot name="editor">
                 <div
                     x-data="{
-                    html: @entangle('templateFieldValues.' . $field['name'] . '.html').live,
+                    html: @entangle('templateFieldValues.' . $field['name']).live,
                 }" x-init="
                     setupCodeMirror($refs.editor, html, window.debounce((viewUpdate) => {
                         html = viewUpdate.state.doc.toString();
