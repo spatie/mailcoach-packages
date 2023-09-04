@@ -1,4 +1,4 @@
-<div class="form-grid" wire:ignore>
+<div class="form-grid">
     <style>
         .cm-editor {
             height: 100%;
@@ -19,22 +19,27 @@
         @endif
     </div>
 
-    @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
-        <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']" :label="$field['name']">
-            <x-slot name="editor">
-                <div
-                    x-data="{
-                    html: @entangle('templateFieldValues.' . $field['name']).live,
-                }" x-init="
-                    setupCodeMirror($refs.editor, html, window.debounce((viewUpdate) => {
-                        html = viewUpdate.state.doc.toString();
-                    }))
-                ">
-                    <div x-ref="editor" class="input bg-white px-0 overflow-scroll h-[700px]"></div>
-                </div>
-            </x-slot>
-        </x-mailcoach::editor-fields>
-    @endforeach
+    <div>
+        @foreach($template?->fields() ?? [['name' => 'html', 'type' => 'editor']] as $field)
+            <x-mailcoach::editor-fields :name="$field['name']" :type="$field['type']" :label="$field['name']">
+                <x-slot name="editor">
+                    <div
+                        wire:ignore
+                        x-data="{
+                            html: @entangle('templateFieldValues.' . $field['name']).live,
+                        }"
+                        x-init="
+                            setupCodeMirror($refs.editor, html, window.debounce((viewUpdate) => {
+                                html = viewUpdate.state.doc.toString();
+                            }))
+                        "
+                    >
+                        <div x-ref="editor" class="input bg-white px-0 overflow-scroll mb-6" style="max-height: 35vh"></div>
+                    </div>
+                </x-slot>
+            </x-mailcoach::editor-fields>
+        @endforeach
+    </div>
 
     <x-mailcoach::replacer-help-texts :model="$model" />
     <x-mailcoach::editor-buttons :preview-html="$this->previewHtml" :model="$model" />
