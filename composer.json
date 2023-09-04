@@ -17,12 +17,6 @@
             "email": "freek@spatie.be",
             "homepage": "https://spatie.be",
             "role": "Developer"
-        },
-        {
-            "name": "Rias Van der Veken",
-            "email": "rias@spatie.be",
-            "homepage": "https://spatie.be",
-            "role": "Developer"
         }
     ],
     "type": "metapackage",
