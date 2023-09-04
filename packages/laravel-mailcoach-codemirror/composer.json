@@ -22,7 +22,7 @@
     "require": {
         "php": "^8.1",
         "ext-json": "*",
-        "spatie/laravel-mailcoach": "^v6.0|^7.0",
+        "spatie/laravel-mailcoach": "^7.0",
         "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
