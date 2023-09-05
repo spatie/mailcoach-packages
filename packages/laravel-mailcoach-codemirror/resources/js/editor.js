@@ -1,4 +1,4 @@
-import { basicSetup, } from 'codemirror'
+import { basicSetup } from 'codemirror'
 import {EditorView, keymap} from "@codemirror/view"
 import { html } from '@codemirror/lang-html'
 import {indentWithTab} from "@codemirror/commands"

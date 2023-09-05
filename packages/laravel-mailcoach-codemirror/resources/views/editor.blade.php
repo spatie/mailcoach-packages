@@ -2,6 +2,8 @@
     <style>
         .cm-editor {
             height: 100%;
+            width: 0;
+            flex-grow: 1;
         }
     </style>
     <script>
@@ -34,7 +36,7 @@
                             }))
                         "
                     >
-                        <div x-ref="editor" class="input bg-white px-0 overflow-scroll mb-6" style="max-height: 35vh"></div>
+                        <div x-ref="editor" class="flex input bg-white px-0 overflow-scroll mb-6 max-w-full" style="max-height: 35vh"></div>
                     </div>
                 </x-slot>
             </x-mailcoach::editor-fields>
